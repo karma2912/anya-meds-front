@@ -73,7 +73,7 @@ const AnYaMedLanding = () => {
       <section id="home" className="h-[calc(100vh-10rem)] py-20 px-4 sm:px-6 lg:px-14">
 
         <div className="max-w-7xl mx-auto h-full flex justify-center items-start">
-          <div className="grid lg:grid-cols-2 gap-18 items-center lg:pt-14">
+          <div className="grid lg:grid-cols-2 gap-48 items-center lg:pt-14">
             {/* Left Column - Content */}
             <div className="space-y-6">
               <div className="space-y-4">
