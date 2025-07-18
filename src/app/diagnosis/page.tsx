@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FileText, Stethoscope, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Calendar, Activity } from 'lucide-react';
@@ -11,11 +12,11 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-const DiagnosisPage = () => {
+const page = () => {
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showHeatmap, setShowHeatmap] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1); // 1: Upload, 2: Patient Info, 3: Analysis, 4: Results
+  const [currentStep, setCurrentStep] = useState(1);
   const [patientInfo, setPatientInfo] = useState({
     name: '',
     age: '',
@@ -27,6 +28,7 @@ const DiagnosisPage = () => {
     label: string;
     confidence: number;
     probabilities: { label: string; value: number }[];
+    heatmap?: string;
   } | null>(null);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
 
@@ -70,27 +72,43 @@ const DiagnosisPage = () => {
     maxFiles: 1,
   });
 
-  const handleStartAnalysis = () => {
+  const handleStartAnalysis = async () => {
     if (!validatePatientInfo()) return;
-    
+    if (!image) {
+      alert("No image uploaded.");
+      return;
+    }
+
     setCurrentStep(3);
     setIsAnalyzing(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsAnalyzing(false);
-      setAnalysis({
-        label: "COVID-19 Pattern",
-        confidence: 0.92,
-        probabilities: [
-          { label: "Normal", value: 0.05 },
-          { label: "COVID-19", value: 0.92 },
-          { label: "Lung Opacity", value: 0.02 },
-          { label: "Viral Pneumonia", value: 0.01 },
-        ],
+
+    try {
+      // Convert data URL to blob
+      const blob = await fetch(image).then(r => r.blob());
+      const formData = new FormData();
+      formData.append('image', blob, 'xray.png');
+
+      const res = await fetch('/api/predict', {
+        method: 'POST',
+        body: formData,
       });
-      setCurrentStep(4);
-    }, 3000);
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setAnalysis(data);
+        setCurrentStep(4);
+      } else {
+        console.error('Backend error:', data);
+        alert("Analysis failed: " + (data.error || "Unknown error"));
+      }
+
+    } catch (err) {
+      console.error("Prediction error:", err);
+      alert("Prediction failed. Check console.");
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const handleDownloadReport = () => {
@@ -109,6 +127,7 @@ const DiagnosisPage = () => {
     });
     setCurrentStep(1);
     setErrors({});
+    setShowHeatmap(false);
   };
 
   const renderStepIndicator = () => (
@@ -330,25 +349,35 @@ const DiagnosisPage = () => {
               <h3 className="text-lg font-semibold mb-4">Patient X-ray</h3>
               <div className="relative">
                 <div className="border rounded-xl overflow-hidden bg-gray-100">
-                  {image &&<img
-                    src={image}
-                    alt="Analyzed X-ray"
-                    className={`w-full h-80 object-cover ${showHeatmap ? 'opacity-70' : ''}`}
-                  />}
-                  {showHeatmap && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/30 to-yellow-500/30 mix-blend-multiply" />
+                  {image && (
+                    <div className="relative">
+                      <img
+                        src={image}
+                        alt="Analyzed X-ray"
+                        className={`w-full h-80 object-cover ${showHeatmap ? 'opacity-70' : ''}`}
+                      />
+                      {showHeatmap && analysis?.heatmap && (
+                        <img
+                          src={analysis.heatmap}
+                          alt="Heatmap overlay"
+                          className="absolute inset-0 w-full h-80 object-cover mix-blend-multiply"
+                        />
+                      )}
+                    </div>
                   )}
                 </div>
-                <div className="absolute top-2 right-2">
-                  <Toggle
-                    pressed={showHeatmap}
-                    onPressedChange={setShowHeatmap}
-                    className="bg-white/90 backdrop-blur-sm"
-                  >
-                    <Activity className="w-4 h-4 mr-1" />
-                    Heatmap
-                  </Toggle>
-                </div>
+                {analysis?.heatmap && (
+                  <div className="absolute top-2 right-2">
+                    <Toggle
+                      pressed={showHeatmap}
+                      onPressedChange={setShowHeatmap}
+                      className="bg-white/90 backdrop-blur-sm"
+                    >
+                      <Activity className="w-4 h-4 mr-1" />
+                      Heatmap
+                    </Toggle>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -485,7 +514,6 @@ const DiagnosisPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-blue-600 mb-2 flex items-center justify-center gap-3">
             <Stethoscope className="w-8 h-8" />
@@ -493,11 +521,8 @@ const DiagnosisPage = () => {
           </h1>
           <p className="text-gray-600 text-lg">AI-Powered Chest X-ray Analysis Platform</p>
         </div>
-
-        {/* Step Indicator */}
         {renderStepIndicator()}
 
-        {/* Main Content */}
         <div className="max-w-6xl mx-auto">
           {currentStep === 1 && renderStep1()}
           {currentStep === 2 && renderStep2()}
@@ -505,7 +530,6 @@ const DiagnosisPage = () => {
           {currentStep === 4 && renderStep4()}
         </div>
 
-        {/* Disclaimer */}
         <Alert className="mt-8 max-w-6xl mx-auto border-yellow-200 bg-yellow-50">
           <AlertCircle className="w-5 h-5 text-yellow-600" />
           <AlertDescription className="text-yellow-800">
@@ -519,4 +543,4 @@ const DiagnosisPage = () => {
   );
 };
 
-export default DiagnosisPage;
+export default page;

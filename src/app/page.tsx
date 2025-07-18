@@ -15,7 +15,7 @@ import {
   X
 } from 'lucide-react';
 
-const AnYaMedLanding = () => {
+const page = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
@@ -318,4 +318,4 @@ const AnYaMedLanding = () => {
   );
 };
 
-export default AnYaMedLanding;
+export default page;
