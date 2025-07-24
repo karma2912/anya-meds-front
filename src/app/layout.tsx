@@ -29,10 +29,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* 🔗 Diagnostic link to test if routing works */}
-        <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
-          <Link href="/testpage">Go to Test Page</Link>
-        </div>
         {children}
       </body>
     </html>

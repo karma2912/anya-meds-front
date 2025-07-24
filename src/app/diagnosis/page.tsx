@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FileText, Stethoscope, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Calendar, Activity } from 'lucide-react';
+import { FileText, Stethoscope, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Calendar, Activity, XCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -10,9 +10,10 @@ import { Toggle } from '@/components/ui/toggle';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import Image from 'next/image';
 
-const page = () => {
+const DiagnosisPage = () => {
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showHeatmap, setShowHeatmap] = useState(false);
@@ -31,6 +32,7 @@ const page = () => {
     heatmap?: string;
   } | null>(null);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const validatePatientInfo = () => {
     const newErrors: {[key: string]: string} = {};
@@ -54,6 +56,11 @@ const page = () => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (file) {
+      if (file.size > 10 * 1024 * 1024) {
+        setApiError('File size exceeds 10MB limit.');
+        return;
+      }
+      setApiError(null);
       const reader = new FileReader();
       reader.onload = () => {
         setImage(reader.result as string);
@@ -70,20 +77,26 @@ const page = () => {
       'image/png': ['.png'],
     },
     maxFiles: 1,
+    onDropRejected: (fileRejections) => {
+      setApiError(fileRejections.map(fr => fr.errors.map(e => e.message).join(', ')).join('; '));
+    }
   });
 
   const handleStartAnalysis = async () => {
-    if (!validatePatientInfo()) return;
+    if (!validatePatientInfo()) {
+      setApiError('Please fill in all required patient information.');
+      return;
+    }
     if (!image) {
-      alert("No image uploaded.");
+      setApiError("No X-ray image uploaded.");
       return;
     }
 
     setCurrentStep(3);
     setIsAnalyzing(true);
+    setApiError(null);
 
     try {
-      // Convert data URL to blob
       const blob = await fetch(image).then(r => r.blob());
       const formData = new FormData();
       formData.append('image', blob, 'xray.png');
@@ -99,20 +112,31 @@ const page = () => {
         setAnalysis(data);
         setCurrentStep(4);
       } else {
-        console.error('Backend error:', data);
-        alert("Analysis failed: " + (data.error || "Unknown error"));
+        console.error('Backend error response:', data);
+        setApiError(data.detail || data.error || "An unknown error occurred during analysis.");
+        setCurrentStep(2);
       }
 
-    } catch (err) {
-      console.error("Prediction error:", err);
-      alert("Prediction failed. Check console.");
+    } catch (err: any) {
+      console.error("Prediction fetch error:", err);
+      setApiError("Failed to connect to the analysis server. Please try again later.");
+      setCurrentStep(2);
     } finally {
       setIsAnalyzing(false);
     }
   };
 
   const handleDownloadReport = () => {
-    alert("PDF report generation would happen here in a real implementation");
+    console.log("PDF report generation initiated.");
+    const dummyBlob = new Blob(["Patient Report:\n" + JSON.stringify(patientInfo, null, 2) + "\n\nAnalysis:\n" + JSON.stringify(analysis, null, 2)], { type: "text/plain" });
+    const url = URL.createObjectURL(dummyBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `AnYaMed_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}_${new Date().toISOString().slice(0,10)}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const handleNewAnalysis = () => {
@@ -127,6 +151,7 @@ const page = () => {
     });
     setCurrentStep(1);
     setErrors({});
+    setApiError(null);
     setShowHeatmap(false);
   };
 
@@ -191,6 +216,13 @@ const page = () => {
             </div>
           </div>
         </div>
+        {apiError && (
+          <Alert variant="destructive" className="mt-4">
+            <XCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{apiError}</AlertDescription>
+          </Alert>
+        )}
       </CardContent>
     </Card>
   );
@@ -272,6 +304,13 @@ const page = () => {
               />
             </div>
           </div>
+          {apiError && (
+            <Alert variant="destructive" className="mt-4">
+              <XCircle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{apiError}</AlertDescription>
+            </Alert>
+          )}
         </CardContent>
       </Card>
 
@@ -351,15 +390,23 @@ const page = () => {
                 <div className="border rounded-xl overflow-hidden bg-gray-100">
                   {image && (
                     <div className="relative">
-                      <img
+                      <Image
                         src={image}
                         alt="Analyzed X-ray"
+                        width={320}
+                        height={320}
+                        layout="responsive"
+                        objectFit="cover"
                         className={`w-full h-80 object-cover ${showHeatmap ? 'opacity-70' : ''}`}
                       />
                       {showHeatmap && analysis?.heatmap && (
-                        <img
-                          src={analysis.heatmap}
+                        <Image
+                          src={`data:image/png;base64,${analysis.heatmap}`}
                           alt="Heatmap overlay"
+                          width={320}
+                          height={320}
+                          layout="responsive"
+                          objectFit="cover"
                           className="absolute inset-0 w-full h-80 object-cover mix-blend-multiply"
                         />
                       )}
@@ -543,4 +590,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default DiagnosisPage;

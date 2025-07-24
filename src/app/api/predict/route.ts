@@ -1,9 +1,10 @@
-// app/api/predict/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 import { spawn } from 'child_process';
 import path from 'path';
 import fs from 'fs/promises';
-import { randomUUID } from 'crypto'; // For unique filenames
+import { randomUUID } from 'crypto';
+import os from "os"
 
 export async function POST(req: NextRequest) {
   console.log('API Route: /api/predict received request.');
@@ -20,27 +21,22 @@ export async function POST(req: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
-  // Generate a unique filename to prevent conflicts
   const uniqueFileName = `${randomUUID()}-${file.name}`;
-  // Use /tmp for temporary storage. On Vercel/similar platforms, /tmp is writable.
-  // On Windows, this might resolve to a system temp directory.
-  const tempImagePath = path.join('/tmp', uniqueFileName); 
+  const tempImagePath = path.join(os.tmpdir(), uniqueFileName);
 
   console.log(`API Route: Temporary image path: ${tempImagePath}`);
 
   let predictionResult: any = null;
-  let pythonErrorOutput: string = ''; // Capture full Python stderr
+  let pythonErrorOutput: string = ''; 
 
   try {
-    // Write the image to a temporary file
     console.log(`API Route: Attempting to write file to ${tempImagePath}`);
     await fs.writeFile(tempImagePath, buffer);
     console.log(`API Route: File successfully written to ${tempImagePath}`);
 
-    const pyPath = path.join(process.cwd(), 'app/python/predict.py');
+    const pyPath = path.join(process.cwd(), 'src', 'app', 'python', 'predict.py');
     console.log(`API Route: Python script path: ${pyPath}`);
 
-    // Check if Python script exists
     try {
       await fs.access(pyPath, fs.constants.F_OK);
       console.log(`API Route: Python script exists at ${pyPath}`);
@@ -50,22 +46,21 @@ export async function POST(req: NextRequest) {
     }
 
     console.log(`API Route: Spawning Python process with command: python ${pyPath} ${tempImagePath}`);
-    // Execute the Python script with the temporary image path
     const pythonProcess = spawn('python', [pyPath, tempImagePath]);
 
-    let result = '';
-    let error = '';
+    let result = ''; 
+    let error = ''; 
 
     pythonProcess.stdout.on('data', (data) => {
       const chunk = data.toString();
       result += chunk;
-      console.log(`Python STDOUT: ${chunk.trim()}`); // Log stdout chunks
+      console.log(`Python STDOUT: ${chunk.trim()}`);
     });
 
     pythonProcess.stderr.on('data', (data) => {
       const chunk = data.toString();
       error += chunk;
-      console.error(`Python STDERR: ${chunk.trim()}`); // Log stderr chunks
+      console.error(`Python STDERR: ${chunk.trim()}`);
     });
 
     await new Promise<void>((resolve, reject) => {
@@ -78,19 +73,19 @@ export async function POST(req: NextRequest) {
             resolve();
           } catch (e) {
             console.error('API Route: JSON parse error from Python script output:', e);
-            console.error('API Route: Raw Python STDOUT:', result);
+            console.error('API Route: Raw Python STDOUT (might contain non-JSON or multiple lines):', result);
             console.error('API Route: Raw Python STDERR:', error);
-            reject(new Error('Failed to parse Python output. Check Python script logs for JSON format issues.'));
+            reject(new Error('Failed to parse Python output. Python script might be printing non-JSON or extra messages.'));
           }
         } else {
           pythonErrorOutput = error;
           console.error(`API Route: Python script failed with exit code ${code}. Full stderr:`, error);
-          reject(new Error(`Python script failed with exit code ${code}.`));
+          reject(new Error(`Python script failed with exit code ${code}. See server logs for Python STDERR.`));
         }
       });
       pythonProcess.on('error', (err) => {
         console.error('API Route: Failed to start Python process. Check if "python" command is in PATH, or if script path is correct:', err);
-        reject(new Error('Failed to start Python process. Ensure Python is installed and accessible.'));
+        reject(new Error('Failed to start Python process. Ensure Python is installed and accessible in your system\'s PATH.'));
       });
     });
 
@@ -101,7 +96,6 @@ export async function POST(req: NextRequest) {
     console.error('API Route: Caught an error during prediction process:', e);
     return NextResponse.json({ error: 'Prediction failed', detail: pythonErrorOutput || e.message }, { status: 500 });
   } finally {
-    // Clean up the temporary image file
     try {
       console.log(`API Route: Attempting to delete temporary file: ${tempImagePath}`);
       await fs.unlink(tempImagePath);
