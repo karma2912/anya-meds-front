@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
+// Load fonts as CSS variables
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,6 +29,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* 🔗 Diagnostic link to test if routing works */}
+        <div style={{ padding: "1rem", backgroundColor: "#f0f0f0" }}>
+          <Link href="/testpage">Go to Test Page</Link>
+        </div>
         {children}
       </body>
     </html>

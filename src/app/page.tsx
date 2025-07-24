@@ -1,22 +1,72 @@
-'use client'
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useState } from 'react';
-import { 
-  Upload, 
-  Brain, 
-  FileText, 
-  Stethoscope, 
-  Shield, 
+"use client";
+
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Upload,
+  Brain,
+  FileText,
+  Stethoscope,
+  Shield,
   Award,
   CheckCircle,
   Menu,
-  X
-} from 'lucide-react';
+  X,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
+import Image from "next/image";
 
-const page = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+const Page = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [predictionResult, setPredictionResult] = useState<any | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setSelectedFile(event.target.files[0]);
+      setPredictionResult(null); // Clear previous results
+      setError(null); // Clear previous errors
+    }
+  };
+
+  const handlePredict = async () => {
+    if (!selectedFile) {
+      setError("Please select an image to upload.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      const response = await fetch("/api/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.detail || "Something went wrong during prediction."
+        );
+      }
+
+      const data = await response.json();
+      setPredictionResult(data);
+    } catch (err: any) {
+      console.error("Prediction error:", err);
+      setError(err.message || "Failed to get prediction. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
@@ -34,11 +84,34 @@ const page = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-              <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
-              <a href="#research" className="text-gray-700 hover:text-blue-600 transition-colors">Research</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
-              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+              <a
+                href="#home"
+                className="text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                Home
+              </a>
+              <a
+                href="#features"
+                className="text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                Features
+              </a>
+              <a
+                href="#research"
+                className="text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                Research
+              </a>
+              <a
+                href="#contact"
+                className="text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                Contact
+              </a>
+              <Button
+                variant="outline"
+                className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              >
                 Sign In
               </Button>
             </div>
@@ -48,7 +121,11 @@ const page = () => {
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
 
@@ -56,11 +133,34 @@ const page = () => {
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-blue-100">
               <div className="flex flex-col space-y-3">
-                <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-                <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
-                <a href="#research" className="text-gray-700 hover:text-blue-600 transition-colors">Research</a>
-                <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
-                <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 w-fit">
+                <a
+                  href="#home"
+                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                  Home
+                </a>
+                <a
+                  href="#features"
+                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                  Features
+                </a>
+                <a
+                  href="#research"
+                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                  Research
+                </a>
+                <a
+                  href="#contact"
+                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                  Contact
+                </a>
+                <Button
+                  variant="outline"
+                  className="border-blue-600 text-blue-600 hover:bg-blue-50 w-fit"
+                >
                   Sign In
                 </Button>
               </div>
@@ -70,8 +170,10 @@ const page = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="h-[calc(100vh-10rem)] py-20 px-4 sm:px-6 lg:px-14">
-
+      <section
+        id="home"
+        className="h-[calc(100vh-10rem)] py-20 px-4 sm:px-6 lg:px-14"
+      >
         <div className="max-w-7xl mx-auto h-full flex justify-center items-start">
           <div className="grid lg:grid-cols-2 gap-48 items-center lg:pt-14">
             {/* Left Column - Content */}
@@ -83,16 +185,24 @@ const page = () => {
                   <span className="block">Diagnosis</span>
                 </h1>
                 <p className="text-xl text-gray-600 max-w-lg">
-                  Revolutionary medical diagnostic system that analyzes chest X-rays with 98%+ accuracy, 
-                  detecting COVID-19, Pneumonia, Lung Opacity, and other critical conditions instantly.
+                  Revolutionary medical diagnostic system that analyzes chest
+                  X-rays with 98%+ accuracy, detecting COVID-19, Pneumonia, Lung
+                  Opacity, and other critical conditions instantly.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg">
+                <Button
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg"
+                >
                   Try Demo
                 </Button>
-                <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg"
+                >
                   Learn More
                 </Button>
               </div>
@@ -116,8 +226,12 @@ const page = () => {
                   <div className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
                     <div className="text-center">
                       <Stethoscope className="w-16 h-16 text-blue-600 mx-auto mb-4" />
-                      <p className="text-gray-600 font-medium">Chest X-Ray Analysis</p>
-                      <p className="text-sm text-gray-500">AI-Powered Diagnosis</p>
+                      <p className="text-gray-600 font-medium">
+                        Chest X-Ray Analysis
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        AI-Powered Diagnosis
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -132,23 +246,35 @@ const page = () => {
         <div className="max-w-5xl mx-auto">
           <Card className="border-blue-200 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-t-lg">
-              <CardTitle className="text-2xl text-blue-900 text-center">AnYa-Med Project Overview</CardTitle>
+              <CardTitle className="text-2xl text-blue-900 text-center">
+                AnYa-Med Project Overview
+              </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Name</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Project Name
+                    </h3>
                     <p className="text-gray-600">AnYa-Med (by Yash and Anam)</p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Purpose</h3>
-                    <p className="text-gray-600">AI-powered chest X-ray diagnosis system designed to assist healthcare professionals in rapid and accurate medical imaging analysis.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Purpose
+                    </h3>
+                    <p className="text-gray-600">
+                      AI-powered chest X-ray diagnosis system designed to assist
+                      healthcare professionals in rapid and accurate medical
+                      imaging analysis.
+                    </p>
                   </div>
                 </div>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Features</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Key Features
+                    </h3>
                     <ul className="space-y-2">
                       <li className="flex items-center text-gray-600">
                         <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
@@ -169,9 +295,14 @@ const page = () => {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Accuracy
+                    </h3>
                     <p className="text-gray-600">
-                      <span className="text-2xl font-bold text-blue-600">98%+</span> accuracy on validation set
+                      <span className="text-2xl font-bold text-blue-600">
+                        98%+
+                      </span>{" "}
+                      accuracy on validation set
                     </p>
                   </div>
                 </div>
@@ -182,12 +313,18 @@ const page = () => {
       </section>
 
       {/* How It Works Section */}
-      <section id="features" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
+      <section
+        id="features"
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">How AnYa-Med Works</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              How AnYa-Med Works
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our AI-powered diagnostic system provides accurate results in three simple steps
+              Our AI-powered diagnostic system provides accurate results in
+              three simple steps
             </p>
           </div>
 
@@ -198,12 +335,15 @@ const page = () => {
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Upload className="w-8 h-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-blue-900">Upload Image</CardTitle>
+                <CardTitle className="text-xl text-blue-900">
+                  Upload Image
+                </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-gray-600">
-                  Securely upload chest X-ray images through our HIPAA-compliant platform. 
-                  Supports multiple image formats with instant processing.
+                  Securely upload chest X-ray images through our HIPAA-compliant
+                  platform. Supports multiple image formats with instant
+                  processing.
                 </p>
               </CardContent>
             </Card>
@@ -214,12 +354,15 @@ const page = () => {
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Brain className="w-8 h-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-blue-900">AI Analysis</CardTitle>
+                <CardTitle className="text-xl text-blue-900">
+                  AI Analysis
+                </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-gray-600">
-                  Our advanced neural network analyzes the X-ray using state-of-the-art deep learning 
-                  algorithms trained on thousands of medical images.
+                  Our advanced neural network analyzes the X-ray using
+                  state-of-the-art deep learning algorithms trained on thousands
+                  of medical images.
                 </p>
               </CardContent>
             </Card>
@@ -230,12 +373,15 @@ const page = () => {
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FileText className="w-8 h-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-blue-900">Get Report</CardTitle>
+                <CardTitle className="text-xl text-blue-900">
+                  Get Report
+                </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-gray-600">
-                  Receive a comprehensive diagnostic report with confidence scores, 
-                  findings, and recommendations for healthcare professionals.
+                  Receive a comprehensive diagnostic report with confidence
+                  scores, findings, and recommendations for healthcare
+                  professionals.
                 </p>
               </CardContent>
             </Card>
@@ -243,13 +389,129 @@ const page = () => {
         </div>
       </section>
 
+      {/* Image Upload and Prediction Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <Card className="border-blue-200 shadow-lg">
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-t-lg">
+              <CardTitle className="text-2xl text-blue-900 text-center">
+                Upload X-Ray for Diagnosis
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-8 space-y-6">
+              <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-blue-300 rounded-lg">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="hidden"
+                  id="file-upload"
+                />
+                <label
+                  htmlFor="file-upload"
+                  className="cursor-pointer bg-blue-100 text-blue-700 py-2 px-4 rounded-md hover:bg-blue-200 transition-colors flex items-center gap-2"
+                >
+                  <Upload className="w-5 h-5" /> Select X-Ray Image
+                </label>
+                {selectedFile && (
+                  <p className="mt-3 text-gray-700">
+                    Selected file:{" "}
+                    <span className="font-semibold">{selectedFile.name}</span>
+                  </p>
+                )}
+                {error && (
+                  <div className="mt-4 flex items-center text-red-600 bg-red-50 p-3 rounded-md">
+                    <AlertCircle className="w-5 h-5 mr-2" />
+                    <p>{error}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex justify-center">
+                <Button
+                  onClick={handlePredict}
+                  disabled={!selectedFile || loading}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Analyzing...
+                    </>
+                  ) : (
+                    "Get Diagnosis"
+                  )}
+                </Button>
+              </div>
+
+              {predictionResult && (
+                <div className="mt-8 p-6 bg-blue-50 rounded-lg shadow-md">
+                  <h3 className="text-xl font-bold text-blue-800 mb-4 text-center">
+                    Diagnosis Result
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg text-gray-700">
+                        <span className="font-semibold">Predicted Label:</span>{" "}
+                        {predictionResult.label}
+                      </p>
+                      <p className="text-lg text-gray-700">
+                        <span className="font-semibold">Confidence:</span>{" "}
+                        {(predictionResult.confidence * 100).toFixed(2)}%
+                      </p>
+                      <div className="mt-4">
+                        <h4 className="font-semibold text-gray-800 mb-2">
+                          Probabilities:
+                        </h4>
+                        <ul className="list-disc list-inside text-gray-600">
+                          {predictionResult.probabilities &&
+                            predictionResult.probabilities.map(
+                              (item: any, index: number) => (
+                                <li key={index}>
+                                  {item.label}: {(item.value * 100).toFixed(2)}%
+                                </li>
+                              )
+                            )}
+                        </ul>
+                      </div>
+                    </div>
+                    {predictionResult.heatmap && (
+                      <div className="flex flex-col items-center">
+                        <h4 className="font-semibold text-gray-800 mb-2">
+                          Heatmap:
+                        </h4>
+                        <div className="border border-gray-300 p-2 rounded-md">
+                          <Image
+                            src={`data:image/png;base64,${predictionResult.heatmap}`}
+                            alt="Heatmap"
+                            width={300}
+                            height={300}
+                            className="rounded-md"
+                          />
+                        </div>
+                        <p className="text-sm text-gray-500 mt-2 text-center">
+                          (Highlights areas of interest in the X-Ray)
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Testimonials/Institution Logos Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Trusted by Leading Institutions</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Trusted by Leading Institutions
+            </h2>
             <p className="text-xl text-gray-600">
-              AnYa-Med is recognized and validated by top medical institutions worldwide
+              AnYa-Med is recognized and validated by top medical institutions
+              worldwide
             </p>
           </div>
 
@@ -283,34 +545,82 @@ const page = () => {
                 <span className="text-xl font-bold">AnYa-Med</span>
               </div>
               <p className="text-gray-400 max-w-md">
-                Revolutionizing medical diagnostics with AI-powered chest X-ray analysis. 
-                Created by Yash and Anam for better healthcare outcomes.
+                Revolutionizing medical diagnostics with AI-powered chest X-ray
+                analysis. Created by Yash and Anam for better healthcare
+                outcomes.
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
-                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#research" className="hover:text-white transition-colors">Research</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li>
+                  <a
+                    href="#home"
+                    className="hover:text-white transition-colors"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#features"
+                    className="hover:text-white transition-colors"
+                  >
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#research"
+                    className="hover:text-white transition-colors"
+                  >
+                    Research
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    className="hover:text-white transition-colors"
+                  >
+                    Contact
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Help Center
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 AnYa-Med. All rights reserved. Created by Yash and Anam.</p>
+            <p>
+              &copy; 2025 AnYa-Med. All rights reserved. Created by Yash and
+              Anam.
+            </p>
           </div>
         </div>
       </footer>
@@ -318,4 +628,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
