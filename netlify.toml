@@ -1,8 +1,0 @@
-# Netlify build settings for Next.js App Router with serverless functions
-[build]
-  command = "npm run build"
-  publish = ".next"
-
-# Enable the official Netlify Next.js plugin
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
