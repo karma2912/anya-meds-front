@@ -335,7 +335,7 @@ const DiagnosisPage = () => {
         <Button variant="outline" onClick={() => setCurrentStep(1)}>
           Back to Upload
         </Button>
-        <Button onClick={handleStartAnalysis} className="bg-blue-600 hover:bg-blue-700">
+        <Button onClick={handleStartAnalysis} className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
           <Activity className="w-4 h-4 mr-2" />
           Start Analysis
         </Button>
@@ -564,7 +564,7 @@ const DiagnosisPage = () => {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-blue-600 mb-2 flex items-center justify-center gap-3">
             <Stethoscope className="w-8 h-8" />
-            Medical Diagnosis System
+            AnYa Medical System
           </h1>
           <p className="text-gray-600 text-lg">AI-Powered Chest X-ray Analysis Platform</p>
         </div>
