@@ -104,7 +104,7 @@ const DiagnosisPage = () => {
       formData.append('image', imageFile); 
 
       // CRITICAL CHANGE: Point fetch to your running Flask backend
-      const res = await fetch('http://localhost:5000/api/predict', {
+      const res = await fetch('https://xray-python.onrender.com/api/predict', {
         method: 'POST',
         body: formData,
       });
