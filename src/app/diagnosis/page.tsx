@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FileText, Stethoscope, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Calendar, Activity, XCircle } from 'lucide-react';
+import { FileText, Stethoscope, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Activity, XCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -14,7 +14,10 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Image from 'next/image';
 
 const DiagnosisPage = () => {
-  const [image, setImage] = useState<string | null>(null);
+  // MODIFIED: Split state for file object and its preview URL for efficiency
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -36,12 +39,10 @@ const DiagnosisPage = () => {
 
   const validatePatientInfo = () => {
     const newErrors: {[key: string]: string} = {};
-    
     if (!patientInfo.name.trim()) newErrors.name = 'Patient name is required';
     if (!patientInfo.age.trim()) newErrors.age = 'Age is required';
     if (!patientInfo.gender.trim()) newErrors.gender = 'Gender is required';
     if (!patientInfo.xrayDate.trim()) newErrors.xrayDate = 'X-ray date is required';
-    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -61,12 +62,12 @@ const DiagnosisPage = () => {
         return;
       }
       setApiError(null);
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImage(reader.result as string);
-        setCurrentStep(2);
-      };
-      reader.readAsDataURL(file);
+      
+      // MODIFIED: Store the file object for sending, and create a preview URL for display
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
+      
+      setCurrentStep(2);
     }
   }, []);
 
@@ -87,7 +88,8 @@ const DiagnosisPage = () => {
       setApiError('Please fill in all required patient information.');
       return;
     }
-    if (!image) {
+    // MODIFIED: Check for the file object instead of the preview URL
+    if (!imageFile) { 
       setApiError("No X-ray image uploaded.");
       return;
     }
@@ -97,11 +99,12 @@ const DiagnosisPage = () => {
     setApiError(null);
 
     try {
-      const blob = await fetch(image).then(r => r.blob());
       const formData = new FormData();
-      formData.append('image', blob, 'xray.png');
+      // MODIFIED: Append the stored file object directly
+      formData.append('image', imageFile); 
 
-      const res = await fetch('/api/predict', {
+      // CRITICAL CHANGE: Point fetch to your running Flask backend
+      const res = await fetch('http://localhost:5000/api/predict', {
         method: 'POST',
         body: formData,
       });
@@ -113,13 +116,18 @@ const DiagnosisPage = () => {
         setCurrentStep(4);
       } else {
         console.error('Backend error response:', data);
-        setApiError(data.detail || data.error || "An unknown error occurred during analysis.");
+        setApiError(data.error || "An unknown error occurred during analysis.");
         setCurrentStep(2);
       }
 
     } catch (err: any) {
       console.error("Prediction fetch error:", err);
-      setApiError("Failed to connect to the analysis server. Please try again later.");
+      // More specific error for connection failure
+      if (err instanceof TypeError && err.message.includes('Failed to fetch')) {
+        setApiError("Connection failed. Please ensure the Python analysis server is running.");
+      } else {
+        setApiError("A client-side error occurred. Please try again.");
+      }
       setCurrentStep(2);
     } finally {
       setIsAnalyzing(false);
@@ -127,12 +135,34 @@ const DiagnosisPage = () => {
   };
 
   const handleDownloadReport = () => {
-    console.log("PDF report generation initiated.");
-    const dummyBlob = new Blob(["Patient Report:\n" + JSON.stringify(patientInfo, null, 2) + "\n\nAnalysis:\n" + JSON.stringify(analysis, null, 2)], { type: "text/plain" });
-    const url = URL.createObjectURL(dummyBlob);
+    console.log("Report generation initiated.");
+    const reportContent = `
+AnYa-Med AI Diagnostic Report
+==============================
+
+Patient Information
+-------------------
+Name: ${patientInfo.name}
+Age: ${patientInfo.age}
+Gender: ${patientInfo.gender}
+X-ray Date: ${patientInfo.xrayDate}
+Symptoms: ${patientInfo.symptoms || 'N/A'}
+
+AI Analysis Results
+-------------------
+Diagnosis: ${analysis?.label}
+Confidence: ${((analysis?.confidence || 0) * 100).toFixed(2)}%
+
+Probability Distribution:
+${analysis?.probabilities.map(p => `- ${p.label}: ${Math.round(p.value * 100)}%`).join('\n')}
+
+Disclaimer: This is an AI-generated report for educational and research purposes and is not a substitute for professional medical advice.
+    `;
+    const blob = new Blob([reportContent.trim()], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `AnYaMed_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}_${new Date().toISOString().slice(0,10)}.txt`;
+    a.download = `AnYaMed_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -140,15 +170,11 @@ const DiagnosisPage = () => {
   };
 
   const handleNewAnalysis = () => {
-    setImage(null);
+    // MODIFIED: Reset both file and preview states
+    setImagePreview(null);
+    setImageFile(null);
     setAnalysis(null);
-    setPatientInfo({
-      name: '',
-      age: '',
-      gender: '',
-      xrayDate: '',
-      symptoms: ''
-    });
+    setPatientInfo({ name: '', age: '', gender: '', xrayDate: '', symptoms: '' });
     setCurrentStep(1);
     setErrors({});
     setApiError(null);
@@ -157,28 +183,14 @@ const DiagnosisPage = () => {
 
   const renderStepIndicator = () => (
     <div className="flex items-center justify-center mb-8">
-      <div className="flex items-center space-x-4">
-        {[1, 2, 3, 4].map((step) => (
-          <div key={step} className="flex items-center">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                step === currentStep
-                  ? 'bg-blue-600 text-white'
-                  : step < currentStep
-                  ? 'bg-green-600 text-white'
-                  : 'bg-gray-200 text-gray-600'
-              }`}
-            >
+      <div className="flex items-center space-x-2 sm:space-x-4">
+        {[1, 2, 3, 4].map((step, index) => (
+          <React.Fragment key={step}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${step === currentStep ? 'bg-blue-600 text-white' : step < currentStep ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
               {step < currentStep ? <CheckCircle className="w-4 h-4" /> : step}
             </div>
-            {step < 4 && (
-              <div
-                className={`w-16 h-0.5 ${
-                  step < currentStep ? 'bg-green-600' : 'bg-gray-200'
-                }`}
-              />
-            )}
-          </div>
+            {index < 3 && <div className={`w-12 sm:w-16 h-0.5 transition-all ${step < currentStep ? 'bg-green-600' : 'bg-gray-200'}`} />}
+          </React.Fragment>
         ))}
       </div>
     </div>
@@ -321,9 +333,11 @@ const DiagnosisPage = () => {
         <CardContent>
           <div className="flex justify-center">
             <div className="border rounded-xl overflow-hidden bg-gray-100">
-              { image && <img
-                src={image}
+              { imagePreview && <Image
+                src={imagePreview}
                 alt="Uploaded X-ray"
+                width={320}
+                height={320}
                 className="w-80 h-80 object-cover"
               />}
             </div>
@@ -332,8 +346,8 @@ const DiagnosisPage = () => {
       </Card>
 
       <div className="flex justify-center space-x-4">
-        <Button variant="outline" onClick={() => setCurrentStep(1)}>
-          Back to Upload
+        <Button variant="outline" onClick={handleNewAnalysis}>
+          Start Over
         </Button>
         <Button onClick={handleStartAnalysis} className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
           <Activity className="w-4 h-4 mr-2" />
@@ -365,7 +379,8 @@ const DiagnosisPage = () => {
             <p className="text-sm text-gray-500">This may take a few moments</p>
           </div>
           <div className="w-full max-w-md">
-            <Progress value={65} className="h-2" />
+            {/* Indeterminate progress bar */}
+            <Progress value={undefined} className="h-2" /> 
             <p className="text-xs text-gray-500 text-center mt-2">Analyzing patterns...</p>
           </div>
         </div>
@@ -385,29 +400,25 @@ const DiagnosisPage = () => {
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-lg font-semibold mb-4">Patient X-ray</h3>
+              <h3 className="text-lg font-semibold mb-2">Patient X-ray</h3>
               <div className="relative">
                 <div className="border rounded-xl overflow-hidden bg-gray-100">
-                  {image && (
+                  {imagePreview && (
                     <div className="relative">
                       <Image
-                        src={image}
+                        src={imagePreview}
                         alt="Analyzed X-ray"
-                        width={320}
-                        height={320}
-                        layout="responsive"
-                        objectFit="cover"
-                        className={`w-full h-80 object-cover ${showHeatmap ? 'opacity-70' : ''}`}
+                        width={400}
+                        height={400}
+                        className={`w-full h-auto object-contain transition-opacity duration-300 ${showHeatmap ? 'opacity-70' : ''}`}
                       />
                       {showHeatmap && analysis?.heatmap && (
                         <Image
                           src={`data:image/png;base64,${analysis.heatmap}`}
                           alt="Heatmap overlay"
-                          width={320}
-                          height={320}
-                          layout="responsive"
-                          objectFit="cover"
-                          className="absolute inset-0 w-full h-80 object-cover mix-blend-multiply"
+                          width={400}
+                          height={400}
+                          className="absolute inset-0 w-full h-full object-contain mix-blend-multiply"
                         />
                       )}
                     </div>
@@ -431,7 +442,7 @@ const DiagnosisPage = () => {
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold mb-2">Diagnosis Result</h3>
-                <div className="bg-blue-100 text-blue-800 px-4 py-3 rounded-lg font-medium text-center">
+                <div className="bg-blue-100 text-blue-800 px-4 py-3 rounded-lg font-bold text-lg text-center">
                   {analysis?.label}
                 </div>
               </div>
@@ -439,7 +450,7 @@ const DiagnosisPage = () => {
               <div>
                 <h3 className="text-lg font-semibold mb-2">Confidence Level</h3>
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
                     <span className="text-xl font-bold text-blue-600">
                       {analysis ? Math.round(analysis.confidence * 100) : 0}%
                     </span>
@@ -450,7 +461,7 @@ const DiagnosisPage = () => {
                       {analysis && analysis.confidence >= 0.9
                         ? "High confidence - Strong indication"
                         : analysis && analysis.confidence >= 0.7
-                        ? "Moderate confidence - Further review recommended"
+                        ? "Moderate confidence - Review recommended"
                         : "Low confidence - Additional tests suggested"}
                     </p>
                   </div>
@@ -460,11 +471,11 @@ const DiagnosisPage = () => {
               <div>
                 <h3 className="text-lg font-semibold mb-2">Probability Distribution</h3>
                 <div className="space-y-2">
-                  {analysis?.probabilities.map((prob) => (
+                  {analysis?.probabilities.sort((a,b) => b.value - a.value).map((prob) => (
                     <div key={prob.label} className="flex items-center gap-3">
-                      <span className="w-28 text-sm text-gray-600">{prob.label}</span>
+                      <span className="w-32 text-sm text-gray-600 truncate" title={prob.label}>{prob.label}</span>
                       <Progress value={prob.value * 100} className="h-2 flex-1" />
-                      <span className="w-10 text-right text-sm font-medium">
+                      <span className="w-12 text-right text-sm font-medium">
                         {Math.round(prob.value * 100)}%
                       </span>
                     </div>
@@ -524,33 +535,18 @@ const DiagnosisPage = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-blue-600">Export Report</CardTitle>
-            <CardDescription>Generate comprehensive medical report</CardDescription>
+            <CardTitle className="text-blue-600">Actions</CardTitle>
+            <CardDescription>Download the report or start over</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="border rounded-lg p-4 bg-gray-50">
-                <div className="flex items-center gap-3 mb-3">
-                  <FileText className="w-5 h-5 text-blue-600" />
-                  <h4 className="font-medium">Report Contents</h4>
-                </div>
-                <div className="text-sm space-y-2">
-                  <p>• Patient demographics and history</p>
-                  <p>• X-ray image with analysis overlay</p>
-                  <p>• AI diagnosis with confidence metrics</p>
-                  <p>• Probability distribution chart</p>
-                  <p>• Clinical recommendations</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Button className="w-full bg-blue-600 hover:bg-blue-700" onClick={handleDownloadReport}>
-                  <Download className="w-4 h-4 mr-2" />
-                  Download PDF Report
-                </Button>
-                <Button variant="outline" className="w-full" onClick={handleNewAnalysis}>
-                  Analyze New Patient
-                </Button>
-              </div>
+              <Button className="w-full bg-blue-600 hover:bg-blue-700" onClick={handleDownloadReport}>
+                <Download className="w-4 h-4 mr-2" />
+                Download Text Report
+              </Button>
+              <Button variant="outline" className="w-full" onClick={handleNewAnalysis}>
+                Analyze New Patient
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -562,11 +558,11 @@ const DiagnosisPage = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2 flex items-center justify-center gap-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2 flex items-center justify-center gap-3">
             <Stethoscope className="w-8 h-8" />
             AnYa Medical System
           </h1>
-          <p className="text-gray-600 text-lg">AI-Powered Chest X-ray Analysis Platform</p>
+          <p className="text-gray-600 text-md sm:text-lg">AI-Powered Chest X-ray Analysis Platform</p>
         </div>
         {renderStepIndicator()}
 
@@ -577,9 +573,9 @@ const DiagnosisPage = () => {
           {currentStep === 4 && renderStep4()}
         </div>
 
-        <Alert className="mt-8 max-w-6xl mx-auto border-yellow-200 bg-yellow-50">
-          <AlertCircle className="w-5 h-5 text-yellow-600" />
-          <AlertDescription className="text-yellow-800">
+        <Alert className="mt-8 max-w-6xl mx-auto border-yellow-300 bg-yellow-50">
+          <AlertCircle className="w-5 h-5 text-yellow-700" />
+          <AlertDescription className="text-yellow-800 text-sm">
             <strong>Medical Disclaimer:</strong> This diagnostic tool is for educational and research purposes only. 
             Results should not be used as the sole basis for medical diagnosis or treatment decisions. 
             Always consult with qualified healthcare professionals for proper medical evaluation.
