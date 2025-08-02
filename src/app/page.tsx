@@ -161,7 +161,7 @@ const Page = () => {
                   </h1>
                   <p className="text-lg sm:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0">
                     Revolutionary medical diagnostic system that analyzes chest
-                    X-rays with 98%+ accuracy, detecting COVID-19, Pneumonia, Lung
+                    X-rays with 98.5%+ accuracy, detecting COVID-19, Pneumonia, Lung
                     Opacity, and other critical conditions instantly.
                   </p>
                 </div>
@@ -180,7 +180,7 @@ const Page = () => {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Award className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm text-gray-600">98%+ Accuracy</span>
+                    <span className="text-sm text-gray-600">98.5%+ Accuracy</span>
                   </div>
                 </div>
               </div>
@@ -213,7 +213,7 @@ const Page = () => {
               <CardContent className="p-6 sm:p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-6"><h3 className="text-lg font-semibold text-gray-900 mb-2">Project Name</h3><p className="text-gray-600">AnYa-Med (by Yash and Anam)</p><div><h3 className="text-lg font-semibold text-gray-900 mb-2">Purpose</h3><p className="text-gray-600">AI-powered chest X-ray diagnosis system designed to assist healthcare professionals in rapid and accurate medical imaging analysis.</p></div></div>
-                  <div className="space-y-6"><div><h3 className="text-lg font-semibold text-gray-900 mb-2">Key Features</h3><ul className="space-y-2"><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />COVID-19 Detection</li><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />Pneumonia Identification</li><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />Lung Opacity Analysis</li><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />NIH Disease Detection</li></ul></div><div><h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy</h3><p className="text-gray-600"><span className="text-2xl font-bold text-blue-600">98%+</span>{" "}accuracy on validation set</p></div></div>
+                  <div className="space-y-6"><div><h3 className="text-lg font-semibold text-gray-900 mb-2">Key Features</h3><ul className="space-y-2"><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />COVID-19 Detection</li><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />Pneumonia Identification</li><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />Lung Opacity Analysis</li><li className="flex items-center text-gray-600"><CheckCircle className="w-4 h-4 text-green-600 mr-2" />NIH Disease Detection</li></ul></div><div><h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy</h3><p className="text-gray-600"><span className="text-2xl font-bold text-blue-600">98.5%+</span>{" "}accuracy on validation set</p></div></div>
                 </div>
               </CardContent>
             </Card>
@@ -315,55 +315,6 @@ const Page = () => {
             </div>
           </div>
         </section>
-
-        {/* Image Upload and Prediction Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-blue-200 shadow-lg">
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-t-lg"><CardTitle className="text-2xl text-blue-900 text-center">Upload X-Ray for Diagnosis</CardTitle></CardHeader>
-              <CardContent className="p-6 sm:p-8 space-y-6">
-                <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-blue-300 rounded-lg">
-                  <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" id="file-upload" />
-                  <label htmlFor="file-upload" className="cursor-pointer bg-blue-100 text-blue-700 py-2 px-4 rounded-md hover:bg-blue-200 transition-colors flex items-center gap-2"><Upload className="w-5 h-5" /> Select X-Ray Image</label>
-                  {selectedFile && (<p className="mt-3 text-center text-gray-700">Selected file: <span className="font-semibold">{selectedFile.name}</span></p>)}
-                  {error && (<div className="mt-4 flex items-center text-red-600 bg-red-50 p-3 rounded-md w-full"><AlertCircle className="w-5 h-5 mr-2 flex-shrink-0" /><p className="text-sm">{error}</p></div>)}
-                </div>
-                <div className="flex justify-center">
-                  <Button onClick={handlePredict} disabled={!selectedFile || loading} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg">
-                    {loading ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" />Analyzing...</>) : ("Get Diagnosis")}
-                  </Button>
-                </div>
-                {predictionResult && (
-                  <div className="mt-8 p-6 bg-blue-50 rounded-lg shadow-md">
-                    <h3 className="text-xl font-bold text-blue-800 mb-4 text-center">Diagnosis Result</h3>
-                    <div className="grid md:grid-cols-2 gap-6 items-center">
-                      <div className="space-y-2">
-                        <p className="text-lg text-gray-700"><span className="font-semibold">Predicted Label:</span> {predictionResult.label}</p>
-                        <p className="text-lg text-gray-700"><span className="font-semibold">Confidence:</span> {(predictionResult.confidence * 100).toFixed(2)}%</p>
-                        <div className="mt-2">
-                          <h4 className="font-semibold text-gray-800 mb-2">Probabilities:</h4>
-                          <ul className="list-disc list-inside text-gray-600 space-y-1">
-                            {predictionResult.probabilities && predictionResult.probabilities.map((item: any, index: number) => (<li key={index}>{item.label}: {(item.value * 100).toFixed(2)}%</li>))}
-                          </ul>
-                        </div>
-                      </div>
-                      {predictionResult.heatmap && (
-                        <div className="flex flex-col items-center">
-                          <h4 className="font-semibold text-gray-800 mb-2">Heatmap:</h4>
-                          <div className="border border-gray-300 p-1 rounded-md w-full max-w-[300px]">
-                            <Image src={`data:image/png;base64,${predictionResult.heatmap}`} alt="Heatmap" width={300} height={300} className="rounded-md w-full h-auto"/>
-                          </div>
-                          <p className="text-sm text-gray-500 mt-2 text-center">(Highlights areas of interest)</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
         {/* Trusted by Institutions Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
