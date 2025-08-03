@@ -2,22 +2,22 @@
 
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FileText, Stethoscope, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Activity, XCircle } from 'lucide-react';
+import { FileText, Brain, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Activity, XCircle, Scan, BrainCircuit } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Toggle } from '@/components/ui/toggle';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { FileScan } from 'lucide-react';
 import Image from 'next/image';
 
-const DiagnosisPage = () => {
-  // MODIFIED: Split state for file object and its preview URL for efficiency
+const BrainDiagnosisPage = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
-
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -25,8 +25,17 @@ const DiagnosisPage = () => {
     name: '',
     age: '',
     gender: '',
-    xrayDate: '',
-    symptoms: ''
+    scanDate: '',
+    symptoms: '',
+    weight: '',
+    height: '',
+    bloodPressure: '',
+    allergies: '',
+    medications: '',
+    medicalHistory: '',
+    scanType: '',
+    contrastUsed: '',
+    referringPhysician: ''
   });
   const [analysis, setAnalysis] = useState<{
     label: string;
@@ -42,7 +51,7 @@ const DiagnosisPage = () => {
     if (!patientInfo.name.trim()) newErrors.name = 'Patient name is required';
     if (!patientInfo.age.trim()) newErrors.age = 'Age is required';
     if (!patientInfo.gender.trim()) newErrors.gender = 'Gender is required';
-    if (!patientInfo.xrayDate.trim()) newErrors.xrayDate = 'X-ray date is required';
+    if (!patientInfo.scanDate.trim()) newErrors.scanDate = 'Scan date is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -57,16 +66,13 @@ const DiagnosisPage = () => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (file) {
-      if (file.size > 10 * 1024 * 1024) {
-        setApiError('File size exceeds 10MB limit.');
+      if (file.size > 20 * 1024 * 1024) {
+        setApiError('File size exceeds 20MB limit.');
         return;
       }
       setApiError(null);
-      
-      // MODIFIED: Store the file object for sending, and create a preview URL for display
       setImageFile(file);
       setImagePreview(URL.createObjectURL(file));
-      
       setCurrentStep(2);
     }
   }, []);
@@ -76,6 +82,7 @@ const DiagnosisPage = () => {
     accept: {
       'image/jpeg': ['.jpeg', '.jpg'],
       'image/png': ['.png'],
+      'application/dicom': ['.dcm'],
     },
     maxFiles: 1,
     onDropRejected: (fileRejections) => {
@@ -88,9 +95,8 @@ const DiagnosisPage = () => {
       setApiError('Please fill in all required patient information.');
       return;
     }
-    // MODIFIED: Check for the file object instead of the preview URL
-    if (!imageFile) { 
-      setApiError("No X-ray image uploaded.");
+    if (!imageFile) {
+      setApiError("No MRI scan uploaded.");
       return;
     }
 
@@ -100,11 +106,10 @@ const DiagnosisPage = () => {
 
     try {
       const formData = new FormData();
-      // MODIFIED: Append the stored file object directly
-      formData.append('image', imageFile); 
+      formData.append('image', imageFile);
+      formData.append('patientInfo', JSON.stringify(patientInfo));
 
-      // CRITICAL CHANGE: Point fetch to your running Flask backend
-      const res = await fetch('http://localhost:5000/api/predict', {
+      const res = await fetch('http://localhost:5000/api/brain', {
         method: 'POST',
         body: formData,
       });
@@ -119,12 +124,10 @@ const DiagnosisPage = () => {
         setApiError(data.error || "An unknown error occurred during analysis.");
         setCurrentStep(2);
       }
-
     } catch (err: any) {
       console.error("Prediction fetch error:", err);
-      // More specific error for connection failure
       if (err instanceof TypeError && err.message.includes('Failed to fetch')) {
-        setApiError("Connection failed. Please ensure the Python analysis server is running.");
+        setApiError("Connection failed. Please ensure the analysis server is running.");
       } else {
         setApiError("A client-side error occurred. Please try again.");
       }
@@ -135,18 +138,27 @@ const DiagnosisPage = () => {
   };
 
   const handleDownloadReport = () => {
-    console.log("Report generation initiated.");
     const reportContent = `
-AnYa-Med AI Diagnostic Report
-==============================
+AnYa-Med Brain MRI Diagnostic Report
+===================================
 
 Patient Information
 -------------------
 Name: ${patientInfo.name}
 Age: ${patientInfo.age}
 Gender: ${patientInfo.gender}
-X-ray Date: ${patientInfo.xrayDate}
+Scan Date: ${patientInfo.scanDate}
+Weight: ${patientInfo.weight || 'N/A'}
+Height: ${patientInfo.height || 'N/A'}
+Blood Pressure: ${patientInfo.bloodPressure || 'N/A'}
+Allergies: ${patientInfo.allergies || 'N/A'}
+Medications: ${patientInfo.medications || 'N/A'}
+Scan Type: ${patientInfo.scanType || 'N/A'}
+Contrast Used: ${patientInfo.contrastUsed || 'N/A'}
+Referring Physician: ${patientInfo.referringPhysician || 'N/A'}
+
 Symptoms: ${patientInfo.symptoms || 'N/A'}
+Medical History: ${patientInfo.medicalHistory || 'N/A'}
 
 AI Analysis Results
 -------------------
@@ -156,13 +168,18 @@ Confidence: ${((analysis?.confidence || 0) * 100).toFixed(2)}%
 Probability Distribution:
 ${analysis?.probabilities.map(p => `- ${p.label}: ${Math.round(p.value * 100)}%`).join('\n')}
 
+Clinical Notes:
+${analysis?.label.includes('Tumor') ?
+  'Consider neurosurgical consultation and contrast-enhanced MRI for further evaluation.' :
+  'No significant structural abnormalities found. Routine follow-up recommended.'}
+
 Disclaimer: This is an AI-generated report for educational and research purposes and is not a substitute for professional medical advice.
     `;
     const blob = new Blob([reportContent.trim()], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `AnYaMed_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}.txt`;
+    a.download = `AnYaMed_Brain_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -170,11 +187,25 @@ Disclaimer: This is an AI-generated report for educational and research purposes
   };
 
   const handleNewAnalysis = () => {
-    // MODIFIED: Reset both file and preview states
     setImagePreview(null);
     setImageFile(null);
     setAnalysis(null);
-    setPatientInfo({ name: '', age: '', gender: '', xrayDate: '', symptoms: '' });
+    setPatientInfo({ 
+      name: '', 
+      age: '', 
+      gender: '', 
+      scanDate: '', 
+      symptoms: '',
+      weight: '',
+      height: '',
+      bloodPressure: '',
+      allergies: '',
+      medications: '',
+      medicalHistory: '',
+      scanType: '',
+      contrastUsed: '',
+      referringPhysician: ''
+    });
     setCurrentStep(1);
     setErrors({});
     setApiError(null);
@@ -186,7 +217,7 @@ Disclaimer: This is an AI-generated report for educational and research purposes
       <div className="flex items-center space-x-2 sm:space-x-4">
         {[1, 2, 3, 4].map((step, index) => (
           <React.Fragment key={step}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${step === currentStep ? 'bg-blue-600 text-white' : step < currentStep ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${step === currentStep ? 'bg-purple-600 text-white' : step < currentStep ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
               {step < currentStep ? <CheckCircle className="w-4 h-4" /> : step}
             </div>
             {index < 3 && <div className={`w-12 sm:w-16 h-0.5 transition-all ${step < currentStep ? 'bg-green-600' : 'bg-gray-200'}`} />}
@@ -197,34 +228,34 @@ Disclaimer: This is an AI-generated report for educational and research purposes
   );
 
   const renderStep1 = () => (
-    <Card className="bg-gradient-to-r from-blue-50 to-white">
+    <Card className="bg-gradient-to-r from-purple-50 to-white">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl text-blue-600 flex items-center justify-center gap-2">
-          <Upload className="w-6 h-6" />
-          Upload Patient X-ray
+        <CardTitle className="text-2xl text-purple-600 flex items-center justify-center gap-2">
+          <Scan className="w-6 h-6" />
+          Upload Brain MRI
         </CardTitle>
-        <CardDescription>Please upload a chest X-ray image to begin the analysis</CardDescription>
+        <CardDescription>Upload axial, sagittal, or coronal MRI slices for analysis</CardDescription>
       </CardHeader>
       <CardContent>
         <div
           {...getRootProps()}
           className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-colors ${
-            isDragActive ? 'border-blue-400 bg-blue-50' : 'border-gray-300 hover:border-blue-300'
+            isDragActive ? 'border-purple-400 bg-purple-50' : 'border-gray-300 hover:border-purple-300'
           }`}
         >
           <input {...getInputProps()} />
           <div className="flex flex-col items-center justify-center gap-4">
-            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center">
-              <Upload className="w-10 h-10 text-blue-600" />
+            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center">
+              <BrainCircuit className="w-10 h-10 text-purple-600" />
             </div>
             <div>
               <p className="text-lg font-medium text-gray-700">
-                {isDragActive ? 'Drop the image here' : 'Drag & drop an X-ray image'}
+                {isDragActive ? 'Drop the MRI scan here' : 'Drag & drop a brain MRI image'}
               </p>
               <p className="text-sm text-gray-500 mt-1">or click to select from your device</p>
             </div>
             <div className="bg-gray-100 px-4 py-2 rounded-full">
-              <p className="text-xs text-gray-600">Supported formats: JPG, PNG • Max size: 10MB</p>
+              <p className="text-xs text-gray-600">Supported formats: JPG, PNG, DICOM • Max size: 20MB</p>
             </div>
           </div>
         </div>
@@ -240,14 +271,14 @@ Disclaimer: This is an AI-generated report for educational and research purposes
   );
 
   const renderStep2 = () => (
-    <div className="space-y-6">
-      <Card>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <Card className="lg:col-span-2">
         <CardHeader>
-          <CardTitle className="text-blue-600 flex items-center gap-2">
+          <CardTitle className="text-purple-600 flex items-center gap-2">
             <User className="w-5 h-5" />
             Patient Information
           </CardTitle>
-          <CardDescription>Please fill in the patient details before analysis</CardDescription>
+          <CardDescription>Complete all required fields before analysis</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -259,7 +290,7 @@ Disclaimer: This is an AI-generated report for educational and research purposes
                 id="patient-name"
                 value={patientInfo.name}
                 onChange={(e) => handlePatientInfoChange('name', e.target.value)}
-                placeholder="Enter patient's full name"
+                placeholder="Full name"
                 className={errors.name ? 'border-red-500' : ''}
               />
               {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -273,7 +304,7 @@ Disclaimer: This is an AI-generated report for educational and research purposes
                 type="number"
                 value={patientInfo.age}
                 onChange={(e) => handlePatientInfoChange('age', e.target.value)}
-                placeholder="Enter age"
+                placeholder="Years"
                 className={errors.age ? 'border-red-500' : ''}
               />
               {errors.age && <p className="text-red-500 text-xs mt-1">{errors.age}</p>}
@@ -292,96 +323,171 @@ Disclaimer: This is an AI-generated report for educational and research purposes
               {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender}</p>}
             </div>
             <div>
-              <Label htmlFor="xray-date" className="text-sm font-medium">
-                X-ray Date <span className="text-red-500">*</span>
+              <Label htmlFor="scan-date" className="text-sm font-medium">
+                Scan Date <span className="text-red-500">*</span>
               </Label>
               <Input
-                id="xray-date"
+                id="scan-date"
                 type="date"
-                value={patientInfo.xrayDate}
-                onChange={(e) => handlePatientInfoChange('xrayDate', e.target.value)}
-                className={errors.xrayDate ? 'border-red-500' : ''}
+                value={patientInfo.scanDate}
+                onChange={(e) => handlePatientInfoChange('scanDate', e.target.value)}
+                className={errors.scanDate ? 'border-red-500' : ''}
               />
-              {errors.xrayDate && <p className="text-red-500 text-xs mt-1">{errors.xrayDate}</p>}
+              {errors.scanDate && <p className="text-red-500 text-xs mt-1">{errors.scanDate}</p>}
+            </div>
+            <div>
+              <Label htmlFor="weight" className="text-sm font-medium">
+                Weight (kg)
+              </Label>
+              <Input
+                id="weight"
+                type="number"
+                value={patientInfo.weight}
+                onChange={(e) => handlePatientInfoChange('weight', e.target.value)}
+                placeholder="Weight in kg"
+              />
+            </div>
+            <div>
+              <Label htmlFor="height" className="text-sm font-medium">
+                Height (cm)
+              </Label>
+              <Input
+                id="height"
+                type="number"
+                value={patientInfo.height}
+                onChange={(e) => handlePatientInfoChange('height', e.target.value)}
+                placeholder="Height in cm"
+              />
+            </div>
+            <div>
+              <Label htmlFor="bloodPressure" className="text-sm font-medium">
+                Blood Pressure
+              </Label>
+              <Input
+                id="bloodPressure"
+                value={patientInfo.bloodPressure}
+                onChange={(e) => handlePatientInfoChange('bloodPressure', e.target.value)}
+                placeholder="e.g., 120/80"
+              />
+            </div>
+            <div>
+              <Label htmlFor="scanType" className="text-sm font-medium">
+                MRI Scan Type
+              </Label>
+              <Input
+                id="scanType"
+                value={patientInfo.scanType}
+                onChange={(e) => handlePatientInfoChange('scanType', e.target.value)}
+                placeholder="e.g., T1, T2, FLAIR"
+              />
             </div>
             <div className="md:col-span-2">
               <Label htmlFor="symptoms" className="text-sm font-medium">
-                Symptoms (Optional)
+                Neurological Symptoms
               </Label>
-              <Input
+              <Textarea
                 id="symptoms"
                 value={patientInfo.symptoms}
                 onChange={(e) => handlePatientInfoChange('symptoms', e.target.value)}
-                placeholder="e.g., Fever, cough, shortness of breath"
+                placeholder="e.g., Headaches, seizures, vision changes"
+                rows={2}
+              />
+            </div>
+            <div className="md:col-span-2">
+              <Label htmlFor="medicalHistory" className="text-sm font-medium">
+                Relevant Medical History
+              </Label>
+              <Textarea
+                id="medicalHistory"
+                value={patientInfo.medicalHistory}
+                onChange={(e) => handlePatientInfoChange('medicalHistory', e.target.value)}
+                placeholder="Previous neurological conditions, surgeries, etc."
+                rows={2}
               />
             </div>
           </div>
-          {apiError && (
-            <Alert variant="destructive" className="mt-4">
-              <XCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{apiError}</AlertDescription>
-            </Alert>
-          )}
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="h-full">
         <CardHeader>
-          <CardTitle className="text-blue-600">Uploaded X-ray</CardTitle>
+          <CardTitle className="text-purple-600 flex items-center gap-2">
+            <FileScan className="w-5 h-5" />
+            MRI Scan Preview
+          </CardTitle>
+          <CardDescription>Uploaded brain MRI for analysis</CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="flex justify-center">
-            <div className="border rounded-xl overflow-hidden bg-gray-100">
-              { imagePreview && <Image
+        <CardContent className="h-full flex flex-col">
+          <div className="flex-1 flex items-center justify-center bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
+            {imagePreview ? (
+              <Image
                 src={imagePreview}
-                alt="Uploaded X-ray"
-                width={320}
-                height={320}
-                className="w-80 h-80 object-cover"
-              />}
-            </div>
+                alt="Uploaded MRI"
+                width={400}
+                height={400}
+                className="w-full h-full object-contain p-2"
+              />
+            ) : (
+              <div className="text-gray-400 text-center p-4">
+                <FileScan className="mx-auto w-8 h-8 mb-2" />
+                <p>No MRI scan uploaded</p>
+              </div>
+            )}
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            <Button 
+              variant="outline" 
+              onClick={handleNewAnalysis}
+              className="w-full"
+            >
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleStartAnalysis} 
+              className="w-full bg-purple-600 hover:bg-purple-700"
+              disabled={!imagePreview}
+            >
+              <Activity className="w-4 h-4 mr-2" />
+              Analyze MRI
+            </Button>
           </div>
         </CardContent>
       </Card>
 
-      <div className="flex justify-center space-x-4">
-        <Button variant="outline" onClick={handleNewAnalysis}>
-          Start Over
-        </Button>
-        <Button onClick={handleStartAnalysis} className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
-          <Activity className="w-4 h-4 mr-2" />
-          Start Analysis
-        </Button>
-      </div>
+      {apiError && (
+        <Alert variant="destructive" className="lg:col-span-3 mt-4">
+          <XCircle className="h-4 w-4" />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{apiError}</AlertDescription>
+        </Alert>
+      )}
     </div>
   );
 
   const renderStep3 = () => (
-    <Card className="bg-gradient-to-r from-blue-50 to-white">
+    <Card className="bg-gradient-to-r from-purple-50 to-white">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl text-blue-600 flex items-center justify-center gap-2">
-          <Thermometer className="w-6 h-6" />
-          Analyzing X-ray
+        <CardTitle className="text-2xl text-purple-600 flex items-center justify-center gap-2">
+          <Brain className="w-6 h-6" />
+          Analyzing Brain MRI
         </CardTitle>
-        <CardDescription>AI is processing the image, please wait...</CardDescription>
+        <CardDescription>Deep learning model processing neurological patterns...</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col items-center justify-center gap-6 py-12">
           <div className="relative">
-            <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center animate-pulse">
-              <Thermometer className="w-10 h-10 text-blue-600" />
+            <div className="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center animate-pulse">
+              <Brain className="w-10 h-10 text-purple-600" />
             </div>
-            <div className="absolute -inset-3 border-4 border-blue-200 rounded-full animate-ping opacity-75"></div>
+            <div className="absolute -inset-3 border-4 border-purple-200 rounded-full animate-ping opacity-75"></div>
           </div>
           <div className="text-center space-y-2">
-            <p className="text-lg font-medium text-gray-700">Processing medical image...</p>
-            <p className="text-sm text-gray-500">This may take a few moments</p>
+            <p className="text-lg font-medium text-gray-700">Detecting neurological patterns...</p>
+            <p className="text-sm text-gray-500">3D convolutional neural network processing</p>
           </div>
           <div className="w-full max-w-md">
-            {/* Indeterminate progress bar */}
-            <Progress value={undefined} className="h-2" /> 
-            <p className="text-xs text-gray-500 text-center mt-2">Analyzing patterns...</p>
+            <Progress value={undefined} className="h-2 bg-purple-100" />
+            <p className="text-xs text-gray-500 text-center mt-2">Analyzing brain structures and potential abnormalities...</p>
           </div>
         </div>
       </CardContent>
@@ -394,20 +500,21 @@ Disclaimer: This is an AI-generated report for educational and research purposes
         <CardHeader>
           <CardTitle className="text-green-700 flex items-center gap-2">
             <CheckCircle className="w-5 h-5" />
-            Analysis Complete
+            Neurological Analysis Complete
           </CardTitle>
+          <CardDescription>Modal has completed evaluation of brain structures</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-lg font-semibold mb-2">Patient X-ray</h3>
+              <h3 className="text-lg font-semibold mb-2">MRI Scan with GradCam Markers</h3>
               <div className="relative">
                 <div className="border rounded-xl overflow-hidden bg-gray-100">
                   {imagePreview && (
                     <div className="relative">
                       <Image
                         src={imagePreview}
-                        alt="Analyzed X-ray"
+                        alt="Analyzed MRI"
                         width={400}
                         height={400}
                         className={`w-full h-auto object-contain transition-opacity duration-300 ${showHeatmap ? 'opacity-70' : ''}`}
@@ -415,7 +522,7 @@ Disclaimer: This is an AI-generated report for educational and research purposes
                       {showHeatmap && analysis?.heatmap && (
                         <Image
                           src={`data:image/png;base64,${analysis.heatmap}`}
-                          alt="Heatmap overlay"
+                          alt="Neurological heatmap overlay"
                           width={400}
                           height={400}
                           className="absolute inset-0 w-full h-full object-contain mix-blend-multiply"
@@ -432,7 +539,7 @@ Disclaimer: This is an AI-generated report for educational and research purposes
                       className="bg-white/90 backdrop-blur-sm"
                     >
                       <Activity className="w-4 h-4 mr-1" />
-                      Heatmap
+                      Activation Map
                     </Toggle>
                   </div>
                 )}
@@ -441,45 +548,52 @@ Disclaimer: This is an AI-generated report for educational and research purposes
 
             <div className="space-y-4">
               <div>
-                <h3 className="text-lg font-semibold mb-2">Diagnosis Result</h3>
-                <div className="bg-blue-100 text-blue-800 px-4 py-3 rounded-lg font-bold text-lg text-center">
+                <h3 className="text-lg font-semibold mb-2">Neurological Findings</h3>
+                <div className={`px-4 py-3 rounded-lg font-bold text-lg text-center ${
+                  analysis?.label.includes('Normal') ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'
+                }`}>
                   {analysis?.label}
                 </div>
+                <p className="text-sm text-gray-600 mt-1 text-center">
+                  {analysis?.label.includes('Tumor') ?
+                    'Structural abnormality detected' :
+                    'No significant structural abnormalities found'}
+                </p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2">Confidence Level</h3>
+                <h3 className="text-lg font-semibold mb-2">Model Confidence</h3>
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl font-bold text-blue-600">
+                  <div className="w-16 h-16 rounded-full bg-purple-50 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl font-bold text-purple-600">
                       {analysis ? Math.round(analysis.confidence * 100) : 0}%
                     </span>
                   </div>
                   <div className="flex-1">
-                    <Progress value={analysis ? analysis.confidence * 100 : 0} className="h-3" />
+                    <Progress value={analysis ? analysis.confidence * 100 : 0} className="h-3 bg-purple-100" />
                     <p className="text-sm text-gray-600 mt-1">
                       {analysis && analysis.confidence >= 0.9
-                        ? "High confidence - Strong indication"
+                        ? "High confidence - Clear neurological indicators"
                         : analysis && analysis.confidence >= 0.7
-                        ? "Moderate confidence - Review recommended"
-                        : "Low confidence - Additional tests suggested"}
+                        ? "Moderate confidence - Clinical correlation recommended"
+                        : "Low confidence - Additional imaging suggested"}
                     </p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2">Probability Distribution</h3>
+                <h3 className="text-lg font-semibold mb-2">Differential Probabilities</h3>
                 <div className="space-y-2">
                   {analysis?.probabilities.sort((a,b) => b.value - a.value).map((prob) => (
-                    <div key={prob.label} className="flex items-center gap-3">
-                      <span className="w-32 text-sm text-gray-600 truncate" title={prob.label}>{prob.label}</span>
-                      <Progress value={prob.value * 100} className="h-2 flex-1" />
-                      <span className="w-12 text-right text-sm font-medium">
-                        {Math.round(prob.value * 100)}%
-                      </span>
-                    </div>
-                  ))}
+                                     <div key={prob.label} className="flex items-center gap-3">
+                                       <span className="w-32 text-sm text-gray-600 truncate" title={prob.label}>{prob.label}</span>
+                                       <Progress value={prob.value * 100} className="h-2 flex-1" />
+                                       <span className="w-12 text-right text-sm font-medium">
+                                         {Math.round(prob.value * 100)}%
+                                       </span>
+                                     </div>
+                                   ))}
                 </div>
               </div>
             </div>
@@ -490,7 +604,7 @@ Disclaimer: This is an AI-generated report for educational and research purposes
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-blue-600">Patient Summary</CardTitle>
+            <CardTitle className="text-purple-600">Patient Neurological Profile</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -508,21 +622,29 @@ Disclaimer: This is an AI-generated report for educational and research purposes
                   <p className="text-gray-900">{patientInfo.gender}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-500">X-ray Date</p>
-                  <p className="text-gray-900">{patientInfo.xrayDate}</p>
+                  <p className="text-sm font-medium text-gray-500">Scan Date</p>
+                  <p className="text-gray-900">{patientInfo.scanDate}</p>
                 </div>
-              </div>
-              {patientInfo.symptoms && (
                 <div>
-                  <p className="text-sm font-medium text-gray-500">Symptoms</p>
-                  <p className="text-gray-900">{patientInfo.symptoms}</p>
+                  <p className="text-sm font-medium text-gray-500">Weight</p>
+                  <p className="text-gray-900">{patientInfo.weight || 'N/A'}</p>
                 </div>
-              )}
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Height</p>
+                  <p className="text-gray-900">{patientInfo.height || 'N/A'}</p>
+                </div>
+                {patientInfo.symptoms && (
+                  <div className="md:col-span-2">
+                    <p className="text-sm font-medium text-gray-500">Symptoms</p>
+                    <p className="text-gray-900">{patientInfo.symptoms}</p>
+                  </div>
+                )}
+              </div>
               <Separator />
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm font-medium text-gray-500">AI Model</p>
-                  <p className="text-gray-900">DenseNet121 v2.3</p>
+                  <p className="text-gray-900">3D ResNet50 v1.2</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-500">Analysis Date</p>
@@ -535,17 +657,24 @@ Disclaimer: This is an AI-generated report for educational and research purposes
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-blue-600">Actions</CardTitle>
-            <CardDescription>Download the report or start over</CardDescription>
+            <CardTitle className="text-purple-600">Next Steps</CardTitle>
+            <CardDescription>Download full report or start new analysis</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <Button className="w-full bg-blue-600 hover:bg-blue-700" onClick={handleDownloadReport}>
+              <Button
+                className="w-full bg-purple-600 hover:bg-purple-700"
+                onClick={handleDownloadReport}
+              >
                 <Download className="w-4 h-4 mr-2" />
-                Download Text Report
+                Download Neurological Report
               </Button>
-              <Button variant="outline" className="w-full" onClick={handleNewAnalysis}>
-                Analyze New Patient
+              <Button
+                variant="outline"
+                className="w-full border-purple-600 text-purple-600 hover:bg-purple-50"
+                onClick={handleNewAnalysis}
+              >
+                Analyze New MRI Scan
               </Button>
             </div>
           </CardContent>
@@ -558,11 +687,11 @@ Disclaimer: This is an AI-generated report for educational and research purposes
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2 flex items-center justify-center gap-3">
-            <Stethoscope className="w-8 h-8" />
-            AnYa Medical System
+          <h1 className="text-3xl sm:text-4xl font-bold text-purple-600 mb-2 flex items-center justify-center gap-3">
+            <BrainCircuit className="w-8 h-8" />
+            AnYa Brain System
           </h1>
-          <p className="text-gray-600 text-md sm:text-lg">AI-Powered Chest X-ray Analysis Platform</p>
+          <p className="text-gray-600 text-md sm:text-lg">Deep Learning Brain MRI Analysis Platform</p>
         </div>
         {renderStepIndicator()}
 
@@ -573,12 +702,12 @@ Disclaimer: This is an AI-generated report for educational and research purposes
           {currentStep === 4 && renderStep4()}
         </div>
 
-        <Alert className="mt-8 max-w-6xl mx-auto border-yellow-300 bg-yellow-50">
-          <AlertCircle className="w-5 h-5 text-yellow-700" />
-          <AlertDescription className="text-yellow-800 text-sm">
-            <strong>Medical Disclaimer:</strong> This diagnostic tool is for educational and research purposes only. 
-            Results should not be used as the sole basis for medical diagnosis or treatment decisions. 
-            Always consult with qualified healthcare professionals for proper medical evaluation.
+        <Alert className="mt-8 max-w-6xl mx-auto border-blue-300 bg-blue-50">
+          <AlertCircle className="w-5 h-5 text-blue-700" />
+          <AlertDescription className="text-blue-800 text-sm">
+            <strong>Clinical Note:</strong> This AI tool detects common neurological abnormalities but cannot
+            identify all possible conditions. False negatives may occur. Always correlate with clinical
+            findings and consider follow-up imaging when indicated.
           </AlertDescription>
         </Alert>
       </div>
@@ -586,4 +715,4 @@ Disclaimer: This is an AI-generated report for educational and research purposes
   );
 };
 
-export default DiagnosisPage;
+export default BrainDiagnosisPage;

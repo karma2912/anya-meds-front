@@ -18,7 +18,7 @@ import {
   TrendingUp,
   Table,
   HeartPulse,
-  Droplet,
+  Bandage,
   Eye,
   Activity,
   ClipboardList,
@@ -41,7 +41,7 @@ import {
   Pie,
   Sector
 } from "recharts";
-
+import { ShieldCheck, ArrowRight } from 'lucide-react';
 // --- Mock Data for Model Performance ---
 const accuracyData = [
   { date: "Jan 2025", chest: 98.1, brain: 96.8, skin: 95.4 },
@@ -160,7 +160,7 @@ const Page = () => {
       case "brain":
         return <Brain className="w-6 h-6 text-purple-600" />;
       case "skin":
-        return <Droplet className="w-6 h-6 text-orange-600" />;
+        return <Bandage className="w-6 h-6 text-orange-600" />;
       default:
         return <Stethoscope className="w-6 h-6 text-blue-600" />;
     }
@@ -282,7 +282,7 @@ const Page = () => {
                           <span className="text-purple-800 font-medium">Brain MRI</span>
                         </div>
                         <div className="bg-orange-50 p-4 rounded-lg flex flex-col items-center">
-                          <Droplet className="w-10 h-10 text-orange-600 mb-2" />
+                          <Bandage className="w-10 h-10 text-orange-600 mb-2" />
                           <span className="text-orange-800 font-medium">Skin Lesion</span>
                         </div>
                         <div className="bg-green-50 p-4 rounded-lg flex flex-col items-center">
@@ -298,166 +298,184 @@ const Page = () => {
           </div>
         </section>
 
-        {/* Diagnostic Services Section */}
-        <section id="diagnostics" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Diagnostic Services</h2>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                Specialized AI models for different medical imaging modalities
-              </p>
-            </div>
+       {/* Diagnostic Services Section */}
+<section id="diagnostics" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Diagnostic Services</h2>
+      <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+        Specialized AI models for different medical imaging modalities
+      </p>
+    </div>
 
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex rounded-md shadow-sm" role="group">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("chest")}
-                  className={`px-6 py-3 text-sm font-medium rounded-l-lg ${activeTab === "chest" ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
-                >
-                  <div className="flex items-center">
-                    <HeartPulse className="w-4 h-4 mr-2" />
-                    Chest X-Ray
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("brain")}
-                  className={`px-6 py-3 text-sm font-medium ${activeTab === "brain" ? 'bg-purple-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
-                >
-                  <div className="flex items-center">
-                    <Brain className="w-4 h-4 mr-2" />
-                    Brain MRI
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("skin")}
-                  className={`px-6 py-3 text-sm font-medium rounded-r-lg ${activeTab === "skin" ? 'bg-orange-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
-                >
-                  <div className="flex items-center">
-                    <Droplet className="w-4 h-4 mr-2" />
-                    Skin Lesion
-                  </div>
-                </button>
+    <div className="flex justify-center mb-8">
+      <div className="inline-flex rounded-md shadow-sm" role="group">
+        <button
+          type="button"
+          onClick={() => setActiveTab("chest")}
+          className={`px-6 py-3 text-sm font-medium rounded-l-lg transition-colors duration-200 ${activeTab === "chest" ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+        >
+          <div className="flex items-center">
+            <HeartPulse className="w-4 h-4 mr-2" />
+            Chest X-Ray
+          </div>
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("brain")}
+          className={`px-6 py-3 text-sm font-medium transition-colors duration-200 ${activeTab === "brain" ? 'bg-purple-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+        >
+          <div className="flex items-center">
+            <Brain className="w-4 h-4 mr-2" />
+            Brain MRI
+          </div>
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("skin")}
+          className={`px-6 py-3 text-sm font-medium rounded-r-lg transition-colors duration-200 ${activeTab === "skin" ? 'bg-orange-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+        >
+          <div className="flex items-center">
+            <Bandage className="w-4 h-4 mr-2" />
+            Skin Lesion
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div className="grid md:grid-cols-2 gap-8 items-start">
+      <div className="space-y-6">
+        <div className={`p-6 rounded-xl ${renderColor()} bg-opacity-30`}>
+          <div className="flex items-center mb-4">
+            {renderIcon()}
+            <h3 className="text-xl font-bold ml-2">
+              {activeTab === "chest" && "Chest X-Ray Analysis"}
+              {activeTab === "brain" && "Brain MRI Analysis"}
+              {activeTab === "skin" && "Skin Lesion Analysis"}
+            </h3>
+          </div>
+          <p className="text-gray-700 mb-4">
+            {activeTab === "chest" && "Our model analyzes chest X-rays for 14 different pathologies including COVID-19, pneumonia, and lung nodules with 98.8% accuracy."}
+            {activeTab === "brain" && "Advanced neural network detects and classifies brain tumors (glioma, meningioma, pituitary) from MRI scans with 98.1% accuracy."}
+            {activeTab === "skin" && "Dermatology deep learning evaluates skin lesions for malignant melanoma and other skin cancers with 97.1% accuracy."}
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white p-4 rounded-lg shadow-sm">
+              <div className="text-sm text-gray-500 mb-1">Conditions</div>
+              <div className="text-xl font-bold">
+                {activeTab === "chest" && "14"}
+                {activeTab === "brain" && "4"}
+                {activeTab === "skin" && "7"}
               </div>
             </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className={`p-6 rounded-xl ${renderColor()} bg-opacity-30`}>
-                  <div className="flex items-center mb-4">
-                    {renderIcon()}
-                    <h3 className="text-xl font-bold ml-2">
-                      {activeTab === "chest" && "Chest X-Ray Analysis"}
-                      {activeTab === "brain" && "Brain MRI Analysis"}
-                      {activeTab === "skin" && "Skin Lesion Analysis"}
-                    </h3>
-                  </div>
-                  <p className="text-gray-700 mb-4">
-                    {activeTab === "chest" && "Our model analyzes chest X-rays for 14 different pathologies including COVID-19, pneumonia, and lung nodules with 98.8% accuracy."}
-                    {activeTab === "brain" && "Advanced neural network detects and classifies brain tumors (glioma, meningioma, pituitary) from MRI scans with 98.1% accuracy."}
-                    {activeTab === "skin" && "Dermatology deep learning evaluates skin lesions for malignant melanoma and other skin cancers with 97.1% accuracy."}
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white p-4 rounded-lg shadow-sm">
-                      <div className="text-sm text-gray-500 mb-1">Conditions</div>
-                      <div className="text-xl font-bold">
-                        {activeTab === "chest" && "14"}
-                        {activeTab === "brain" && "4"}
-                        {activeTab === "skin" && "7"}
-                      </div>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm">
-                      <div className="text-sm text-gray-500 mb-1">Accuracy</div>
-                      <div className="text-xl font-bold">
-                        {activeTab === "chest" && "98.8%"}
-                        {activeTab === "brain" && "98.1%"}
-                        {activeTab === "skin" && "97.1%"}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold mb-4">Sample Report</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-medium text-gray-700">Diagnosis</h4>
-                      <p className="text-gray-900 font-semibold">{activeReport.diagnosis} <span className="text-sm font-normal text-gray-500">({activeReport.confidence}% confidence)</span></p>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-700">Key Findings</h4>
-                      <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                        {activeReport.findings.map((finding, index) => (
-                          <li key={index}>{finding}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-700">Recommendations</h4>
-                      <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                        {activeReport.recommendations.map((rec, index) => (
-                          <li key={index}>{rec}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold mb-4">Disease Distribution</h3>
-                  <div className="h-64">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={activeDiseaseData}
-                          cx="50%"
-                          cy="50%"
-                          labelLine={false}
-                          outerRadius={80}
-                          fill="#8884d8"
-                          dataKey="value"
-                          label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                        >
-                          {activeDiseaseData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={
-                              index === 0 ? renderChartColor() :
-                              index === 1 ? "#94a3b8" :
-                              index === 2 ? "#cbd5e1" :
-                              "#e2e8f0"
-                            } />
-                          ))}
-                        </Pie>
-                        <Tooltip />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold mb-4">Upload & Analyze</h3>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                    <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" />
-                    <p className="text-gray-600 mb-4">Drag and drop your {activeTab === "chest" ? "chest X-ray" : activeTab === "brain" ? "brain MRI" : "skin lesion image"} here</p>
-                    <p className="text-sm text-gray-500 mb-4">or</p>
-                    <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
-                      Select File
-                    </Button>
-                  </div>
-                  <div className="mt-4 text-xs text-gray-500">
-                    {activeTab === "chest" && "Supports .jpg, .png, .dcm formats (max 10MB)"}
-                    {activeTab === "brain" && "Supports .dcm, .nii, .nii.gz formats (max 20MB)"}
-                    {activeTab === "skin" && "Supports .jpg, .png formats (max 5MB)"}
-                  </div>
-                </div>
+            <div className="bg-white p-4 rounded-lg shadow-sm">
+              <div className="text-sm text-gray-500 mb-1">Accuracy</div>
+              <div className="text-xl font-bold">
+                {activeTab === "chest" && "98.8%"}
+                {activeTab === "brain" && "98.1%"}
+                {activeTab === "skin" && "97.1%"}
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+          <h3 className="text-lg font-semibold mb-4">Sample Report</h3>
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-medium text-gray-700">Diagnosis</h4>
+              <p className="text-gray-900 font-semibold">{activeReport.diagnosis} <span className="text-sm font-normal text-gray-500">({activeReport.confidence}% confidence)</span></p>
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-700">Key Findings</h4>
+              <ul className="list-disc pl-5 space-y-1 text-gray-700">
+                {activeReport.findings.map((finding, index) => (
+                  <li key={index}>{finding}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-700">Recommendations</h4>
+              <ul className="list-disc pl-5 space-y-1 text-gray-700">
+                {activeReport.recommendations.map((rec, index) => (
+                  <li key={index}>{rec}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+          <h3 className="text-lg font-semibold mb-4">Disease Distribution</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={activeDiseaseData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                >
+                  {activeDiseaseData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={
+                      index === 0 ? renderChartColor() :
+                      index === 1 ? "#94a3b8" :
+                      index === 2 ? "#cbd5e1" :
+                      "#e2e8f0"
+                    } />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* --- MODIFIED COMPONENT START --- */}
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm text-center">
+            <h3 className="text-lg font-semibold mb-4">Ready for an Analysis?</h3>
+            <div className="flex justify-center mb-4">
+              <ShieldCheck className={`w-12 h-12 ${
+                activeTab === 'chest' ? 'text-blue-600' :
+                activeTab === 'brain' ? 'text-purple-600' :
+                'text-orange-600'
+              }`} />
+            </div>
+            <p className="text-gray-600 mb-6">
+              Proceed to our secure diagnostic tool to upload your {activeTab === "chest" ? "chest X-ray" : activeTab === "brain" ? "brain MRI" : "skin lesion image"} and get instant insights.
+            </p>
+            {/* Note: This should be a <Link> component from your routing library (e.g., React Router) for client-side navigation */}
+            <a
+              href={
+                activeTab === 'chest' ? '/chest-diagnosis' :
+                activeTab === 'brain' ? '/brain-diagnosis' :
+                '/skin-diagnosis'
+              }
+              className={`w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white shadow-sm transition-colors duration-200 ${
+                activeTab === 'chest' ? 'bg-blue-600 hover:bg-blue-700' :
+                activeTab === 'brain' ? 'bg-purple-600 hover:bg-purple-700' :
+                'bg-orange-600 hover:bg-orange-700'
+              }`}
+            >
+              Go to Diagnostic Tool
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </a>
+            <div className="mt-4 text-xs text-gray-500">
+              Your data is processed securely and is never stored.
+            </div>
+        </div>
+        {/* --- MODIFIED COMPONENT END --- */}
+
+      </div>
+    </div>
+  </div>
+</section>
         {/* Model Performance Section */}
         <section id="performance" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
           <div className="max-w-7xl mx-auto">
@@ -631,7 +649,7 @@ const Page = () => {
                         <Brain className="w-8 h-8 text-purple-600" />
                       </div>
                       <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center">
-                        <Droplet className="w-8 h-8 text-orange-600" />
+                        <Bandage className="w-8 h-8 text-orange-600" />
                       </div>
                     </div>
                   </div>
