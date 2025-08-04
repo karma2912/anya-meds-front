@@ -356,7 +356,7 @@ const Page = () => {
           </div>
           <p className="text-gray-700 mb-4">
             {activeTab === "chest" && "Our model analyzes chest X-rays for 14 different pathologies including COVID-19, pneumonia, and lung nodules with 98.8% accuracy."}
-            {activeTab === "brain" && "Advanced neural network detects and classifies brain tumors (glioma, meningioma, pituitary) from MRI scans with 98.1% accuracy."}
+            {activeTab === "brain" && "Advanced neural network detects and classifies brain tumors (glioma, meningioma, pituitary) from MRI scans with 88.9% accuracy."}
             {activeTab === "skin" && "Dermatology deep learning evaluates skin lesions for malignant melanoma and other skin cancers with 97.1% accuracy."}
           </p>
           <div className="grid grid-cols-2 gap-4">
