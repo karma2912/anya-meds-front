@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import Link from 'next/link'; // Added for navigation
 import { useDropzone } from 'react-dropzone';
-import { FileText, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Activity, XCircle,Bandage } from 'lucide-react';
+import { FileText, Thermometer, Download, AlertCircle, CheckCircle, Upload, User, Activity, XCircle, Bandage, ArrowLeft } from 'lucide-react'; 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -682,7 +683,19 @@ Disclaimer: This is an AI-generated report for educational and research purposes
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 relative">
+        {/* Back Button - Renders only on Step 1 */}
+        {currentStep === 1 && (
+          <div className="absolute top-8 left-4">
+            <Button asChild variant="outline" className="flex items-center gap-2">
+              <Link href="/">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+            </Button>
+          </div>
+        )}
+
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-2 flex items-center justify-center gap-3">
             <Bandage className="w-8 h-8" />
