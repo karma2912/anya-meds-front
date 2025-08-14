@@ -13,6 +13,13 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Image from 'next/image';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+declare module 'jspdf' {
+  interface jsPDF {
+    autoTable: (options: any) => jsPDF;
+  }
+}
 
 const DiagnosisPage = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -131,47 +138,216 @@ const DiagnosisPage = () => {
       setIsAnalyzing(false);
     }
   };
-
+  
   const handleDownloadReport = () => {
-    console.log("Report generation initiated.");
-    const reportContent = `
-AnYa-Med AI Diagnostic Report
-==============================
+  console.log("PDF Report generation initiated.");
 
-Patient Information
--------------------
-Name: ${patientInfo.name}
-Age: ${patientInfo.age}
-Gender: ${patientInfo.gender}
-X-ray Date: ${patientInfo.xrayDate}
-Blood Pressure: ${patientInfo.bloodPressure || 'N/A'}
-Weight: ${patientInfo.weight || 'N/A'}
-Height: ${patientInfo.height || 'N/A'}
-Allergies: ${patientInfo.allergies || 'N/A'}
-Medications: ${patientInfo.medications || 'N/A'}
-Medical History: ${patientInfo.medicalHistory || 'N/A'}
-Symptoms: ${patientInfo.symptoms || 'N/A'}
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const margin = 20;
+  const primaryColor: [number, number, number] = [40, 116, 252]; // AnYa blue
+  const secondaryColor: [number, number, number] = [100, 100, 100]; // Gray
+  const accentColor: [number, number, number] = [241, 90, 34]; // Orange for highlights
 
-AI Analysis Results
--------------------
-Diagnosis: ${analysis?.label}
-Confidence: ${((analysis?.confidence || 0) * 100).toFixed(2)}%
+  // ===== 1. COVER PAGE (Simplified Text Version) =====
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(40);
+  doc.setTextColor(...primaryColor);
+  doc.text("AnYa Meds", pageWidth / 2, 80, { align: 'center' });
 
-Probability Distribution:
-${analysis?.probabilities.map(p => `- ${p.label}: ${Math.round(p.value * 100)}%`).join('\n')}
+  doc.setFontSize(18);
+  doc.setTextColor(...secondaryColor);
+  doc.text("Chest X-Ray Analysis Report", pageWidth / 2, 100, { align: 'center' });
 
-Disclaimer: This is an AI-generated report for educational and research purposes and is not a substitute for professional medical advice.
-    `;
-    const blob = new Blob([reportContent.trim()], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `AnYaMed_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
+  // Patient info box
+  doc.setFillColor(245, 245, 245);
+  doc.rect(margin, 140, pageWidth - margin*2, 40, 'F');
+  doc.setDrawColor(220, 220, 220);
+  doc.rect(margin, 140, pageWidth - margin*2, 40);
+
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0);
+  doc.text(`Patient: ${patientInfo.name}`, margin + 10, 150);
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, margin + 10, 160);
+ doc.text(`Report ID: ${Math.random().toString(36).substring(2, 10).toUpperCase()}`, pageWidth - margin - 10, 150, { align: 'right' });
+
+  // ===== 2. PATIENT DETAILS PAGE =====
+  doc.addPage();
+  
+  doc.setFontSize(18);
+  doc.setTextColor(...primaryColor);
+  doc.text("Patient Information", margin, 30);
+
+  // Note: Ensure your patientInfo state for the chest page includes these fields
+  autoTable(doc, {
+    startY: 40,
+    head: [['Detail', 'Value']],
+    body: [
+      ['Full Name', patientInfo.name],
+      ['Age', patientInfo.age],
+      ['Gender', patientInfo.gender],
+      ['X-Ray Date', patientInfo.xrayDate] // Changed from photoDate
+    ],
+    theme: 'grid',
+    headStyles: {
+      fillColor: primaryColor,
+      textColor: 255,
+      fontStyle: 'bold'
+    },
+    styles: {
+      halign: 'left',
+      cellPadding: 5
+    },
+    columnStyles: {
+      0: { fontStyle: 'bold', cellWidth: 50 }
+    }
+  });
+
+  autoTable(doc, {
+    startY: (doc as any).lastAutoTable.finalY + 15,
+    head: [['Medical Information', '']],
+    body: [
+      ['Blood Pressure', patientInfo.bloodPressure || 'Not specified'],
+      ['Weight', patientInfo.weight || 'Not specified'],
+      ['Height', patientInfo.height || 'Not specified'],
+      ['Symptoms', patientInfo.symptoms || 'None reported'],
+      ['Allergies', patientInfo.allergies || 'None reported'],
+      ['Medications', patientInfo.medications || 'None reported'],
+      ['Medical History', patientInfo.medicalHistory || 'None reported']
+    ],
+    theme: 'plain',
+    styles: {
+      halign: 'left',
+      cellPadding: 5
+    },
+    columnStyles: {
+      0: { fontStyle: 'bold', cellWidth: 50 }
+    }
+  });
+
+  // ===== 3. ANALYSIS RESULTS PAGE =====
+  doc.addPage();
+
+  doc.setFontSize(18);
+  doc.setTextColor(...primaryColor);
+  doc.text("Radiological Findings Summary", margin, 30);
+
+  doc.setFillColor(240, 248, 255); 
+  doc.rect(margin, 40, pageWidth - margin*2, 30, 'F');
+  doc.setDrawColor(200, 230, 255);
+  doc.rect(margin, 40, pageWidth - margin*2, 30);
+
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0);
+  doc.text("Primary Finding:", margin + 10, 50);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(...primaryColor);
+  doc.text(analysis?.label || "No finding available", margin + 50, 50);
+
+  doc.setFont("helvetica", "normal");
+  doc.setTextColor(0, 0, 0);
+  doc.text("Confidence Level:", margin + 10, 60);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(...accentColor);
+  doc.text(`${((analysis?.confidence || 0) * 100).toFixed(2)}%`, margin + 50, 60);
+
+  const confidence = analysis?.confidence || 0;
+  const meterWidth = pageWidth - margin*2 - 20;
+  doc.setFillColor(230, 230, 230);
+  doc.rect(margin + 10, 70, meterWidth, 8, 'F');
+  doc.setFillColor(...(confidence > 0.7 ? primaryColor : accentColor));
+  doc.rect(margin + 10, 70, meterWidth * confidence, 8, 'F');
+
+  doc.setFontSize(16);
+  doc.setTextColor(...primaryColor);
+  doc.text("Finding Probabilities", margin, 100);
+
+  const tableData = analysis?.probabilities
+    .sort((a, b) => b.value - a.value)
+    .map(p => [ p.label, `${(p.value * 100).toFixed(2)}%` ]) || [];
+
+  autoTable(doc, {
+    startY: 110,
+    head: [['Finding', 'Probability']],
+    body: tableData,
+    theme: 'striped',
+    headStyles: {
+      fillColor: primaryColor,
+      textColor: 255,
+      fontStyle: 'bold'
+    },
+    columnStyles: {
+      0: { cellWidth: 'auto' },
+      1: { cellWidth: 40, halign: 'right' },
+    },
+    styles: {
+      fontSize: 10,
+      cellPadding: 3
+    },
+  });
+
+  // ===== 4. VISUALIZATION PAGE =====
+  if (imagePreview) {
+    doc.addPage();
+    doc.setFontSize(18);
+    doc.setTextColor(...primaryColor);
+    doc.text("Radiological Images", margin, 30);
+
+    doc.setFontSize(12);
+    doc.setTextColor(...secondaryColor);
+    doc.text("Uploaded X-Ray:", margin, 40);
+
+    const imgData = imagePreview;
+    const imgWidth = pageWidth - margin*2;
+    const imgHeight = (imgWidth * 3) / 4;
+    doc.addImage(imgData, 'JPEG', margin, 45, imgWidth, imgHeight);
+
+    if (analysis?.heatmap) {
+      doc.setFontSize(12);
+      doc.setTextColor(...secondaryColor);
+      doc.text("AI Heatmap Analysis:", margin, imgHeight + 55);
+
+      const heatmapData = `data:image/png;base64,${analysis.heatmap}`;
+      doc.addImage(heatmapData, 'PNG', margin, imgHeight + 60, imgWidth, imgHeight);
+    }
+  }
+
+  // ===== 5. DISCLAIMER PAGE =====
+  doc.addPage();
+  doc.setFontSize(18);
+  doc.setTextColor(...primaryColor);
+  doc.text("Report Disclaimer", margin, 30);
+
+  doc.setFontSize(10);
+  doc.setTextColor(0, 0, 0);
+  const disclaimerText = [
+    "This report was generated by AnYa Med's AI diagnostic system and is intended for use by qualified healthcare professionals only.",
+    "",
+    "The information contained in this report:",
+    "- Is not a substitute for professional medical advice, diagnosis, or treatment",
+    "- Should be interpreted in conjunction with other clinical findings from a qualified radiologist",
+    "- May contain inaccuracies or errors inherent to AI systems",
+    "",
+    "The probability scores represent the AI model's confidence in its predictions and do not constitute definitive diagnoses.",
+    "",
+    "AnYa Med disclaims all liability for any decisions made based on this report. Healthcare providers must exercise their own professional judgment when interpreting these results."
+  ];
+
+  let currentY = 50;
+  disclaimerText.forEach(line => {
+    doc.text(line, margin, currentY, { maxWidth: pageWidth - margin * 2 });
+    currentY += (line === "") ? 3 : 6;
+  });
+
+  // Footer
+  doc.setFontSize(8);
+  doc.setTextColor(...secondaryColor);
+  doc.text(`Report generated on ${new Date().toLocaleString()}`, margin, 280);
+  doc.text("AnYa Med - AI Diagnostic Systems", pageWidth - margin, 280, { align: 'right' });
+
+  // ===== SAVE THE PDF =====
+  doc.save(`AnYaChest_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}.pdf`);
+};
 
   const handleNewAnalysis = () => {
     setImagePreview(null);
@@ -669,7 +845,7 @@ Disclaimer: This is an AI-generated report for educational and research purposes
             <div className="space-y-4">
               <Button className="w-full bg-blue-600 hover:bg-blue-700" onClick={handleDownloadReport}>
                 <Download className="w-4 h-4 mr-2" />
-                Download Text Report
+                Download Report
               </Button>
               <Button variant="outline" className="w-full" onClick={handleNewAnalysis}>
                 Analyze New Patient
@@ -685,7 +861,17 @@ Disclaimer: This is an AI-generated report for educational and research purposes
     <div className="min-h-screen bg-gray-50">
        <div className="container mx-auto px-4 py-8 relative">
         {/* Back Button - Renders only on Step 1 */}
-        {currentStep === 1 && (
+        {currentStep === 1  && (
+          <div className="absolute top-8 left-4">
+            <Button asChild variant="outline" className="flex items-center gap-2">
+              <Link href="/">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+            </Button>
+          </div>
+        )}
+        {currentStep === 4  && (
           <div className="absolute top-8 left-4">
             <Button asChild variant="outline" className="flex items-center gap-2">
               <Link href="/">

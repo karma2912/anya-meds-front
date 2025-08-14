@@ -15,7 +15,13 @@ import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { FileScan } from 'lucide-react';
 import Image from 'next/image';
-
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+declare module 'jspdf' {
+  interface jsPDF {
+    autoTable: (options: any) => jsPDF;
+  }
+}
 const BrainDiagnosisPage = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -138,55 +144,212 @@ const BrainDiagnosisPage = () => {
     }
   };
 
-  const handleDownloadReport = () => {
-    const reportContent = `
-AnYa-Med Brain MRI Diagnostic Report
-===================================
+const handleDownloadReport = () => {
+  console.log("PDF Report generation initiated.");
 
-Patient Information
--------------------
-Name: ${patientInfo.name}
-Age: ${patientInfo.age}
-Gender: ${patientInfo.gender}
-Scan Date: ${patientInfo.scanDate}
-Weight: ${patientInfo.weight || 'N/A'}
-Height: ${patientInfo.height || 'N/A'}
-Blood Pressure: ${patientInfo.bloodPressure || 'N/A'}
-Allergies: ${patientInfo.allergies || 'N/A'}
-Medications: ${patientInfo.medications || 'N/A'}
-Scan Type: ${patientInfo.scanType || 'N/A'}
-Contrast Used: ${patientInfo.contrastUsed || 'N/A'}
-Referring Physician: ${patientInfo.referringPhysician || 'N/A'}
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const margin = 20;
+  const primaryColor: [number, number, number] = [40, 116, 252]; // AnYa blue
+  const secondaryColor: [number, number, number] = [100, 100, 100]; // Gray
+  const accentColor: [number, number, number] = [241, 90, 34]; // Orange for highlights
 
-Symptoms: ${patientInfo.symptoms || 'N/A'}
-Medical History: ${patientInfo.medicalHistory || 'N/A'}
+  // ===== 1. COVER PAGE (Simplified Text Version) =====
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(40);
+  doc.setTextColor(...primaryColor);
+  doc.text("AnYa Meds", pageWidth / 2, 80, { align: 'center' });
 
-AI Analysis Results
--------------------
-Diagnosis: ${analysis?.label}
-Confidence: ${((analysis?.confidence || 0) * 100).toFixed(2)}%
+  doc.setFontSize(18);
+  doc.setTextColor(...secondaryColor);
+  doc.text("Brain MRI Analysis Report", pageWidth / 2, 100, { align: 'center' });
 
-Probability Distribution:
-${analysis?.probabilities.map(p => `- ${p.label}: ${Math.round(p.value * 100)}%`).join('\n')}
+  // Patient info box
+  doc.setFillColor(245, 245, 245);
+  doc.rect(margin, 140, pageWidth - margin*2, 40, 'F');
+  doc.setDrawColor(220, 220, 220);
+  doc.rect(margin, 140, pageWidth - margin*2, 40);
 
-Clinical Notes:
-${analysis?.label.includes('Tumor') ?
-  'Consider neurosurgical consultation and contrast-enhanced MRI for further evaluation.' :
-  'No significant structural abnormalities found. Routine follow-up recommended.'}
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0);
+  doc.text(`Patient: ${patientInfo.name}`, margin + 10, 150);
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, margin + 10, 160);
+ doc.text(`Report ID: ${Math.random().toString(36).substring(2, 10).toUpperCase()}`, pageWidth - margin - 10, 150, { align: 'right' });
 
-Disclaimer: This is an AI-generated report for educational and research purposes and is not a substitute for professional medical advice.
-    `;
-    const blob = new Blob([reportContent.trim()], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `AnYaMed_Brain_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
+  // ===== 2. PATIENT DETAILS PAGE =====
+  doc.addPage();
+  
+  doc.setFontSize(18);
+  doc.setTextColor(...primaryColor);
+  doc.text("Patient Information", margin, 30);
 
+  // Note: Ensure your patientInfo state for the brain page includes these fields
+  autoTable(doc, {
+    startY: 40,
+    head: [['Detail', 'Value']],
+    body: [
+      ['Full Name', patientInfo.name],
+      ['Age', patientInfo.age],
+      ['Gender', patientInfo.gender],
+      ['MRI Scan Date', patientInfo.scanDate] // Changed field
+    ],
+    theme: 'grid',
+    headStyles: {
+      fillColor: primaryColor,
+      textColor: 255,
+      fontStyle: 'bold'
+    },
+    styles: {
+      halign: 'left',
+      cellPadding: 5
+    },
+    columnStyles: {
+      0: { fontStyle: 'bold', cellWidth: 50 }
+    }
+  });
+
+  autoTable(doc, {
+    startY: (doc as any).lastAutoTable.finalY + 15,
+    head: [['Medical Information', '']],
+    body: [
+      ['Reported Symptoms', patientInfo.symptoms || 'None reported'],
+      ['Allergies', patientInfo.allergies || 'None reported'],
+      ['Current Medications', patientInfo.medications || 'None reported'],
+      ['Relevant Medical History', patientInfo.medicalHistory || 'None reported']
+    ],
+    theme: 'plain',
+    styles: {
+      halign: 'left',
+      cellPadding: 5
+    },
+    columnStyles: {
+      0: { fontStyle: 'bold', cellWidth: 50 }
+    }
+  });
+
+  // ===== 3. ANALYSIS RESULTS PAGE =====
+  doc.addPage();
+
+  doc.setFontSize(18);
+  doc.setTextColor(...primaryColor);
+  doc.text("Neurological Findings Summary", margin, 30);
+
+  doc.setFillColor(240, 248, 255); 
+  doc.rect(margin, 40, pageWidth - margin*2, 30, 'F');
+  doc.setDrawColor(200, 230, 255);
+  doc.rect(margin, 40, pageWidth - margin*2, 30);
+
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0);
+  doc.text("Primary Finding:", margin + 10, 50);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(...primaryColor);
+  doc.text(analysis?.label || "No finding available", margin + 50, 50);
+
+  doc.setFont("helvetica", "normal");
+  doc.setTextColor(0, 0, 0);
+  doc.text("Confidence Level:", margin + 10, 60);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(...accentColor);
+  doc.text(`${((analysis?.confidence || 0) * 100).toFixed(2)}%`, margin + 50, 60);
+
+  const confidence = analysis?.confidence || 0;
+  const meterWidth = pageWidth - margin*2 - 20;
+  doc.setFillColor(230, 230, 230);
+  doc.rect(margin + 10, 70, meterWidth, 8, 'F');
+  doc.setFillColor(...(confidence > 0.7 ? primaryColor : accentColor));
+  doc.rect(margin + 10, 70, meterWidth * confidence, 8, 'F');
+
+  doc.setFontSize(16);
+  doc.setTextColor(...primaryColor);
+  doc.text("Tumor Type Probabilities", margin, 100);
+
+  const tableData = analysis?.probabilities
+    .sort((a, b) => b.value - a.value)
+    .map(p => [ p.label, `${(p.value * 100).toFixed(2)}%` ]) || [];
+
+  autoTable(doc, {
+    startY: 110,
+    head: [['Tumor Type', 'Probability']],
+    body: tableData,
+    theme: 'striped',
+    headStyles: {
+      fillColor: primaryColor,
+      textColor: 255,
+      fontStyle: 'bold'
+    },
+    columnStyles: {
+      0: { cellWidth: 'auto' },
+      1: { cellWidth: 40, halign: 'right' },
+    },
+    styles: {
+      fontSize: 10,
+      cellPadding: 3
+    },
+  });
+
+  // ===== 4. VISUALIZATION PAGE =====
+  if (imagePreview) {
+    doc.addPage();
+    doc.setFontSize(18);
+    doc.setTextColor(...primaryColor);
+    doc.text("MRI Scan Images", margin, 30);
+
+    doc.setFontSize(12);
+    doc.setTextColor(...secondaryColor);
+    doc.text("Uploaded MRI Scan:", margin, 40);
+
+    const imgData = imagePreview;
+    const imgWidth = pageWidth - margin*2;
+    const imgHeight = (imgWidth * 3) / 4;
+    doc.addImage(imgData, 'JPEG', margin, 45, imgWidth, imgHeight);
+
+    if (analysis?.heatmap) {
+      doc.setFontSize(12);
+      doc.setTextColor(...secondaryColor);
+      doc.text("AI Heatmap Analysis (Area of Interest):", margin, imgHeight + 55);
+
+      const heatmapData = `data:image/png;base64,${analysis.heatmap}`;
+      doc.addImage(heatmapData, 'PNG', margin, imgHeight + 60, imgWidth, imgHeight);
+    }
+  }
+
+  // ===== 5. DISCLAIMER PAGE =====
+  doc.addPage();
+  doc.setFontSize(18);
+  doc.setTextColor(...primaryColor);
+  doc.text("Report Disclaimer", margin, 30);
+
+  doc.setFontSize(10);
+  doc.setTextColor(0, 0, 0);
+  const disclaimerText = [
+    "This report was generated by AnYa Med's AI diagnostic system and is intended for use by qualified healthcare professionals only.",
+    "",
+    "The information contained in this report:",
+    "- Is not a substitute for professional medical advice, diagnosis, or treatment",
+    "- Should be interpreted in conjunction with other clinical findings from a qualified neurologist or radiologist",
+    "- May contain inaccuracies or errors inherent to AI systems",
+    "",
+    "The probability scores represent the AI model's confidence in its predictions and do not constitute definitive diagnoses.",
+    "",
+    "AnYa Med disclaims all liability for any decisions made based on this report. Healthcare providers must exercise their own professional judgment when interpreting these results."
+  ];
+
+  let currentY = 50;
+  disclaimerText.forEach(line => {
+    doc.text(line, margin, currentY, { maxWidth: pageWidth - margin * 2 });
+    currentY += (line === "") ? 3 : 6;
+  });
+
+  // Footer
+  doc.setFontSize(8);
+  doc.setTextColor(...secondaryColor);
+  doc.text(`Report generated on ${new Date().toLocaleString()}`, margin, 280);
+  doc.text("AnYa Med - AI Diagnostic Systems", pageWidth - margin, 280, { align: 'right' });
+
+  // ===== SAVE THE PDF =====
+  doc.save(`AnYaBrain_Report_${patientInfo.name.replace(/\s/g, '_') || 'patient'}.pdf`);
+};
   const handleNewAnalysis = () => {
     setImagePreview(null);
     setImageFile(null);

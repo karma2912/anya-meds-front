@@ -363,7 +363,7 @@ const Page = () => {
             <div className="bg-white p-4 rounded-lg shadow-sm">
               <div className="text-sm text-gray-500 mb-1">Conditions</div>
               <div className="text-xl font-bold">
-                {activeTab === "chest" && "14"}
+                {activeTab === "chest" && "4"}
                 {activeTab === "brain" && "4"}
                 {activeTab === "skin" && "7"}
               </div>
