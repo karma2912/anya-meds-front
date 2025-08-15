@@ -44,13 +44,13 @@ import {
 import { ShieldCheck, ArrowRight } from 'lucide-react';
 // --- Mock Data for Model Performance ---
 const accuracyData = [
-  { date: "Jan 2025", chest: 98.1, brain: 96.8, skin: 95.4 },
-  { date: "Feb 2025", chest: 98.3, brain: 97.1, skin: 95.7 },
-  { date: "Mar 2025", chest: 98.2, brain: 97.3, skin: 96.0 },
-  { date: "Apr 2025", chest: 98.5, brain: 97.5, skin: 96.2 },
-  { date: "May 2025", chest: 98.6, brain: 97.7, skin: 96.5 },
-  { date: "Jun 2025", chest: 98.7, brain: 97.9, skin: 96.8 },
-  { date: "Jul 2025", chest: 98.8, brain: 98.1, skin: 97.1 },
+  { date: "Jan 2025", chest: 98.1, brain: 95.8, skin: 94.41 },
+  { date: "Feb 2025", chest: 98.3, brain: 96.1, skin: 94.59 },
+  { date: "Mar 2025", chest: 98.2, brain: 96.3, skin: 94.77 },
+  { date: "Apr 2025", chest: 98.5, brain: 96.5, skin: 94.90 },
+  { date: "May 2025", chest: 98.6, brain: 96.7, skin: 95.18 },
+  { date: "Jun 2025", chest: 98.7, brain: 96.9, skin: 95.41 },
+  { date: "Jul 2025", chest: 98.8, brain: 97.1, skin: 95.61 },
 ];
 
 // Disease classification data
@@ -357,7 +357,7 @@ const Page = () => {
           <p className="text-gray-700 mb-4">
             {activeTab === "chest" && "Our model analyzes chest X-rays for 14 different pathologies including COVID-19, pneumonia, and lung nodules with 98.8% accuracy."}
             {activeTab === "brain" && "Advanced neural network detects and classifies brain tumors (glioma, meningioma, pituitary) from MRI scans with 88.9% accuracy."}
-            {activeTab === "skin" && "Dermatology deep learning evaluates skin lesions for malignant melanoma and other skin cancers with 97.1% accuracy."}
+            {activeTab === "skin" && "Dermatology deep learning evaluates skin lesions for malignant melanoma and other skin cancers with 89.61% accuracy."}
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -372,8 +372,8 @@ const Page = () => {
               <div className="text-sm text-gray-500 mb-1">Accuracy</div>
               <div className="text-xl font-bold">
                 {activeTab === "chest" && "98.8%"}
-                {activeTab === "brain" && "98.1%"}
-                {activeTab === "skin" && "97.1%"}
+                {activeTab === "brain" && "88.1%"}
+                {activeTab === "skin" && "89.61%"}
               </div>
             </div>
           </div>
