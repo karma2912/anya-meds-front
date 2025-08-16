@@ -1,150 +1,33 @@
 [
   {
     "id": 1,
-    "name": "Dr. Madhuri Agarwal (Yavana Aesthetics Clinic)",
-    "specialty": "Dermatologist",
-    "address": "Yashwant Nagar, Bandra West, Mumbai, Maharashtra 400050",
-    "phone": "098675 55502",
-    "lat": 19.06202,
-    "lng": 72.83401
-  },
-  {
-    "id": 2,
-    "name": "Kokilaben Dhirubhai Ambani Hospital",
-    "specialty": "Multi-Specialty (Radiology, Neurology)",
-    "address": "Rao Saheb, Achutrao Patwardhan Marg, Andheri West, Mumbai",
-    "phone": "022 4269 6969",
-    "lat": 19.1194,
-    "lng": 72.8242
-  },
-  {
-    "id": 3,
-    "name": "Breach Candy Hospital Trust",
-    "specialty": "Multi-Specialty (Chest Medicine)",
-    "address": "60 A, Bhulabhai Desai Marg, Breach Candy, Cumballa Hill, Mumbai",
-    "phone": "022 2367 1888",
-    "lat": 18.9634,
-    "lng": 72.8052
-  },
-  {
-    "id": 4,
-    "name": "Dr. Prafulla Kerkar (Asian Heart Institute)",
-    "specialty": "Cardiology & Chest Specialist",
-    "address": "G Block, Bandra Kurla Complex, Bandra East, Mumbai",
-    "phone": "022 6739 6666",
-    "lat": 19.0667,
-    "lng": 72.8633
-  },
-  {
-    "id": 5,
-    "name": "Dr. Janak G. Mehta (Neurologist)",
-    "specialty": "Neurologist",
-    "address": "Bhatia Hospital, Tardeo Road, Mumbai",
-    "phone": "022 6666 0000",
-    "lat": 18.9750,
-    "lng": 72.8160
-  },
-  {
-    "id": 6,
-    "name": "The Skin Doctors Clinic",
-    "specialty": "Dermatologist",
-    "address": "Waterfield Road, Bandra West, Mumbai",
-    "phone": "099200 48626",
-    "lat": 19.0628,
-    "lng": 72.8315
-  },
-  {
-    "id": 7,
-    "name": "Lilavati Hospital and Research Centre",
-    "specialty": "Multi-Specialty Hospital",
-    "address": "A-791, Bandra Reclamation, Bandra West, Mumbai",
-    "phone": "022 2675 1000",
-    "lat": 19.0454,
-    "lng": 72.8319
-  },
-  {
-    "id": 8,
-    "name": "Dr. Batra's - Skin & Hair Clinic",
-    "specialty": "Dermatologist",
-    "address": "Lokhandwala Complex, Andheri West, Mumbai",
-    "phone": "022 3367 1234",
-    "lat": 19.1294,
-    "lng": 72.8291
-  },
-  {
-    "id": 9,
-    "name": "Dr. Annu Aggarwal (Neurologist)",
-    "specialty": "Neurologist",
-    "address": "Kokilaben Hospital, Andheri West, Mumbai",
-    "phone": "022 4269 6969",
-    "lat": 19.1194,
-    "lng": 72.8242
-  },
-  {
-    "id": 10,
-    "name": "Jaslok Hospital",
-    "specialty": "Multi-Specialty (Radiology, Chest)",
-    "address": "15, Dr. Deshmukh Marg, Pedder Road, Mumbai",
-    "phone": "1800 266 0011",
-    "lat": 18.9654,
-    "lng": 72.8078
-  },
-  {
-    "id": 11,
-    "name": "Fortis Hospital, Mulund",
-    "specialty": "Multi-Specialty Hospital",
-    "address": "Mulund Goregaon Link Rd, Mulund West, Mumbai",
-    "phone": "022 4111 4111",
-    "lat": 19.1691,
-    "lng": 72.9472
-  },
-  {
-    "id": 12,
-    "name": "Dr. Jaishree Sharad (Klinik)",
-    "specialty": "Dermatologist",
-    "address": "Vastu building, Juhu, Mumbai",
-    "phone": "022 2670 2211",
-    "lat": 19.1076,
-    "lng": 72.8263
-  },
-  {
-    "id": 13,
     "name": "Indraprastha Apollo Hospitals",
     "specialty": "Multi-Specialty (Neurology, Dermatology)",
-    "address": "Sarita Vihar, Delhi Mathura Road, New Delhi, Delhi",
+    "address": "Sarita Vihar, Delhi Mathura Road, New Delhi",
     "phone": "011 7179 1090",
     "lat": 28.5398,
     "lng": 77.2889
   },
   {
-    "id": 14,
-    "name": "Sir Ganga Ram Hospital",
-    "specialty": "Multi-Specialty (Chest Medicine)",
-    "address": "Rajinder Nagar, New Delhi, Delhi",
-    "phone": "011 2575 0000",
-    "lat": 28.6393,
-    "lng": 77.1827
-  },
-  {
-    "id": 15,
-    "name": "Dr. Deepali Bhardwaj",
-    "specialty": "Dermatologist",
-    "address": "D-10, Block D, Saket, New Delhi, Delhi",
-    "phone": "095995 92900",
-    "lat": 28.5250,
-    "lng": 77.2188
-  },
-  {
-    "id": 16,
+    "id": 2,
     "name": "AIIMS - All India Institute Of Medical Sciences",
     "specialty": "Premier Multi-Specialty Hospital",
-    "address": "Ansari Nagar, New Delhi, Delhi",
+    "address": "Ansari Nagar, New Delhi",
     "phone": "011 2658 8500",
     "lat": 28.5668,
     "lng": 77.2113
   },
   {
-    "id": 17,
+    "id": 3,
+    "name": "Sir Ganga Ram Hospital",
+    "specialty": "Multi-Specialty (Chest Medicine)",
+    "address": "Rajinder Nagar, New Delhi",
+    "phone": "011 2575 0000",
+    "lat": 28.6393,
+    "lng": 77.1827
+  },
+  {
+    "id": 4,
     "name": "Max Healthcare Hospital, Saket",
     "specialty": "Multi-Specialty (Neurology, Radiology)",
     "address": "1, 2, Press Enclave Marg, Saket, New Delhi",
@@ -153,61 +36,16 @@
     "lng": 77.2109
   },
   {
-    "id": 18,
-    "name": "Dr. Sumit Gupta - Neurologist",
-    "specialty": "Neurologist",
-    "address": "Sir Ganga Ram Hospital, Rajinder Nagar, New Delhi",
-    "phone": "011 2575 0000",
-    "lat": 28.6393,
-    "lng": 77.1827
-  },
-  {
-    "id": 19,
-    "name": "Derma World Skin and Hair Clinics",
+    "id": 5,
+    "name": "Dr. Deepali Bhardwaj",
     "specialty": "Dermatologist",
-    "address": "Q-4, Rajouri Garden, New Delhi",
-    "phone": "099111 00050",
-    "lat": 28.6444,
-    "lng": 77.1226
+    "address": "D-10, Block D, Saket, New Delhi",
+    "phone": "095995 92900",
+    "lat": 28.5250,
+    "lng": 77.2188
   },
   {
-    "id": 20,
-    "name": "Fortis Escorts Heart Institute",
-    "specialty": "Cardiology & Chest Medicine",
-    "address": "Okhla road, New Friends Colony, New Delhi",
-    "phone": "011 4713 5000",
-    "lat": 28.5619,
-    "lng": 77.2798
-  },
-  {
-    "id": 21,
-    "name": "BLK-Max Super Speciality Hospital",
-    "specialty": "Multi-Specialty Hospital",
-    "address": "Pusa Rd, Radha Soami Satsang, Rajendra Place, New Delhi",
-    "phone": "011 3040 3040",
-    "lat": 28.6425,
-    "lng": 77.1772
-  },
-  {
-    "id": 22,
-    "name": "Dr. Nivedita Dadu's Dermatology Clinic",
-    "specialty": "Dermatologist",
-    "address": "J-12/28, Rajouri Garden, New Delhi",
-    "phone": "098109 39319",
-    "lat": 28.6475,
-    "lng": 77.1245
-  },
-  {
-    "id": 23,
-    "name": "VIMHANS Nayati Super Speciality Hospital",
-    "specialty": "Neurology & Mental Health",
-    "address": "1, Nehru Nagar, New Delhi",
-    "phone": "011 4911 1111",
-    "lat": 28.5724,
-    "lng": 77.2562
-  },
-  {
-    "id": 24,
+    "id": 6,
     "name": "Medanta - The Medicity, Gurugram",
     "specialty": "Premier Multi-Specialty Hospital",
     "address": "CH Baktawar Singh Rd, Sector 38, Gurugram, Haryana",
@@ -216,142 +54,5146 @@
     "lng": 77.0519
   },
   {
+    "id": 7,
+    "name": "Fortis Escorts Heart Institute",
+    "specialty": "Cardiology & Chest Medicine",
+    "address": "Okhla road, New Friends Colony, New Delhi",
+    "phone": "011 4713 5000",
+    "lat": 28.5619,
+    "lng": 77.2798
+  },
+  {
+    "id": 8,
+    "name": "BLK-Max Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Pusa Rd, Radha Soami Satsang, Rajendra Place, New Delhi",
+    "phone": "011 3040 3040",
+    "lat": 28.6425,
+    "lng": 77.1772
+  },
+  {
+    "id": 9,
+    "name": "Dr. Sumit Gupta - Neurologist",
+    "specialty": "Neurologist",
+    "address": "Sir Ganga Ram Hospital, Rajinder Nagar, New Delhi",
+    "phone": "011 2575 0000",
+    "lat": 28.6393,
+    "lng": 77.1827
+  },
+  {
+    "id": 10,
+    "name": "Derma World Skin and Hair Clinics",
+    "specialty": "Dermatologist",
+    "address": "Q-4, Rajouri Garden, New Delhi",
+    "phone": "099111 00050",
+    "lat": 28.6444,
+    "lng": 77.1226
+  },
+  {
+    "id": 11,
+    "name": "VIMHANS Nayati Super Speciality Hospital",
+    "specialty": "Neurology & Mental Health",
+    "address": "1, Nehru Nagar, New Delhi",
+    "phone": "011 4911 1111",
+    "lat": 28.5724,
+    "lng": 77.2562
+  },
+  {
+    "id": 12,
+    "name": "Dr. Nivedita Dadu's Dermatology Clinic",
+    "specialty": "Dermatologist",
+    "address": "J-12/28, Rajouri Garden, New Delhi",
+    "phone": "098109 39319",
+    "lat": 28.6475,
+    "lng": 77.1245
+  },
+  {
+    "id": 13,
+    "name": "Fortis Memorial Research Institute, Gurugram",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 44, Opposite HUDA City Centre, Gurugram",
+    "phone": "0124 4962 200",
+    "lat": 28.4593,
+    "lng": 77.0724
+  },
+  {
+    "id": 14,
+    "name": "Dr. Manmohan Singh (Chest Specialist)",
+    "specialty": "Chest Medicine",
+    "address": "Max Healthcare Hospital, Patparganj, Delhi",
+    "phone": "011 4303 3333",
+    "lat": 28.6253,
+    "lng": 77.3073
+  },
+  {
+    "id": 15,
+    "name": "Dr. Mukul Varma (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Indraprastha Apollo Hospitals, Sarita Vihar, New Delhi",
+    "phone": "011 7179 1090",
+    "lat": 28.5398,
+    "lng": 77.2889
+  },
+  {
+    "id": 16,
+    "name": "Kaya Skin Clinic, Khan Market",
+    "specialty": "Dermatologist",
+    "address": "Khan Market, New Delhi",
+    "phone": "1800 209 5292",
+    "lat": 28.5997,
+    "lng": 77.2274
+  },
+  {
+    "id": 17,
+    "name": "Artemis Hospital, Gurugram",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 51, Gurugram, Haryana",
+    "phone": "0124 4588 888",
+    "lat": 28.4234,
+    "lng": 77.0583
+  },
+  {
+    "id": 18,
+    "name": "Dr. Atma Ram Bansal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Medanta - The Medicity, Gurugram",
+    "phone": "0124 414 1414",
+    "lat": 28.4389,
+    "lng": 77.0519
+  },
+  {
+    "id": 19,
+    "name": "Institute of Liver and Biliary Sciences",
+    "specialty": "Multi-Specialty (Radiology)",
+    "address": "D-1, Vasant Kunj, New Delhi",
+    "phone": "011 4630 0000",
+    "lat": 28.5204,
+    "lng": 77.1601
+  },
+  {
+    "id": 20,
+    "name": "Dr. Rohit Batra's DermaWorld Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "West Punjabi Bagh, New Delhi",
+    "phone": "099111 00050",
+    "lat": 28.6657,
+    "lng": 77.1353
+  },
+  {
+    "id": 21,
+    "name": "Moolchand Medcity",
+    "specialty": "Multi-Specialty (Chest Medicine)",
+    "address": "Lajpat Nagar III, New Delhi",
+    "phone": "011 4200 0000",
+    "lat": 28.5677,
+    "lng": 77.2427
+  },
+  {
+    "id": 22,
+    "name": "Dr. Shamsher Dwivedee (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "VIMHANS Nayati Super Speciality Hospital, Nehru Nagar, New Delhi",
+    "phone": "011 4911 1111",
+    "lat": 28.5724,
+    "lng": 77.2562
+  },
+  {
+    "id": 23,
+    "name": "Dr. Sachin Dhawan's Skin N Smiles Clinic",
+    "specialty": "Dermatologist",
+    "address": "DLF Phase 1, Gurugram, Haryana",
+    "phone": "099100 89530",
+    "lat": 28.4735,
+    "lng": 77.0954
+  },
+  {
+    "id": 24,
+    "name": "Indian Spinal Injuries Centre",
+    "specialty": "Orthopedics & Neurology",
+    "address": "Vasant Kunj, New Delhi",
+    "phone": "011 4225 5225",
+    "lat": 28.5235,
+    "lng": 77.1593
+  },
+  {
     "id": 25,
-    "name": "Apollo Gleneagles Hospitals",
-    "specialty": "Multi-Specialty (Radiology, Neurology)",
-    "address": "58, Canal Circular Rd, Kadapara, Phool Bagan, Kolkata",
-    "phone": "033 2320 3040",
-    "lat": 22.5732,
-    "lng": 88.3916
+    "name": "Batra Hospital & Medical Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Tughlakabad Institutional Area, Mehrauli Badarpur Road, New Delhi",
+    "phone": "011 2995 8747",
+    "lat": 28.5134,
+    "lng": 77.2612
   },
   {
     "id": 26,
-    "name": "Dr. Sachin Varma's Skin Clinic",
-    "specialty": "Dermatologist",
-    "address": "P-124, CIT Rd, Scheme VI-M, Kankurgachi, Kolkata",
-    "phone": "098311 23773",
-    "lat": 22.5786,
-    "lng": 88.3842
+    "name": "Dr. Gaurav Garg (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Fortis Hospital, Shalimar Bagh, New Delhi",
+    "phone": "011 4504 2222",
+    "lat": 28.7118,
+    "lng": 77.1554
   },
   {
     "id": 27,
-    "name": "Institute of Neurosciences, Kolkata",
-    "specialty": "Neurology & Neurosurgery Hospital",
-    "address": "185/1 A.J.C. Bose Road, Kolkata",
-    "phone": "033 4030 9999",
-    "lat": 22.5457,
-    "lng": 88.3562
+    "name": "AAYNA Clinic",
+    "specialty": "Dermatologist",
+    "address": "Mehrauli, New Delhi",
+    "phone": "011 4036 5200",
+    "lat": 28.5204,
+    "lng": 77.1812
   },
   {
     "id": 28,
-    "name": "Fortis Hospital, Anandapur",
-    "specialty": "Multi-Specialty Hospital",
-    "address": "730, Anandapur, E.M. Bypass Road, Kolkata",
-    "phone": "033 6628 4444",
-    "lat": 22.5152,
-    "lng": 88.4082
+    "name": "National Heart Institute",
+    "specialty": "Cardiology & Chest Medicine",
+    "address": "East of Kailash, New Delhi",
+    "phone": "011 4660 0700",
+    "lat": 28.5641,
+    "lng": 77.2519
   },
   {
     "id": 29,
-    "name": "Dr. Arijit Coondoo (Dermatologist)",
-    "specialty": "Dermatologist",
-    "address": "Sarat Bose Rd, Bhowanipore, Kolkata",
-    "phone": "033 2475 2217",
-    "lat": 22.5278,
-    "lng": 88.3563
+    "name": "Dr. Anoop Kohli (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Indraprastha Apollo Hospitals, Sarita Vihar, New Delhi",
+    "phone": "011 7179 1090",
+    "lat": 28.5398,
+    "lng": 77.2889
   },
   {
     "id": 30,
-    "name": "AMRI Hospitals, Salt Lake",
-    "specialty": "Multi-Specialty (Radiology)",
-    "address": "JC 16 & 17, Salt Lake City, Sector III, Kolkata",
-    "phone": "033 6614 7700",
-    "lat": 22.5830,
-    "lng": 88.4137
+    "name": "Dr. (Prof) V. S. Mehta (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Paras Hospital, Gurugram",
+    "phone": "0124 4585 555",
+    "lat": 28.4358,
+    "lng": 77.0703
   },
   {
     "id": 31,
-    "name": "Dr. S. K. Sarkar (Chest Specialist)",
-    "specialty": "Chest Medicine",
-    "address": "Gariahat Road, Dover Terrace, Ballygunge, Kolkata",
-    "phone": "098310 12015",
-    "lat": 22.5186,
-    "lng": 88.3636
+    "name": "Dharamshila Narayana Superspeciality Hospital",
+    "specialty": "Multi-Specialty (Oncology, Radiology)",
+    "address": "Vasundhara Enclave, New Delhi",
+    "phone": "1860 208 0208",
+    "lat": 28.5956,
+    "lng": 77.3223
   },
   {
     "id": 32,
-    "name": "Medica Superspecialty Hospital",
-    "specialty": "Multi-Specialty Hospital",
-    "address": "127, Mukundapur, E.M. Bypass, Kolkata",
-    "phone": "033 6652 0000",
-    "lat": 22.4962,
-    "lng": 88.4069
+    "name": "Skin Allure Clinic",
+    "specialty": "Dermatologist",
+    "address": "Greater Kailash I, New Delhi",
+    "phone": "099998 81432",
+    "lat": 28.5484,
+    "lng": 77.2343
   },
   {
     "id": 33,
-    "name": "Dr. Kaushik Sil (Neurologist)",
+    "name": "Dr. Ish sadana (Neurologist)",
     "specialty": "Neurologist",
-    "address": "Institute of Neurosciences, Kolkata",
-    "phone": "033 4030 9999",
-    "lat": 22.5457,
-    "lng": 88.3562
+    "address": "BLK-Max Super Speciality Hospital, New Delhi",
+    "phone": "011 3040 3040",
+    "lat": 28.6425,
+    "lng": 77.1772
   },
   {
     "id": 34,
-    "name": "La Derma Skin Clinic",
-    "specialty": "Dermatologist",
-    "address": "P-55, C.I.T. Road, Scheme 7M, Kankurgachi, Kolkata",
-    "phone": "098302 77599",
-    "lat": 22.5765,
-    "lng": 88.3840
+    "name": "Holy Family Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Okhla Road, New Delhi",
+    "phone": "011 2684 5900",
+    "lat": 28.5630,
+    "lng": 77.2764
   },
   {
     "id": 35,
-    "name": "Peerless Hospital",
-    "specialty": "Multi-Specialty Hospital",
-    "address": "360, Panchasayar, Sahid Colony, Pancha Sayar, Kolkata",
-    "phone": "033 4011 1222",
-    "lat": 22.4795,
-    "lng": 88.4005
+    "name": "Dr. Manvir Bhatia (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Max Healthcare Hospital, Saket, New Delhi",
+    "phone": "011 2651 5050",
+    "lat": 28.5283,
+    "lng": 77.2109
   },
   {
     "id": 36,
-    "name": "Dr. Alok Roy (Neurologist)",
-    "specialty": "Neurologist",
-    "address": "Medica Superspecialty Hospital, Mukundapur, Kolkata",
-    "phone": "033 6652 0000",
-    "lat": 22.4962,
-    "lng": 88.4069
+    "name": "Dr. Geetika Mittal Gupta (ISAAC Luxe)",
+    "specialty": "Dermatologist",
+    "address": "Vasant Vihar, New Delhi",
+    "phone": "098703 85669",
+    "lat": 28.5601,
+    "lng": 77.1643
   },
   {
     "id": 37,
-    "name": "NIMHANS",
-    "specialty": "Neurology & Mental Health Hospital",
-    "address": "Hosur Road, Hombegowda Nagar, Bengaluru, Karnataka",
-    "phone": "080 2699 5000",
-    "lat": 12.9443,
-    "lng": 77.5938
+    "name": "Pushpawati Singhania Research Institute",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Press Enclave Marg, Sheikh Sarai II, New Delhi",
+    "phone": "011 3061 1700",
+    "lat": 28.5332,
+    "lng": 77.2148
   },
   {
     "id": 38,
+    "name": "Dr. S. C. Rajendran (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Sir Ganga Ram Hospital, New Delhi",
+    "phone": "011 2575 0000",
+    "lat": 28.6393,
+    "lng": 77.1827
+  },
+  {
+    "id": 39,
+    "name": "Dr. Rajul Aggarwal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sri Balaji Action Medical Institute, Paschim Vihar, New Delhi",
+    "phone": "011 4288 8888",
+    "lat": 28.6738,
+    "lng": 77.0988
+  },
+  {
+    "id": 40,
+    "name": "Skin Karma Clinic",
+    "specialty": "Dermatologist",
+    "address": "Dwarka, New Delhi",
+    "phone": "011 4503 6777",
+    "lat": 28.5878,
+    "lng": 77.0628
+  },
+  {
+    "id": 41,
+    "name": "Jaipur Golden Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Rohini, New Delhi",
+    "phone": "011 2790 7000",
+    "lat": 28.7126,
+    "lng": 77.1278
+  },
+  {
+    "id": 42,
+    "name": "Dr. DM Mahajan's Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Hauz Khas, New Delhi",
+    "phone": "011 2656 5050",
+    "lat": 28.5492,
+    "lng": 77.2057
+  },
+  {
+    "id": 43,
+    "name": "Saroj Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Rohini, New Delhi",
+    "phone": "011 4702 2222",
+    "lat": 28.7118,
+    "lng": 77.1186
+  },
+  {
+    "id": 44,
+    "name": "Dr. Pushpendra N. Renjen (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Indraprastha Apollo Hospitals, Sarita Vihar, New Delhi",
+    "phone": "011 7179 1090",
+    "lat": 28.5398,
+    "lng": 77.2889
+  },
+  {
+    "id": 45,
+    "name": "Dr. G. K. Sharma's Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Karol Bagh, New Delhi",
+    "phone": "011 2575 5555",
+    "lat": 28.6508,
+    "lng": 77.1895
+  },
+  {
+    "id": 46,
+    "name": "Dr. Vivek Kumar (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sir Ganga Ram Hospital, New Delhi",
+    "phone": "011 2575 0000",
+    "lat": 28.6393,
+    "lng": 77.1827
+  },
+  {
+    "id": 47,
+    "name": "Dr. Sonia Tekchandani (Tender Skin International)",
+    "specialty": "Dermatologist",
+    "address": "Model Town, New Delhi",
+    "phone": "098100 02525",
+    "lat": 28.7061,
+    "lng": 77.1895
+  },
+  {
+    "id": 48,
+    "name": "The Skin & Laser Clinic",
+    "specialty": "Dermatologist",
+    "address": "Vasant Vihar, New Delhi",
+    "phone": "011 46038374",
+    "lat": 28.5583,
+    "lng": 77.1634
+  },
+  {
+    "id": 49,
+    "name": "Fortis Escorts Hospital, Jaipur",
+    "specialty": "Multi-Specialty (Cardiology)",
+    "address": "Jawaharlal Nehru Marg, Malviya Nagar, Jaipur",
+    "phone": "0141 254 7000",
+    "lat": 26.8563,
+    "lng": 75.8062
+  },
+  {
+    "id": 50,
+    "name": "Sawai Man Singh (SMS) Hospital",
+    "specialty": "Premier Government Hospital",
+    "address": "Jawaharlal Nehru Marg, Ashok Nagar, Jaipur",
+    "phone": "0141 256 0291",
+    "lat": 26.9042,
+    "lng": 75.8087
+  },
+  {
+    "id": 51,
+    "name": "Narayana Multispeciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 28, Kumbha Marg, Pratap Nagar, Sanganer, Jaipur",
+    "phone": "080 6750 6880",
+    "lat": 26.8049,
+    "lng": 75.8203
+  },
+  {
+    "id": 52,
+    "name": "Manipal Hospital, Jaipur",
+    "specialty": "Multi-Specialty (Radiology)",
+    "address": "Main Sikar Road, Sector 5, Vidyadhar Nagar, Jaipur",
+    "phone": "0141 516 3333",
+    "lat": 26.9587,
+    "lng": 75.7766
+  },
+  {
+    "id": 53,
+    "name": "Dr. Puneet Bhargava (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Bhargava Skin Clinic, C-Scheme, Jaipur",
+    "phone": "098290 62187",
+    "lat": 26.9084,
+    "lng": 75.7937
+  },
+  {
+    "id": 54,
+    "name": "Dr. Trilochan Srivastava (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "SMS Hospital, Jaipur",
+    "phone": "0141 256 0291",
+    "lat": 26.9042,
+    "lng": 75.8087
+  },
+  {
+    "id": 55,
+    "name": "Eternal Heart Care Centre (EHCC)",
+    "specialty": "Cardiology & Chest Medicine",
+    "address": "3A, Jagatpura Road, Near Jawahar Circle, Jaipur",
+    "phone": "0141 517 4000",
+    "lat": 26.8378,
+    "lng": 75.8119
+  },
+  {
+    "id": 56,
+    "name": "Dr. Ankur Gupta (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Fortis Escorts Hospital, Malviya Nagar, Jaipur",
+    "phone": "0141 254 7000",
+    "lat": 26.8563,
+    "lng": 75.8062
+  },
+  {
+    "id": 57,
+    "name": "Jaipur Skincity",
+    "specialty": "Dermatologist",
+    "address": "Lal Kothi, Jaipur",
+    "phone": "095303 77788",
+    "lat": 26.8888,
+    "lng": 75.7958
+  },
+  {
+    "id": 58,
+    "name": "Mahatma Gandhi Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "RIICO Institutional Area, Sitapura, Tonk Road, Jaipur",
+    "phone": "0141 277 1002",
+    "lat": 26.7909,
+    "lng": 75.8106
+  },
+  {
+    "id": 59,
+    "name": "Dr. G. L. Sharma (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Santokba Durlabhji Memorial Hospital, Jaipur",
+    "phone": "0141 256 6251",
+    "lat": 26.8995,
+    "lng": 75.7876
+  },
+  {
+    "id": 60,
+    "name": "Dr. Vishal Chhabra (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Vaishali Nagar, Jaipur",
+    "phone": "097850 00811",
+    "lat": 26.9079,
+    "lng": 75.7449
+  },
+  {
+    "id": 61,
+    "name": "Apex Hospitals",
+    "specialty": "Multi-Specialty (Neurology)",
+    "address": "SP-4 & 6, Malviya Industrial Area, Malviya Nagar, Jaipur",
+    "phone": "0141 410 1111",
+    "lat": 26.8488,
+    "lng": 75.8068
+  },
+  {
+    "id": 62,
+    "name": "Dr. R. K. Suri (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Manipal Hospital, Vidyadhar Nagar, Jaipur",
+    "phone": "0141 516 3333",
+    "lat": 26.9587,
+    "lng": 75.7766
+  },
+  {
+    "id": 63,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "C-Scheme, Jaipur",
+    "phone": "1800 209 5292",
+    "lat": 26.9077,
+    "lng": 75.8016
+  },
+  {
+    "id": 64,
+    "name": "Santokba Durlabhji Memorial Hospital (SDMH)",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Bhawani Singh Marg, Near Rambagh Circle, Jaipur",
+    "phone": "0141 256 6251",
+    "lat": 26.8995,
+    "lng": 75.7876
+  },
+  {
+    "id": 65,
+    "name": "Dr. Bhawna Sharma (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Narayana Multispeciality Hospital, Jaipur",
+    "phone": "080 6750 6880",
+    "lat": 26.8049,
+    "lng": 75.8203
+  },
+  {
+    "id": 66,
+    "name": "Dr. A. K. Khurana (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Jaipur Diagnostic Centre, C-Scheme, Jaipur",
+    "phone": "0141 236 7676",
+    "lat": 26.9095,
+    "lng": 75.8001
+  },
+  {
+    "id": 67,
+    "name": "Skinaa Clinic",
+    "specialty": "Dermatologist",
+    "address": "Vaishali Nagar, Jaipur",
+    "phone": "096492 19219",
+    "lat": 26.9115,
+    "lng": 75.7485
+  },
+  {
+    "id": 68,
+    "name": "Jeevan Rekha Superspeciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "S-8, Mahalaxmi Nagar, Jagatpura, Jaipur",
+    "phone": "0141 275 9999",
+    "lat": 26.8285,
+    "lng": 75.8364
+  },
+  {
+    "id": 69,
+    "name": "Dr. Sheetu Singh (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Apex Hospitals, Malviya Nagar, Jaipur",
+    "phone": "0141 410 1111",
+    "lat": 26.8488,
+    "lng": 75.8068
+  },
+  {
+    "id": 70,
+    "name": "Dr. Pradeep Sethi (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Eugenix Hair Sciences, Shyam Nagar, Jaipur",
+    "phone": "088264 73333",
+    "lat": 26.8856,
+    "lng": 75.7623
+  },
+  {
+    "id": 71,
+    "name": "Dr. Arvind Sharma (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Zivanta Hospital, Sikar Road, Jaipur",
+    "phone": "0141 233 5511",
+    "lat": 26.9481,
+    "lng": 75.7661
+  },
+  {
+    "id": 72,
+    "name": "Rukmani Birla Hospital (RBH)",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Gopalpura Bypass Road, Shanthi Nagar, Jaipur",
+    "phone": "0141 309 0309",
+    "lat": 26.8710,
+    "lng": 75.7720
+  },
+  {
+    "id": 73,
+    "name": "Dr. Rajendra Prasad (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Eternal Heart Care Centre (EHCC), Jaipur",
+    "phone": "0141 517 4000",
+    "lat": 26.8378,
+    "lng": 75.8119
+  },
+  {
+    "id": 74,
+    "name": "Saket Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 10, Meera Marg, Mansarovar, Jaipur",
+    "phone": "0141 278 3000",
+    "lat": 26.8482,
+    "lng": 75.7663
+  },
+  {
+    "id": 75,
+    "name": "Jaipur Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Lal Kothi, Tonk Road, Jaipur",
+    "phone": "0141 274 2751",
+    "lat": 26.8854,
+    "lng": 75.7954
+  },
+  {
+    "id": 76,
+    "name": "Dr. Anish Maru (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Dermacare Skin Clinic, Raja Park, Jaipur",
+    "phone": "0141 262 1333",
+    "lat": 26.8998,
+    "lng": 75.8239
+  },
+  {
+    "id": 77,
+    "name": "Dr. R.S. Jain (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Jain ENT Hospital, Raja Park, Jaipur",
+    "phone": "0141 262 1819",
+    "lat": 26.9022,
+    "lng": 75.8267
+  },
+  {
+    "id": 78,
+    "name": "Jaipur National University Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Jagatpura, Jaipur",
+    "phone": "0141 719 7000",
+    "lat": 26.8181,
+    "lng": 75.8718
+  },
+  {
+    "id": 79,
+    "name": "CKS Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "C-Scheme, Jaipur",
+    "phone": "0141 222 3344",
+    "lat": 26.9066,
+    "lng": 75.7955
+  },
+  {
+    "id": 80,
+    "name": "Dr. Narendra Guptha (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Narayana Multispeciality Hospital, Jaipur",
+    "phone": "080 6750 6880",
+    "lat": 26.8049,
+    "lng": 75.8203
+  },
+  {
+    "id": 81,
+    "name": "Dr. Ishwar Bohra (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Apex Hospitals, Malviya Nagar, Jaipur",
+    "phone": "0141 410 1111",
+    "lat": 26.8488,
+    "lng": 75.8068
+  },
+  {
+    "id": 82,
+    "name": "Dr. Lalit Modi (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Modi Imaging and Research Centre, Jaipur",
+    "phone": "0141 261 4000",
+    "lat": 26.9189,
+    "lng": 75.8119
+  },
+  {
+    "id": 83,
+    "name": "Derma Miracle Clinic",
+    "specialty": "Dermatologist",
+    "address": "Mansarovar, Jaipur",
+    "phone": "099831 20222",
+    "lat": 26.8521,
+    "lng": 75.7671
+  },
+  {
+    "id": 84,
+    "name": "Dr. Shubhra Agarwal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Rukmani Birla Hospital (RBH), Jaipur",
+    "phone": "0141 309 0309",
+    "lat": 26.8710,
+    "lng": 75.7720
+  },
+  {
+    "id": 85,
+    "name": "Cocoon Hospital",
+    "specialty": "Women & Child Care",
+    "address": "Jawahar Lal Nehru Marg, Malviya Nagar, Jaipur",
+    "phone": "0141 712 3000",
+    "lat": 26.8552,
+    "lng": 75.8094
+  },
+  {
+    "id": 86,
+    "name": "Dr. S. K. Jain (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Jaipur Hospital, Jaipur",
+    "phone": "0141 274 2751",
+    "lat": 26.8854,
+    "lng": 75.7954
+  },
+  {
+    "id": 87,
+    "name": "Metro MAS Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Shipra Path, Mansarovar, Jaipur",
+    "phone": "0141 239 8888",
+    "lat": 26.8550,
+    "lng": 75.7650
+  },
+  {
+    "id": 88,
+    "name": "Dr. Sunil Garsa (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Manipal Hospital, Jaipur",
+    "phone": "0141 516 3333",
+    "lat": 26.9587,
+    "lng": 75.7766
+  },
+  {
+    "id": 89,
+    "name": "Dr. Kapil Jain (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Fortis Escorts Hospital, Jaipur",
+    "phone": "0141 254 7000",
+    "lat": 26.8563,
+    "lng": 75.8062
+  },
+  {
+    "id": 90,
+    "name": "Shalby Multi-Specialty Hospital",
+    "specialty": "Multi-Specialty (Orthopedics)",
+    "address": "Near Gandhi Path, Vaishali Nagar, Jaipur",
+    "phone": "084484 46631",
+    "lat": 26.8995,
+    "lng": 75.7289
+  },
+  {
+    "id": 91,
+    "name": "Bhandari Hospital and Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Gopalpura Bypass Road, Jaipur",
+    "phone": "0141 250 2666",
+    "lat": 26.8770,
+    "lng": 75.7738
+  },
+  {
+    "id": 92,
+    "name": "Dr. Naresh Trehan's Heart Institute",
+    "specialty": "Cardiology",
+    "address": "Jaipur Hospital, Tonk Road, Jaipur",
+    "phone": "0141 274 2751",
+    "lat": 26.8854,
+    "lng": 75.7954
+  },
+  {
+    "id": 93,
+    "name": "Dr. V.D. Sinha (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "SMS Hospital, Jaipur",
+    "phone": "0141 256 0291",
+    "lat": 26.9042,
+    "lng": 75.8087
+  },
+  {
+    "id": 94,
+    "name": "Radiant Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "C-Scheme, Jaipur",
+    "phone": "099289 03212",
+    "lat": 26.9101,
+    "lng": 75.7981
+  },
+  {
+    "id": 95,
+    "name": "Global Heart & General Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Chitrakoot, Jaipur",
+    "phone": "0141 244 0401",
+    "lat": 26.9022,
+    "lng": 75.7363
+  },
+  {
+    "id": 96,
+    "name": "Dr. Vikram Bohra (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Eternal Heart Care Centre (EHCC), Jaipur",
+    "phone": "0141 517 4000",
+    "lat": 26.8378,
+    "lng": 75.8119
+  },
+  {
+    "id": 97,
+    "name": "Medanta Hospital Lucknow",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector A, Pocket 1, Sushant Golf City, Lucknow",
+    "phone": "0522 450 5050",
+    "lat": 26.7725,
+    "lng": 80.9928
+  },
+  {
+    "id": 98,
+    "name": "Sanjay Gandhi Postgraduate Institute (SGPGI)",
+    "specialty": "Premier Multi-Specialty Institute",
+    "address": "Raebareli Rd, Lucknow",
+    "phone": "0522 266 8700",
+    "lat": 26.7588,
+    "lng": 80.9419
+  },
+  {
+    "id": 99,
+    "name": "King George's Medical University (KGMU)",
+    "specialty": "Medical University & Hospital",
+    "address": "Shah Mina Road, Chowk, Lucknow",
+    "phone": "0522 225 7540",
+    "lat": 26.8631,
+    "lng": 80.9221
+  },
+  {
+    "id": 100,
+    "name": "Apollomedics Super Speciality Hospital",
+    "specialty": "Multi-Specialty (Radiology)",
+    "address": "KBC-31, Sector B, LDA Colony, Kanpur Road, Lucknow",
+    "phone": "084290 29858",
+    "lat": 26.8048,
+    "lng": 80.8931
+  },
+  {
+    "id": 101,
+    "name": "Dr. Ram Manohar Lohia Institute of Medical Sciences",
+    "specialty": "Multi-Specialty Institute",
+    "address": "Vibhuti Khand, Gomti Nagar, Lucknow",
+    "phone": "0522 669 2000",
+    "lat": 26.8600,
+    "lng": 80.9990
+  },
+  {
+    "id": 102,
+    "name": "Dr. Sumit Sharma (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "The Skin Address, Indira Nagar, Lucknow",
+    "phone": "081710 12345",
+    "lat": 26.8690,
+    "lng": 80.9950
+  },
+  {
+    "id": 103,
+    "name": "Dr. V.K. Singh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sahara Hospital, Gomti Nagar, Lucknow",
+    "phone": "0522 678 0001",
+    "lat": 26.8524,
+    "lng": 81.0069
+  },
+  {
+    "id": 104,
+    "name": "Sahara Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Viraj Khand, Gomti Nagar, Lucknow",
+    "phone": "0522 678 0001",
+    "lat": 26.8524,
+    "lng": 81.0069
+  },
+  {
+    "id": 105,
+    "name": "Dr. Tariq Siddiqui (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Apollomedics Super Speciality Hospital, Lucknow",
+    "phone": "084290 29858",
+    "lat": 26.8048,
+    "lng": 80.8931
+  },
+  {
+    "id": 106,
+    "name": "Midland Healthcare & Research Center",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "B-55 & C-42, Mandir Marg, Mahanagar Extension, Lucknow",
+    "phone": "0522 423 2333",
+    "lat": 26.8800,
+    "lng": 80.9575
+  },
+  {
+    "id": 107,
+    "name": "Dr. Neeraj Kumar (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "KGMU, Lucknow",
+    "phone": "0522 225 7540",
+    "lat": 26.8631,
+    "lng": 80.9221
+  },
+  {
+    "id": 108,
+    "name": "Estheva Skin and Hair Clinic",
+    "specialty": "Dermatologist",
+    "address": "Aliganj, Lucknow",
+    "phone": "098390 12010",
+    "lat": 26.8920,
+    "lng": 80.9500
+  },
+  {
+    "id": 109,
+    "name": "Dr. Sunil Kumar Singh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Medanta Hospital, Lucknow",
+    "phone": "0522 450 5050",
+    "lat": 26.7725,
+    "lng": 80.9928
+  },
+  {
+    "id": 110,
+    "name": "Mayo Medical Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Vikas Khand 2, Gomti Nagar, Lucknow",
+    "phone": "0522 230 1290",
+    "lat": 26.8580,
+    "lng": 80.9950
+  },
+  {
+    "id": 111,
+    "name": "Vivekananda Polyclinic & Institute of Medical Sciences",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Vivekanandapuri, Nirala Nagar, Lucknow",
+    "phone": "0522 278 8692",
+    "lat": 26.8833,
+    "lng": 80.9388
+  },
+  {
+    "id": 112,
+    "name": "Dr. Abhishek Singh (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Derma Klinic, Gomti Nagar, Lucknow",
+    "phone": "073100 09999",
+    "lat": 26.8550,
+    "lng": 81.0020
+  },
+  {
+    "id": 113,
+    "name": "Shekhar Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "B-Block, Indira Nagar, Lucknow",
+    "phone": "0522 234 6073",
+    "lat": 26.8770,
+    "lng": 80.9995
+  },
+  {
+    "id": 114,
+    "name": "Dr. Rakesh Kumar Singh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "SGPGI, Raebareli Rd, Lucknow",
+    "phone": "0522 266 8700",
+    "lat": 26.7588,
+    "lng": 80.9419
+  },
+  {
+    "id": 115,
+    "name": "Charak Hospital & Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Hardoi Road, Dubagga, Lucknow",
+    "phone": "0522 240 7777",
+    "lat": 26.8888,
+    "lng": 80.8777
+  },
+  {
+    "id": 116,
+    "name": "Dr. Anup Thirani (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Apollomedics Super Speciality Hospital, Lucknow",
+    "phone": "084290 29858",
+    "lat": 26.8048,
+    "lng": 80.8931
+  },
+  {
+    "id": 117,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Hazratganj, Lucknow",
+    "phone": "1800 209 5292",
+    "lat": 26.8488,
+    "lng": 80.9455
+  },
+  {
+    "id": 118,
+    "name": "Lari Cardiology Centre (KGMU)",
+    "specialty": "Cardiology",
+    "address": "Shah Mina Road, Chowk, Lucknow",
+    "phone": "0522 225 8383",
+    "lat": 26.8635,
+    "lng": 80.9225
+  },
+  {
+    "id": 119,
+    "name": "Dr. Mazhar Husain (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Sahara Hospital, Gomti Nagar, Lucknow",
+    "phone": "0522 678 0001",
+    "lat": 26.8524,
+    "lng": 81.0069
+  },
+  {
+    "id": 120,
+    "name": "Dr. Amita Singh (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "KGMU, Lucknow",
+    "phone": "0522 225 7540",
+    "lat": 26.8631,
+    "lng": 80.9221
+  },
+  {
+    "id": 121,
+    "name": "Era's Lucknow Medical College & Hospital",
+    "specialty": "Medical College & Hospital",
+    "address": "Sarfarazganj, Hardoi Road, Lucknow",
+    "phone": "0522 240 7806",
+    "lat": 26.8830,
+    "lng": 80.8800
+  },
+  {
+    "id": 122,
+    "name": "Dr. Abhishek Shukla (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Apollomedics Super Speciality Hospital, Lucknow",
+    "phone": "084290 29858",
+    "lat": 26.8048,
+    "lng": 80.8931
+  },
+  {
+    "id": 123,
+    "name": "Dr. R. K. Garg (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "KGMU, Lucknow",
+    "phone": "0522 225 7540",
+    "lat": 26.8631,
+    "lng": 80.9221
+  },
+  {
+    "id": 124,
+    "name": "Divine Heart & Multispeciality Hospital",
+    "specialty": "Multi-Specialty (Heart)",
+    "address": "Viraj Khand-4, Gomti Nagar, Lucknow",
+    "phone": "0522 404 0404",
+    "lat": 26.8510,
+    "lng": 81.0050
+  },
+  {
+    "id": 125,
+    "name": "Dr. Vishal Agarwal (Gastroenterologist)",
+    "specialty": "Gastroenterologist",
+    "address": "Medanta Hospital, Lucknow",
+    "phone": "0522 450 5050",
+    "lat": 26.7725,
+    "lng": 80.9928
+  },
+  {
+    "id": 126,
+    "name": "Chandni Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Kanpur - Lucknow Rd, Alambagh, Lucknow",
+    "phone": "0522 245 1111",
+    "lat": 26.8140,
+    "lng": 80.8980
+  },
+  {
+    "id": 127,
+    "name": "Dr. Alok Nath (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Alok Skin Clinic, Hazratganj, Lucknow",
+    "phone": "094150 22000",
+    "lat": 26.8500,
+    "lng": 80.9470
+  },
+  {
+    "id": 128,
+    "name": "Dr. Nakul Sinha (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Sahara Hospital, Lucknow",
+    "phone": "0522 678 0001",
+    "lat": 26.8524,
+    "lng": 81.0069
+  },
+  {
+    "id": 129,
+    "name": "Command Hospital, Central Command",
+    "specialty": "Defense Multi-Specialty Hospital",
+    "address": "Lucknow Cantonment, Lucknow",
+    "phone": "0522 248 2993",
+    "lat": 26.8180,
+    "lng": 80.9500
+  },
+  {
+    "id": 130,
+    "name": "Dr. Ved Prakash (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "SGPGI, Raebareli Rd, Lucknow",
+    "phone": "0522 266 8700",
+    "lat": 26.7588,
+    "lng": 80.9419
+  },
+  {
+    "id": 131,
+    "name": "Ford Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Vipul Khand-5, Gomti Nagar, Lucknow",
+    "phone": "0522 272 5000",
+    "lat": 26.8540,
+    "lng": 80.9940
+  },
+  {
+    "id": 132,
+    "name": "Dr. Vivek Kumar (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Midland Healthcare, Mahanagar, Lucknow",
+    "phone": "0522 423 2333",
+    "lat": 26.8800,
+    "lng": 80.9575
+  },
+  {
+    "id": 133,
+    "name": "Glo Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Mahanagar, Lucknow",
+    "phone": "099194 00000",
+    "lat": 26.8790,
+    "lng": 80.9550
+  },
+  {
+    "id": 134,
+    "name": "Dr. Neera Sharma (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Vivekananda Polyclinic, Nirala Nagar, Lucknow",
+    "phone": "0522 278 8692",
+    "lat": 26.8833,
+    "lng": 80.9388
+  },
+  {
+    "id": 135,
+    "name": "Dr. Nuzhat Husain (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Dr. Ram Manohar Lohia Institute, Lucknow",
+    "phone": "0522 669 2000",
+    "lat": 26.8600,
+    "lng": 80.9990
+  },
+  {
+    "id": 136,
+    "name": "Ajanta Hospital & IVF Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Alambagh, Lucknow",
+    "phone": "0522 245 8295",
+    "lat": 26.8100,
+    "lng": 80.9000
+  },
+  {
+    "id": 137,
+    "name": "Integral Institute of Medical Sciences & Research",
+    "specialty": "Medical College & Hospital",
+    "address": "Kursi Road, Lucknow",
+    "phone": "0522 289 0730",
+    "lat": 26.9600,
+    "lng": 81.0200
+  },
+  {
+    "id": 138,
+    "name": "Dr. Atul Agarwal (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Medanta Hospital, Lucknow",
+    "phone": "0522 450 5050",
+    "lat": 26.7725,
+    "lng": 80.9928
+  },
+  {
+    "id": 139,
+    "name": "Dr. Amit Agarwal (Oncologist)",
+    "specialty": "Oncology",
+    "address": "SGPGI, Raebareli Rd, Lucknow",
+    "phone": "0522 266 8700",
+    "lat": 26.7588,
+    "lng": 80.9419
+  },
+  {
+    "id": 140,
+    "name": "Hind Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Faizabad Road, Lucknow",
+    "phone": "0522 494 4444",
+    "lat": 26.8750,
+    "lng": 81.0150
+  },
+  {
+    "id": 141,
+    "name": "Dr. A. A. Mahdi (Biochemist & Radiologist)",
+    "specialty": "Radiology",
+    "address": "KGMU, Lucknow",
+    "phone": "0522 225 7540",
+    "lat": 26.8631,
+    "lng": 80.9221
+  },
+  {
+    "id": 142,
+    "name": "Dr. S K Agarwal (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Agarwal Skin & Laser Clinic, Aminabad, Lucknow",
+    "phone": "0522 261 4455",
+    "lat": 26.8450,
+    "lng": 80.9300
+  },
+  {
+    "id": 143,
+    "name": "Fatima Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Mahanagar, Lucknow",
+    "phone": "0522 232 1530",
+    "lat": 26.8780,
+    "lng": 80.9580
+  },
+  {
+    "id": 144,
+    "name": "Dr. Rajendra Kumar (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "KGMU, Lucknow",
+    "phone": "0522 225 7540",
+    "lat": 26.8631,
+    "lng": 80.9221
+  },
+  {
+    "id": 145,
+    "name": "PGIMER, Chandigarh",
+    "specialty": "Premier Multi-Specialty Institute",
+    "address": "Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 146,
+    "name": "Fortis Hospital, Mohali",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 62, Phase - VIII, Mohali, Chandigarh",
+    "phone": "0172 469 2222",
+    "lat": 30.7042,
+    "lng": 76.7099
+  },
+  {
+    "id": 147,
+    "name": "Max Super Speciality Hospital, Mohali",
+    "specialty": "Multi-Specialty (Radiology)",
+    "address": "Near Civil Hospital, Phase-VI, Mohali, Chandigarh",
+    "phone": "0172 502 9999",
+    "lat": 30.7093,
+    "lng": 76.7214
+  },
+  {
+    "id": 148,
+    "name": "Government Medical College and Hospital (GMCH)",
+    "specialty": "Medical College & Hospital",
+    "address": "Sector 32, Chandigarh",
+    "phone": "0172 260 1023",
+    "lat": 30.7188,
+    "lng": 76.7869
+  },
+  {
+    "id": 149,
+    "name": "Dr. Vikas Sharma (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "National Skin Hospital, Panchkula, Chandigarh",
+    "phone": "098141 19898",
+    "lat": 30.6974,
+    "lng": 76.8486
+  },
+  {
+    "id": 150,
+    "name": "Dr. Vivek Lal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 151,
+    "name": "Dr. H.S. Bedi (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Fortis Hospital, Mohali, Chandigarh",
+    "phone": "0172 469 2222",
+    "lat": 30.7042,
+    "lng": 76.7099
+  },
+  {
+    "id": 152,
+    "name": "Dr. Manish Modi (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 153,
+    "name": "Athena Skin & Laser Clinic",
+    "specialty": "Dermatologist",
+    "address": "Sector 9-D, Chandigarh",
+    "phone": "0172 508 4610",
+    "lat": 30.7483,
+    "lng": 76.7828
+  },
+  {
+    "id": 154,
+    "name": "Alchemist Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 21, Panchkula, Chandigarh",
+    "phone": "0172 450 0000",
+    "lat": 30.7100,
+    "lng": 76.8400
+  },
+  {
+    "id": 155,
+    "name": "Dr. Dheeraj Khurana (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 156,
+    "name": "Dr. Swami Das Mehta (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Skin & V.D. Centre, Sector 15, Chandigarh",
+    "phone": "0172 277 3773",
+    "lat": 30.7570,
+    "lng": 76.7770
+  },
+  {
+    "id": 157,
+    "name": "Inscol Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 34-A, Chandigarh",
+    "phone": "0172 261 7001",
+    "lat": 30.7266,
+    "lng": 76.7753
+  },
+  {
+    "id": 158,
+    "name": "Dr. Ashish Sharma (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Fortis Hospital, Mohali, Chandigarh",
+    "phone": "0172 469 2222",
+    "lat": 30.7042,
+    "lng": 76.7099
+  },
+  {
+    "id": 159,
+    "name": "Chaitanya Hospital",
+    "specialty": "Women & Child Care",
+    "address": "Sector 44-C, Chandigarh",
+    "phone": "0172 508 8100",
+    "lat": 30.7100,
+    "lng": 76.7600
+  },
+  {
+    "id": 160,
+    "name": "Dr. R. K. Dhiman (Hepatologist)",
+    "specialty": "Hepatology",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 161,
+    "name": "Dr. Sachin Rai (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Rai Skin and Laser Clinic, Sector 17, Chandigarh",
+    "phone": "098159 34443",
+    "lat": 30.7420,
+    "lng": 76.7820
+  },
+  {
+    "id": 162,
+    "name": "Dr. Surinder Singh Pandav (Ophthalmologist)",
+    "specialty": "Ophthalmology",
+    "address": "Advanced Eye Centre, PGIMER, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 163,
+    "name": "Mukat Hospital & Heart Institute",
+    "specialty": "Multi-Specialty (Heart)",
+    "address": "Sector 34-A, Chandigarh",
+    "phone": "0172 469 6666",
+    "lat": 30.7260,
+    "lng": 76.7750
+  },
+  {
+    "id": 164,
+    "name": "Dr. G.P. Thami (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "GMCH, Sector 32, Chandigarh",
+    "phone": "0172 260 1023",
+    "lat": 30.7188,
+    "lng": 76.7869
+  },
+  {
+    "id": 165,
+    "name": "Healing Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 34-A, Chandigarh",
+    "phone": "0172 508 8888",
+    "lat": 30.7255,
+    "lng": 76.7755
+  },
+  {
+    "id": 166,
+    "name": "Dr. Parampreet Singh Kharbanda (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Max Hospital, Mohali, Chandigarh",
+    "phone": "0172 502 9999",
+    "lat": 30.7093,
+    "lng": 76.7214
+  },
+  {
+    "id": 167,
+    "name": "Dr. V. K. Kak (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Kak Neurosurgical Clinic, Sector 11, Chandigarh",
+    "phone": "0172 274 4450",
+    "lat": 30.7600,
+    "lng": 76.7800
+  },
+  {
+    "id": 168,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Sector 9, Chandigarh",
+    "phone": "1800 209 5292",
+    "lat": 30.7480,
+    "lng": 76.7820
+  },
+  {
+    "id": 169,
+    "name": "Eden Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Industrial Area Phase I, Chandigarh",
+    "phone": "0172 508 1111",
+    "lat": 30.7240,
+    "lng": 76.7900
+  },
+  {
+    "id": 170,
+    "name": "Dr. D. Behera (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 171,
+    "name": "Santokh Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 38-C, Chandigarh",
+    "phone": "0172 268 8100",
+    "lat": 30.7300,
+    "lng": 76.7500
+  },
+  {
+    "id": 172,
+    "name": "Dr. Ajay Duseja (Hepatologist)",
+    "specialty": "Hepatology",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 173,
+    "name": "Dr. M. S. Dhillon (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 174,
+    "name": "Ivy Hospital, Mohali",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 71, Mohali, Chandigarh",
+    "phone": "0172 717 0000",
+    "lat": 30.6800,
+    "lng": 76.7100
+  },
+  {
+    "id": 175,
+    "name": "Dr. M. S. Sandhu (Radiologist)",
+    "specialty": "Radiology",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 176,
+    "name": "Landmark Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 33-C, Chandigarh",
+    "phone": "0172 401 2222",
+    "lat": 30.7250,
+    "lng": 76.7700
+  },
+  {
+    "id": 177,
+    "name": "Dr. Sunil K. Arora (Immunologist)",
+    "specialty": "Immunology",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 178,
+    "name": "Dr. Rohit Kumar (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Fortis Hospital, Mohali, Chandigarh",
+    "phone": "0172 469 2222",
+    "lat": 30.7042,
+    "lng": 76.7099
+  },
+  {
+    "id": 179,
+    "name": "Dr. Sunil Kumar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Dr. Sunil Kumar's Skin Clinic, Sector 35, Chandigarh",
+    "phone": "098140 10203",
+    "lat": 30.7240,
+    "lng": 76.7680
+  },
+  {
+    "id": 180,
+    "name": "Silver Oaks Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 63, Phase-9, Mohali, Chandigarh",
+    "phone": "0172 505 3333",
+    "lat": 30.7000,
+    "lng": 76.7000
+  },
+  {
+    "id": 181,
+    "name": "Dr. J.S. Thakur (Community Medicine)",
+    "specialty": "Community Medicine",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 182,
+    "name": "Apollo Clinic",
+    "specialty": "Multi-Specialty Clinic",
+    "address": "Sector 8-C, Chandigarh",
+    "phone": "0172 401 0101",
+    "lat": 30.7490,
+    "lng": 76.7860
+  },
+  {
+    "id": 183,
+    "name": "Dr. Ashok Gupta (Plastic Surgeon)",
+    "specialty": "Plastic Surgery",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 184,
+    "name": "Grecian Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 69, Mohali, Chandigarh",
+    "phone": "0172 469 6600",
+    "lat": 30.6850,
+    "lng": 76.7050
+  },
+  {
+    "id": 185,
+    "name": "Dr. Ritesh Agarwal (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 186,
+    "name": "Cosmo Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 62, Phase 8, Mohali, Chandigarh",
+    "phone": "0172 223 3555",
+    "lat": 30.7050,
+    "lng": 76.7100
+  },
+  {
+    "id": 187,
+    "name": "Dr. S. K. Singh (Urologist)",
+    "specialty": "Urology",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 188,
+    "name": "Dr. Amrinder J. Kanwar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 189,
+    "name": "Dr. A. K. Mandal (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Max Hospital, Mohali, Chandigarh",
+    "phone": "0172 502 9999",
+    "lat": 30.7093,
+    "lng": 76.7214
+  },
+  {
+    "id": 190,
+    "name": "SGHS Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sohana, Sector 77, Mohali, Chandigarh",
+    "phone": "0172 229 5000",
+    "lat": 30.6650,
+    "lng": 76.7350
+  },
+  {
+    "id": 191,
+    "name": "Dr. Rajesh Gupta (Oncologist)",
+    "specialty": "Oncology",
+    "address": "PGIMER, Sector 12, Chandigarh",
+    "phone": "0172 274 7585",
+    "lat": 30.7656,
+    "lng": 76.7797
+  },
+  {
+    "id": 192,
+    "name": "Dr. Puneet Gupta (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "GMCH, Sector 32, Chandigarh",
+    "phone": "0172 260 1023",
+    "lat": 30.7188,
+    "lng": 76.7869
+  },
+  {
+    "id": 193,
+    "name": "Fortis Escorts Hospital, Amritsar",
+    "specialty": "Multi-Specialty (Heart)",
+    "address": "Majitha-Verka Bypass Road, Amritsar",
+    "phone": "0183 301 2222",
+    "lat": 31.6669,
+    "lng": 74.8931
+  },
+  {
+    "id": 194,
+    "name": "Amandeep Medicity",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "G.T. Road, Model Town, Amritsar",
+    "phone": "0183 521 1111",
+    "lat": 31.6425,
+    "lng": 74.8623
+  },
+  {
+    "id": 195,
+    "name": "Shri Guru Ram Das Institute of Medical Sciences",
+    "specialty": "Medical College & Hospital",
+    "address": "Mehta Road, Vallah, Amritsar",
+    "phone": "0183 287 0200",
+    "lat": 31.6700,
+    "lng": 74.9300
+  },
+  {
+    "id": 196,
+    "name": "Dr. Sunil Kumar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Kumar Skin Clinic, Ranjit Avenue, Amritsar",
+    "phone": "098140 55042",
+    "lat": 31.6500,
+    "lng": 74.8500
+  },
+  {
+    "id": 197,
+    "name": "Dr. Ranjit Singh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Fortis Escorts Hospital, Amritsar",
+    "phone": "0183 301 2222",
+    "lat": 31.6669,
+    "lng": 74.8931
+  },
+  {
+    "id": 198,
+    "name": "Ivy Hospital, Amritsar",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Airport Road, Amritsar",
+    "phone": "0183 503 2222",
+    "lat": 31.6900,
+    "lng": 74.8000
+  },
+  {
+    "id": 199,
+    "name": "Dr. Paramjit Singh Kahlon (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "K.D. Hospital, Court Road, Amritsar",
+    "phone": "0183 222 3333",
+    "lat": 31.6350,
+    "lng": 74.8700
+  },
+  {
+    "id": 200,
+    "name": "Dr. H.S. Nagpal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Amandeep Medicity, Amritsar",
+    "phone": "0183 521 1111",
+    "lat": 31.6425,
+    "lng": 74.8623
+  },
+  {
+    "id": 201,
+    "name": "Sanjivani Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Batala Road, Amritsar",
+    "phone": "0183 258 5555",
+    "lat": 31.6600,
+    "lng": 74.8800
+  },
+  {
+    "id": 202,
+    "name": "Dr. Sarabjit Kaur (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Kaur Skin Care Clinic, Lawrence Road, Amritsar",
+    "phone": "098722 00111",
+    "lat": 31.6400,
+    "lng": 74.8650
+  },
+  {
+    "id": 203,
+    "name": "Apollo Cradle & Children's Hospital",
+    "specialty": "Maternity & Child Care",
+    "address": "Ranjit Avenue, Amritsar",
+    "phone": "0183 509 9999",
+    "lat": 31.6520,
+    "lng": 74.8480
+  },
+  {
+    "id": 204,
+    "name": "Dr. Ashok Uppal (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Uppal Chest and Heart Centre, Amritsar",
+    "phone": "0183 256 7890",
+    "lat": 31.6380,
+    "lng": 74.8720
+  },
+  {
+    "id": 205,
+    "name": "Dr. Jaspreet Singh Grover (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Fortis Escorts Hospital, Amritsar",
+    "phone": "0183 301 2222",
+    "lat": 31.6669,
+    "lng": 74.8931
+  },
+  {
+    "id": 206,
+    "name": "E.M.C. Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Green Avenue, Amritsar",
+    "phone": "0183 502 2222",
+    "lat": 31.6450,
+    "lng": 74.8550
+  },
+  {
+    "id": 207,
+    "name": "Dr. Navjot Singh (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Radiant Skin Clinic, Court Road, Amritsar",
+    "phone": "098150 12345",
+    "lat": 31.6360,
+    "lng": 74.8710
+  },
+  {
+    "id": 208,
+    "name": "Government Medical College, Amritsar",
+    "specialty": "Medical College & Hospital",
+    "address": "Circular Road, Amritsar",
+    "phone": "0183 242 6918",
+    "lat": 31.6320,
+    "lng": 74.8800
+  },
+  {
+    "id": 209,
+    "name": "Hartej Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Opp. Guru Nanak Dev University, Amritsar",
+    "phone": "0183 225 8888",
+    "lat": 31.6600,
+    "lng": 74.8200
+  },
+  {
+    "id": 210,
+    "name": "Dr. Gurpreet Singh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Ivy Hospital, Amritsar",
+    "phone": "0183 503 2222",
+    "lat": 31.6900,
+    "lng": 74.8000
+  },
+  {
+    "id": 211,
+    "name": "K.D. Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Court Road, Amritsar",
+    "phone": "0183 222 3333",
+    "lat": 31.6350,
+    "lng": 74.8700
+  },
+  {
+    "id": 212,
+    "name": "Dr. J.P.S. Bhatia (Psychiatrist)",
+    "specialty": "Psychiatry & Neurology",
+    "address": "Bhatia Neuropsychiatric Hospital, Amritsar",
+    "phone": "0183 256 5522",
+    "lat": 31.6420,
+    "lng": 74.8750
+  },
+  {
+    "id": 213,
+    "name": "Smt. Paarvati Devi Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ranjit Avenue, Amritsar",
+    "phone": "0183 250 0811",
+    "lat": 31.6510,
+    "lng": 74.8500
+  },
+  {
+    "id": 214,
+    "name": "Dr. Narinder Singh Neki (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Government Medical College, Amritsar",
+    "phone": "0183 242 6918",
+    "lat": 31.6320,
+    "lng": 74.8800
+  },
+  {
+    "id": 215,
+    "name": "Dr. Amrit Thapar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Thapar Skin and Laser Clinic, Amritsar",
+    "phone": "098765 43210",
+    "lat": 31.6480,
+    "lng": 74.8620
+  },
+  {
+    "id": 216,
+    "name": "Dr. P.S. Grover (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "Amandeep Medicity, Amritsar",
+    "phone": "0183 521 1111",
+    "lat": 31.6425,
+    "lng": 74.8623
+  },
+  {
+    "id": 217,
+    "name": "Escorts Heart Institute (Amritsar)",
+    "specialty": "Cardiology",
+    "address": "Majitha-Verka Bypass Road, Amritsar",
+    "phone": "0183 301 2222",
+    "lat": 31.6669,
+    "lng": 74.8931
+  },
+  {
+    "id": 218,
+    "name": "Dr. Avtar Singh (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "Amandeep Hospital, G.T. Road, Amritsar",
+    "phone": "0183 240 0464",
+    "lat": 31.6425,
+    "lng": 74.8623
+  },
+  {
+    "id": 219,
+    "name": "Nayyar Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Lawrence Road, Amritsar",
+    "phone": "0183 222 9252",
+    "lat": 31.6410,
+    "lng": 74.8660
+  },
+  {
+    "id": 220,
+    "name": "Dr. Kuldeep Singh (Radiologist)",
+    "specialty": "Radiology",
+    "address": "K.D. Hospital, Amritsar",
+    "phone": "0183 222 3333",
+    "lat": 31.6350,
+    "lng": 74.8700
+  },
+  {
+    "id": 221,
+    "name": "Dr. Surinder Gupta (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Gupta Chest Clinic, Amritsar",
+    "phone": "098141 23456",
+    "lat": 31.6390,
+    "lng": 74.8740
+  },
+  {
+    "id": 222,
+    "name": "Mediscan Diagnostic Centre",
+    "specialty": "Radiology",
+    "address": "Albert Road, Amritsar",
+    "phone": "0183 222 1111",
+    "lat": 31.6340,
+    "lng": 74.8680
+  },
+  {
+    "id": 223,
+    "name": "Dr. Manjit Singh Uppal (Urologist)",
+    "specialty": "Urology",
+    "address": "Uppal Hospital, Amritsar",
+    "phone": "0183 256 3456",
+    "lat": 31.6370,
+    "lng": 74.8730
+  },
+  {
+    "id": 224,
+    "name": "Randhawa Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Circular Road, Amritsar",
+    "phone": "0183 255 5555",
+    "lat": 31.6330,
+    "lng": 74.8810
+  },
+  {
+    "id": 225,
+    "name": "Altec Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ranjit Avenue, C Block, Amritsar",
+    "phone": "0183 500 0781",
+    "lat": 31.6530,
+    "lng": 74.8490
+  },
+  {
+    "id": 226,
+    "name": "Dr. Neerja Gupta (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Gupta Skin & Laser Centre, Amritsar",
+    "phone": "098761 23456",
+    "lat": 31.6490,
+    "lng": 74.8580
+  },
+  {
+    "id": 227,
+    "name": "Dr. H.L. Sharma (General Physician)",
+    "specialty": "General Physician",
+    "address": "Sharma Clinic, Hall Bazar, Amritsar",
+    "phone": "0183 254 3210",
+    "lat": 31.6250,
+    "lng": 74.8750
+  },
+  {
+    "id": 228,
+    "name": "Dr. Vikas Rampal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Amritsar Neuro and Medical Centre, Amritsar",
+    "phone": "0183 250 1234",
+    "lat": 31.6500,
+    "lng": 74.8520
+  },
+  {
+    "id": 229,
+    "name": "Civil Hospital, Amritsar",
+    "specialty": "Government Hospital",
+    "address": "Circular Road, Amritsar",
+    "phone": "0183 222 5678",
+    "lat": 31.6300,
+    "lng": 74.8790
+  },
+  {
+    "id": 230,
+    "name": "Dr. Harjot Singh (Oncologist)",
+    "specialty": "Oncology",
+    "address": "Amandeep Medicity, Amritsar",
+    "phone": "0183 521 1111",
+    "lat": 31.6425,
+    "lng": 74.8623
+  },
+  {
+    "id": 231,
+    "name": "Saraswati Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Chheharta, Amritsar",
+    "phone": "0183 225 5555",
+    "lat": 31.6200,
+    "lng": 74.7900
+  },
+  {
+    "id": 232,
+    "name": "Dr. Baldev Singh (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Fortis Escorts Hospital, Amritsar",
+    "phone": "0183 301 2222",
+    "lat": 31.6669,
+    "lng": 74.8931
+  },
+  {
+    "id": 233,
+    "name": "Ohri Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Near Bus Stand, Amritsar",
+    "phone": "0183 222 4567",
+    "lat": 31.6400,
+    "lng": 74.8600
+  },
+  {
+    "id": 234,
+    "name": "Dr. Rohit Sharma (Gastroenterologist)",
+    "specialty": "Gastroenterologist",
+    "address": "Fortis Escorts Hospital, Amritsar",
+    "phone": "0183 301 2222",
+    "lat": 31.6669,
+    "lng": 74.8931
+  },
+  {
+    "id": 235,
+    "name": "Life Kare Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Majitha Road, Amritsar",
+    "phone": "0183 257 1111",
+    "lat": 31.6600,
+    "lng": 74.8900
+  },
+  {
+    "id": 236,
+    "name": "Dr. Gagandeep Singh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Gagandeep Neurological Centre, Amritsar",
+    "phone": "098140 67890",
+    "lat": 31.6470,
+    "lng": 74.8550
+  },
+  {
+    "id": 237,
+    "name": "Dr. Raman Kumar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Skin Solutions Clinic, Green Avenue, Amritsar",
+    "phone": "099887 76655",
+    "lat": 31.6460,
+    "lng": 74.8560
+  },
+  {
+    "id": 238,
+    "name": "Akashdeep Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Fatehgarh Churian Road, Amritsar",
+    "phone": "0183 227 7777",
+    "lat": 31.6700,
+    "lng": 74.8700
+  },
+  {
+    "id": 239,
+    "name": "Dr. A.P. Singh (General Surgeon)",
+    "specialty": "General Surgery",
+    "address": "SGRD Institute of Medical Sciences, Amritsar",
+    "phone": "0183 287 0200",
+    "lat": 31.6700,
+    "lng": 74.9300
+  },
+  {
+    "id": 240,
+    "name": "ECHS Polyclinic",
+    "specialty": "Defense Polyclinic",
+    "address": "Amritsar Cantonment, Amritsar",
+    "phone": "0183 250 5678",
+    "lat": 31.6600,
+    "lng": 74.8400
+  },
+  {
+    "id": 241,
+    "name": "Institute of Medical Sciences, BHU",
+    "specialty": "Premier Multi-Specialty Institute",
+    "address": "Banaras Hindu University, Varanasi",
+    "phone": "0542 236 9155",
+    "lat": 25.2676,
+    "lng": 82.9912
+  },
+  {
+    "id": 242,
+    "name": "Heritage Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Lanka, Varanasi",
+    "phone": "0542 236 8888",
+    "lat": 25.2750,
+    "lng": 82.9900
+  },
+  {
+    "id": 243,
+    "name": "Apex Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Nadesar, Varanasi",
+    "phone": "0542 711 1111",
+    "lat": 25.3350,
+    "lng": 82.9850
+  },
+  {
+    "id": 244,
+    "name": "Dr. Sanjay Gupta (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "IMS, BHU, Varanasi",
+    "phone": "0542 236 9155",
+    "lat": 25.2676,
+    "lng": 82.9912
+  },
+  {
+    "id": 245,
+    "name": "Galaxy Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Mahmoorganj, Varanasi",
+    "phone": "0542 222 2555",
+    "lat": 25.3000,
+    "lng": 82.9950
+  },
+  {
+    "id": 246,
+    "name": "Dr. A.K. Agarwal (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Agarwal Skin Clinic, Sigra, Varanasi",
+    "phone": "094152 23344",
+    "lat": 25.3100,
+    "lng": 82.9900
+  },
+  {
+    "id": 247,
+    "name": "Shubham Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Lanka, Varanasi",
+    "phone": "0542 236 6666",
+    "lat": 25.2760,
+    "lng": 82.9910
+  },
+  {
+    "id": 248,
+    "name": "Dr. Vijay Pratap Singh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Heritage Hospitals, Lanka, Varanasi",
+    "phone": "0542 236 8888",
+    "lat": 25.2750,
+    "lng": 82.9900
+  },
+  {
+    "id": 249,
+    "name": "Sir Sunderlal Hospital (BHU)",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Banaras Hindu University, Varanasi",
+    "phone": "0542 230 9450",
+    "lat": 25.2680,
+    "lng": 82.9915
+  },
+  {
+    "id": 250,
+    "name": "Popular Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Nichi Bagh, Varanasi",
+    "phone": "0542 241 1111",
+    "lat": 25.3200,
+    "lng": 83.0100
+  },
+  {
+    "id": 251,
+    "name": "Dr. V. N. Mishra (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "IMS, BHU, Varanasi",
+    "phone": "0542 236 9155",
+    "lat": 25.2676,
+    "lng": 82.9912
+  },
+  {
+    "id": 252,
+    "name": "Dr. Mukul Pandey (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Pandey Skin Clinic, Mahmoorganj, Varanasi",
+    "phone": "098390 12345",
+    "lat": 25.3010,
+    "lng": 82.9960
+  },
+  {
+    "id": 253,
+    "name": "Ford Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ashapur, Sarnath, Varanasi",
+    "phone": "0542 258 8888",
+    "lat": 25.3700,
+    "lng": 83.0300
+  },
+  {
+    "id": 254,
+    "name": "Dr. O.P. Tiwari (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Apex Hospital, Nadesar, Varanasi",
+    "phone": "0542 711 1111",
+    "lat": 25.3350,
+    "lng": 82.9850
+  },
+  {
+    "id": 255,
+    "name": "Tridev Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "GT Road, Parao, Varanasi",
+    "phone": "0542 266 8111",
+    "lat": 25.3100,
+    "lng": 83.0400
+  },
+  {
+    "id": 256,
+    "name": "Dr. A.K. Rai (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Rai Chest Clinic, Lanka, Varanasi",
+    "phone": "094153 00000",
+    "lat": 25.2740,
+    "lng": 82.9890
+  },
+  {
+    "id": 257,
+    "name": "Ram Krishna Mission Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Luxa, Varanasi",
+    "phone": "0542 245 1745",
+    "lat": 25.3050,
+    "lng": 83.0050
+  },
+  {
+    "id": 258,
+    "name": "Dr. Deepak Gautam (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Galaxy Hospital, Mahmoorganj, Varanasi",
+    "phone": "0542 222 2555",
+    "lat": 25.3000,
+    "lng": 82.9950
+  },
+  {
+    "id": 259,
+    "name": "The Skin Clinic Varanasi",
+    "specialty": "Dermatologist",
+    "address": "Bhelupur, Varanasi",
+    "phone": "099355 12345",
+    "lat": 25.2900,
+    "lng": 82.9980
+  },
+  {
+    "id": 260,
+    "name": "Homi Bhabha Cancer Hospital",
+    "specialty": "Oncology",
+    "address": "Ghanti Mill Road, Lahartara, Varanasi",
+    "phone": "0542 250 8899",
+    "lat": 25.3200,
+    "lng": 82.9700
+  },
+  {
+    "id": 261,
+    "name": "Dr. Alok Kumar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "IMS, BHU, Varanasi",
+    "phone": "0542 236 9155",
+    "lat": 25.2676,
+    "lng": 82.9912
+  },
+  {
+    "id": 262,
+    "name": "Dr. Sameer S. Kale (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Apex Hospital, Nadesar, Varanasi",
+    "phone": "0542 711 1111",
+    "lat": 25.3350,
+    "lng": 82.9850
+  },
+  {
+    "id": 263,
+    "name": "Varanasi Hospital and Medical Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Bhelupur, Varanasi",
+    "phone": "0542 227 7777",
+    "lat": 25.2910,
+    "lng": 82.9990
+  },
+  {
+    "id": 264,
+    "name": "Dr. R.N. Chaurasia (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Heritage Hospitals, Lanka, Varanasi",
+    "phone": "0542 236 8888",
+    "lat": 25.2750,
+    "lng": 82.9900
+  },
+  {
+    "id": 265,
+    "name": "Mata Anandmayi Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Shivala, Varanasi",
+    "phone": "0542 227 5555",
+    "lat": 25.2950,
+    "lng": 83.0000
+  },
+  {
+    "id": 266,
+    "name": "Dr. S. K. Singh (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "IMS, BHU, Varanasi",
+    "phone": "0542 236 9155",
+    "lat": 25.2676,
+    "lng": 82.9912
+  },
+  {
+    "id": 267,
+    "name": "Dr. Ratnesh Kumar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Kumar Skin Centre, Chetganj, Varanasi",
+    "phone": "093351 23456",
+    "lat": 25.3150,
+    "lng": 82.9950
+  },
+  {
+    "id": 268,
+    "name": "Surya Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Mahmoorganj, Varanasi",
+    "phone": "0542 222 0000",
+    "lat": 25.3020,
+    "lng": 82.9970
+  },
+  {
+    "id": 269,
+    "name": "Dr. Anand Kumar (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Anand Neuro Centre, Lanka, Varanasi",
+    "phone": "094505 12345",
+    "lat": 25.2730,
+    "lng": 82.9880
+  },
+  {
+    "id": 270,
+    "name": "Marwari Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Godowlia, Varanasi",
+    "phone": "0542 245 0000",
+    "lat": 25.3080,
+    "lng": 83.0080
+  },
+  {
+    "id": 271,
+    "name": "Dr. S. C. Gupta (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "IMS, BHU, Varanasi",
+    "phone": "0542 236 9155",
+    "lat": 25.2676,
+    "lng": 82.9912
+  },
+  {
+    "id": 272,
+    "name": "ASG Eye Hospital",
+    "specialty": "Ophthalmology",
+    "address": "Sigra, Varanasi",
+    "phone": "0542 222 1111",
+    "lat": 25.3110,
+    "lng": 82.9910
+  },
+  {
+    "id": 273,
+    "name": "Dr. R. K. Sharma (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "IMS, BHU, Varanasi",
+    "phone": "0542 236 9155",
+    "lat": 25.2676,
+    "lng": 82.9912
+  },
+  {
+    "id": 274,
+    "name": "Ankur Hospital",
+    "specialty": "Child Care",
+    "address": "Pandeypur, Varanasi",
+    "phone": "0542 258 5555",
+    "lat": 25.3500,
+    "lng": 82.9900
+  },
+  {
+    "id": 275,
+    "name": "Dr. S. K. Pathak (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Apex Hospital, Nadesar, Varanasi",
+    "phone": "0542 711 1111",
+    "lat": 25.3350,
+    "lng": 82.9850
+  },
+  {
+    "id": 276,
+    "name": "Trimurti Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "G.T. Road, Varanasi",
+    "phone": "0542 250 0000",
+    "lat": 25.3300,
+    "lng": 82.9600
+  },
+  {
+    "id": 277,
+    "name": "Dr. Manjari Tripathi (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Tripathi Neuro Clinic, Varanasi",
+    "phone": "098380 12345",
+    "lat": 25.3050,
+    "lng": 82.9920
+  },
+  {
+    "id": 278,
+    "name": "Kashi Medicare",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Orderly Bazar, Varanasi",
+    "phone": "0542 250 5555",
+    "lat": 25.3400,
+    "lng": 82.9800
+  },
+  {
+    "id": 279,
+    "name": "Dr. Anuradha Singh (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Singh Skin Care, Lahurabir, Varanasi",
+    "phone": "094152 98765",
+    "lat": 25.3250,
+    "lng": 82.9900
+  },
+  {
+    "id": 280,
+    "name": "Indian Railways Cancer Institute",
+    "specialty": "Oncology",
+    "address": "Lahartara, Varanasi",
+    "phone": "0542 229 0111",
+    "lat": 25.3210,
+    "lng": 82.9710
+  },
+  {
+    "id": 281,
+    "name": "Dr. B. K. Singh (Urologist)",
+    "specialty": "Urology",
+    "address": "Heritage Hospitals, Lanka, Varanasi",
+    "phone": "0542 236 8888",
+    "lat": 25.2750,
+    "lng": 82.9900
+  },
+  {
+    "id": 282,
+    "name": "Unity Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Shivpur, Varanasi",
+    "phone": "0542 228 2222",
+    "lat": 25.3600,
+    "lng": 82.9700
+  },
+  {
+    "id": 283,
+    "name": "Dr. Rajiv Singh (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Kashi Skin Clinic, Varanasi",
+    "phone": "099190 12345",
+    "lat": 25.3180,
+    "lng": 82.9980
+  },
+  {
+    "id": 284,
+    "name": "Lok Bandhu Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ramnagar, Varanasi",
+    "phone": "0542 266 8000",
+    "lat": 25.2800,
+    "lng": 83.0300
+  },
+  {
+    "id": 285,
+    "name": "Dr. D. R. Singh (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Galaxy Hospital, Mahmoorganj, Varanasi",
+    "phone": "0542 222 2555",
+    "lat": 25.3000,
+    "lng": 82.9950
+  },
+  {
+    "id": 286,
+    "name": "Meditrina Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sunderpur, Varanasi",
+    "phone": "0542 231 1111",
+    "lat": 25.2800,
+    "lng": 82.9800
+  },
+  {
+    "id": 287,
+    "name": "Dr. Usha Singh (General Physician)",
+    "specialty": "General Physician",
+    "address": "Singh Clinic, Varanasi Cantt, Varanasi",
+    "phone": "0542 250 1234",
+    "lat": 25.3300,
+    "lng": 82.9800
+  },
+  {
+    "id": 288,
+    "name": "Sanjeevan Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sarnath, Varanasi",
+    "phone": "0542 259 5555",
+    "lat": 25.3750,
+    "lng": 83.0250
+  },
+  {
+    "id": 289,
+    "name": "Kokilaben Dhirubhai Ambani Hospital",
+    "specialty": "Multi-Specialty (Radiology, Neurology)",
+    "address": "Rao Saheb, Achutrao Patwardhan Marg, Andheri West, Mumbai",
+    "phone": "022 4269 6969",
+    "lat": 19.1194,
+    "lng": 72.8242
+  },
+  {
+    "id": 290,
+    "name": "Lilavati Hospital and Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "A-791, Bandra Reclamation, Bandra West, Mumbai",
+    "phone": "022 2675 1000",
+    "lat": 19.0454,
+    "lng": 72.8319
+  },
+  {
+    "id": 291,
+    "name": "Breach Candy Hospital Trust",
+    "specialty": "Multi-Specialty (Chest Medicine)",
+    "address": "60 A, Bhulabhai Desai Marg, Breach Candy, Cumballa Hill, Mumbai",
+    "phone": "022 2367 1888",
+    "lat": 18.9634,
+    "lng": 72.8052
+  },
+  {
+    "id": 292,
+    "name": "Jaslok Hospital",
+    "specialty": "Multi-Specialty (Radiology, Chest)",
+    "address": "15, Dr. Deshmukh Marg, Pedder Road, Mumbai",
+    "phone": "1800 266 0011",
+    "lat": 18.9654,
+    "lng": 72.8078
+  },
+  {
+    "id": 293,
+    "name": "Dr. Madhuri Agarwal (Yavana Aesthetics Clinic)",
+    "specialty": "Dermatologist",
+    "address": "Yashwant Nagar, Bandra West, Mumbai",
+    "phone": "098675 55502",
+    "lat": 19.0620,
+    "lng": 72.8340
+  },
+  {
+    "id": 294,
+    "name": "Dr. B. S. Singhal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Bombay Hospital & Medical Research Centre, Marine Lines, Mumbai",
+    "phone": "022 2206 7676",
+    "lat": 18.9448,
+    "lng": 72.8258
+  },
+  {
+    "id": 295,
+    "name": "Tata Memorial Hospital",
+    "specialty": "Oncology & Radiology Center",
+    "address": "Dr. E Borges Road, Parel, Mumbai",
+    "phone": "022 2417 7000",
+    "lat": 19.0063,
+    "lng": 72.8447
+  },
+  {
+    "id": 296,
+    "name": "Dr. Jaishree Sharad (Klinik)",
+    "specialty": "Dermatologist",
+    "address": "Vastu building, Juhu, Mumbai",
+    "phone": "022 2670 2211",
+    "lat": 19.1076,
+    "lng": 72.8263
+  },
+  {
+    "id": 297,
+    "name": "Dr. Prafulla Kerkar (Asian Heart Institute)",
+    "specialty": "Cardiology & Chest Specialist",
+    "address": "G Block, Bandra Kurla Complex, Bandra East, Mumbai",
+    "phone": "022 6739 6666",
+    "lat": 19.0667,
+    "lng": 72.8633
+  },
+  {
+    "id": 298,
+    "name": "Dr. Annu Aggarwal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Kokilaben Hospital, Andheri West, Mumbai",
+    "phone": "022 4269 6969",
+    "lat": 19.1194,
+    "lng": 72.8242
+  },
+  {
+    "id": 299,
+    "name": "Fortis Hospital, Mulund",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Mulund Goregaon Link Rd, Mulund West, Mumbai",
+    "phone": "022 4111 4111",
+    "lat": 19.1691,
+    "lng": 72.9472
+  },
+  {
+    "id": 300,
+    "name": "The Skin Doctors Clinic",
+    "specialty": "Dermatologist",
+    "address": "Waterfield Road, Bandra West, Mumbai",
+    "phone": "099200 48626",
+    "lat": 19.0628,
+    "lng": 72.8315
+  },
+  {
+    "id": 301,
+    "name": "Dr. Satish V. Khadilkar (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Bombay Hospital, Marine Lines, Mumbai",
+    "phone": "022 2206 7676",
+    "lat": 18.9448,
+    "lng": 72.8258
+  },
+  {
+    "id": 302,
+    "name": "Global Hospitals, Parel",
+    "specialty": "Multi-Specialty (Chest Medicine)",
+    "address": "35, Dr. E, Borges Road, Parel, Mumbai",
+    "phone": "022 6767 0101",
+    "lat": 19.0076,
+    "lng": 72.8436
+  },
+  {
+    "id": 303,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Hill Road, Bandra West, Mumbai",
+    "phone": "1800 209 5292",
+    "lat": 19.0560,
+    "lng": 72.8315
+  },
+  {
+    "id": 304,
+    "name": "Dr. Zarir F Udwadia (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "P.D. Hinduja Hospital, Mahim, Mumbai",
+    "phone": "022 6766 8181",
+    "lat": 19.0345,
+    "lng": 72.8398
+  },
+  {
+    "id": 305,
+    "name": "Hiranandani Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Hill Side Avenue, Hiranandani Gardens, Powai, Mumbai",
+    "phone": "022 2576 3300",
+    "lat": 19.1179,
+    "lng": 72.9084
+  },
+  {
+    "id": 306,
+    "name": "Dr. Jimmy Lalkaka (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "P.D. Hinduja Hospital, Mahim, Mumbai",
+    "phone": "022 6766 8181",
+    "lat": 19.0345,
+    "lng": 72.8398
+  },
+  {
+    "id": 307,
+    "name": "Nanavati Max Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "S.V. Road, Vile Parle West, Mumbai",
+    "phone": "022 2626 7500",
+    "lat": 19.0964,
+    "lng": 72.8435
+  },
+  {
+    "id": 308,
+    "name": "The Ageless Clinic",
+    "specialty": "Dermatologist",
+    "address": "Pali Hill, Bandra West, Mumbai",
+    "phone": "022 2604 8822",
+    "lat": 19.0681,
+    "lng": 72.8271
+  },
+  {
+    "id": 309,
+    "name": "Dr. K. E. Turel (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Breach Candy Hospital, Mumbai",
+    "phone": "022 2367 1888",
+    "lat": 18.9634,
+    "lng": 72.8052
+  },
+  {
+    "id": 310,
+    "name": "Wockhardt Hospital, South Mumbai",
+    "specialty": "Multi-Specialty (Heart, Chest)",
+    "address": "1877, Dr. Anand Rao Nair Road, Mumbai Central, Mumbai",
+    "phone": "022 6178 4444",
+    "lat": 18.9712,
+    "lng": 72.8236
+  },
+  {
+    "id": 311,
+    "name": "Dr. Rashmi Shetty (Ra Skin & Aesthetics)",
+    "specialty": "Dermatologist",
+    "address": "301, Hubtown Solaris, Andheri East, Mumbai",
+    "phone": "022 6729 8888",
+    "lat": 19.1118,
+    "lng": 72.8682
+  },
+  {
+    "id": 312,
+    "name": "Dr. Pradyumna J. Oak (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Global Hospital, Parel, Mumbai",
+    "phone": "022 6767 0101",
+    "lat": 19.0076,
+    "lng": 72.8436
+  },
+  {
+    "id": 313,
+    "name": "Saifee Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Charni Road, opposite Charni Road Station, Mumbai",
+    "phone": "022 6757 0111",
+    "lat": 18.9515,
+    "lng": 72.8192
+  },
+  {
+    "id": 314,
+    "name": "The Esthetic Clinics",
+    "specialty": "Dermatologist & Plastic Surgery",
+    "address": "104/105, first floor, Shubham Co-op Housing Society, Juhu, Mumbai",
+    "phone": "070280 65165",
+    "lat": 19.1030,
+    "lng": 72.8277
+  },
+  {
+    "id": 315,
+    "name": "Dr. Paresh K. Doshi (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Jaslok Hospital, Pedder Road, Mumbai",
+    "phone": "1800 266 0011",
+    "lat": 18.9654,
+    "lng": 72.8078
+  },
+  {
+    "id": 316,
+    "name": "K. J. Somaiya Hospital & Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Somaiya Ayurvihar Complex, Sion, Mumbai",
+    "phone": "022 2409 0254",
+    "lat": 19.0436,
+    "lng": 72.8732
+  },
+  {
+    "id": 317,
+    "name": "Dr. Apratim Goel (Cutis Skin Studio)",
+    "specialty": "Dermatologist",
+    "address": "Khar West, Mumbai",
+    "phone": "022 2605 1858",
+    "lat": 19.0688,
+    "lng": 72.8398
+  },
+  {
+    "id": 318,
+    "name": "Dr. Satish Ailawadi (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Fortis Hospital, Mulund, Mumbai",
+    "phone": "022 4111 4111",
+    "lat": 19.1691,
+    "lng": 72.9472
+  },
+  {
+    "id": 319,
+    "name": "Surya Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "S V Road, Santacruz West, Mumbai",
+    "phone": "022 6153 8888",
+    "lat": 19.0831,
+    "lng": 72.8383
+  },
+  {
+    "id": 320,
+    "name": "Dr. Abhay Nene (Spine Surgeon)",
+    "specialty": "Orthopedics & Neurology",
+    "address": "Lilavati Hospital, Bandra West, Mumbai",
+    "phone": "022 2675 1000",
+    "lat": 19.0454,
+    "lng": 72.8319
+  },
+  {
+    "id": 321,
+    "name": "Dr. Jamuna Pai's SkinLab",
+    "specialty": "Dermatologist",
+    "address": "Bandra West, Mumbai",
+    "phone": "022 2655 5500",
+    "lat": 19.0601,
+    "lng": 72.8396
+  },
+  {
+    "id": 322,
+    "name": "SevenHills Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Marol Maroshi Road, Andheri East, Mumbai",
+    "phone": "022 6767 6767",
+    "lat": 19.1173,
+    "lng": 72.8835
+  },
+  {
+    "id": 323,
+    "name": "Dr. Charulata Savant (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Jaslok Hospital, Pedder Road, Mumbai",
+    "phone": "1800 266 0011",
+    "lat": 18.9654,
+    "lng": 72.8078
+  },
+  {
+    "id": 324,
+    "name": "Dr. R K Deshpande (Oncology, Chest)",
+    "specialty": "Oncology & Chest Specialist",
+    "address": "Asian Cancer Institute, Sion, Mumbai",
+    "phone": "022 2404 5555",
+    "lat": 19.0436,
+    "lng": 72.8632
+  },
+  {
+    "id": 325,
+    "name": "Dr. Geeta Fazalbhoy (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Breach Candy Hospital, Mumbai",
+    "phone": "022 2367 1888",
+    "lat": 18.9634,
+    "lng": 72.8052
+  },
+  {
+    "id": 326,
+    "name": "Dr. Rickson Pereira (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Dr. Rickson's Skin & Hair Clinic, Andheri West, Mumbai",
+    "phone": "022 2623 0044",
+    "lat": 19.1192,
+    "lng": 72.8394
+  },
+  {
+    "id": 327,
+    "name": "P.D. Hinduja Hospital & Medical Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Veer Savarkar Marg, Mahim West, Mumbai",
+    "phone": "022 6766 8181",
+    "lat": 19.0345,
+    "lng": 72.8398
+  },
+  {
+    "id": 328,
+    "name": "Dr. Rekha Sheth's Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Altamount Road, Cumballa Hill, Mumbai",
+    "phone": "022 2386 8877",
+    "lat": 18.9686,
+    "lng": 72.8088
+  },
+  {
+    "id": 329,
+    "name": "Dr. Pravin Banodkar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Skin Crest Clinic, Borivali West, Mumbai",
+    "phone": "022 2899 3344",
+    "lat": 19.2319,
+    "lng": 72.8481
+  },
+  {
+    "id": 330,
+    "name": "Dr. Janak G. Mehta (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Bhatia Hospital, Tardeo Road, Mumbai",
+    "phone": "022 6666 0000",
+    "lat": 18.9750,
+    "lng": 72.8160
+  },
+  {
+    "id": 331,
+    "name": "Bombay Hospital & Medical Research Centre",
+    "specialty": "Multi-Specialty (Neurology, Radiology)",
+    "address": "12, Marine Lines, Mumbai",
+    "phone": "022 2206 7676",
+    "lat": 18.9448,
+    "lng": 72.8258
+  },
+  {
+    "id": 332,
+    "name": "Dr. Bhupendra Chaudhary (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Nanavati Super Speciality Hospital, Vile Parle, Mumbai",
+    "phone": "022 2626 7500",
+    "lat": 19.0964,
+    "lng": 72.8435
+  },
+  {
+    "id": 333,
+    "name": "VLCC Wellness Center",
+    "specialty": "Dermatology & Wellness",
+    "address": "Linking Road, Bandra West, Mumbai",
+    "phone": "1800 102 8522",
+    "lat": 19.0645,
+    "lng": 72.8329
+  },
+  {
+    "id": 334,
+    "name": "Dr. Sharmila Nayak's Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Fort, Mumbai",
+    "phone": "022 2202 1212",
+    "lat": 18.9320,
+    "lng": 72.8347
+  },
+  {
+    "id": 335,
+    "name": "Dr. Manjiri Patankar Puranik (Insta Sculpt)",
+    "specialty": "Dermatologist",
+    "address": "Vile Parle West, Mumbai",
+    "phone": "022 2617 7666",
+    "lat": 19.0988,
+    "lng": 72.8408
+  },
+  {
+    "id": 336,
+    "name": "Dr. Batra's - Skin & Hair Clinic",
+    "specialty": "Dermatologist",
+    "address": "Lokhandwala Complex, Andheri West, Mumbai",
+    "phone": "022 3367 1234",
+    "lat": 19.1294,
+    "lng": 72.8291
+  },
+  {
+    "id": 337,
+    "name": "Ruby Hall Clinic",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "40, Sassoon Road, Pune",
+    "phone": "020 6645 5100",
+    "lat": 18.5280,
+    "lng": 73.8760
+  },
+  {
+    "id": 338,
+    "name": "Deenanath Mangeshkar Hospital and Research Center",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Erandwane, Pune",
+    "phone": "020 4015 1000",
+    "lat": 18.5080,
+    "lng": 73.8320
+  },
+  {
+    "id": 339,
+    "name": "Jehangir Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "32, Sassoon Road, Pune",
+    "phone": "020 6681 1000",
+    "lat": 18.5270,
+    "lng": 73.8750
+  },
+  {
+    "id": 340,
+    "name": "Sahyadri Super Speciality Hospital, Deccan Gymkhana",
+    "specialty": "Multi-Specialty (Neurology, Radiology)",
+    "address": "Deccan Gymkhana, Pune",
+    "phone": "020 6721 5000",
+    "lat": 18.5180,
+    "lng": 73.8400
+  },
+  {
+    "id": 341,
+    "name": "Dr. Narendra Pardeshi (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Skin & Surgery International, Aundh, Pune",
+    "phone": "098223 59522",
+    "lat": 18.5600,
+    "lng": 73.8000
+  },
+  {
+    "id": 342,
+    "name": "Dr. Rajas Deshpande (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Deenanath Mangeshkar Hospital, Pune",
+    "phone": "020 4015 1000",
+    "lat": 18.5080,
+    "lng": 73.8320
+  },
+  {
+    "id": 343,
+    "name": "Aditya Birla Memorial Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Aditya Birla Hospital Marg, Chinchwad, Pune",
+    "phone": "020 3071 7500",
+    "lat": 18.6380,
+    "lng": 73.7680
+  },
+  {
+    "id": 344,
+    "name": "Dr. Pradeep Sharma (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Ruby Hall Clinic, Pune",
+    "phone": "020 6645 5100",
+    "lat": 18.5280,
+    "lng": 73.8760
+  },
+  {
+    "id": 345,
+    "name": "SkinCity, Super Speciality Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Koregaon Park, Pune",
+    "phone": "098902 25577",
+    "lat": 18.5350,
+    "lng": 73.8850
+  },
+  {
+    "id": 346,
+    "name": "Noble Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Magarpatta, Hadapsar, Pune",
+    "phone": "020 6628 5000",
+    "lat": 18.5150,
+    "lng": 73.9250
+  },
+  {
+    "id": 347,
+    "name": "Dr. Nitin Abhyankar (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Poona Hospital and Research Centre, Pune",
+    "phone": "020 6609 6000",
+    "lat": 18.5150,
+    "lng": 73.8450
+  },
+  {
+    "id": 348,
+    "name": "Dr. Dhananjay Ashturkar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Clear Skin Clinic, Kothrud, Pune",
+    "phone": "020 2544 1234",
+    "lat": 18.5070,
+    "lng": 73.8090
+  },
+  {
+    "id": 349,
+    "name": "Poona Hospital and Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sadashiv Peth, Pune",
+    "phone": "020 6609 6000",
+    "lat": 18.5150,
+    "lng": 73.8450
+  },
+  {
+    "id": 350,
+    "name": "Dr. Sudhir Kothari (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "KEM Hospital, Rasta Peth, Pune",
+    "phone": "020 6603 7373",
+    "lat": 18.5180,
+    "lng": 73.8680
+  },
+  {
+    "id": 351,
+    "name": "Inamdar Multispeciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Fatima Nagar, Wanowrie, Pune",
+    "phone": "020 6681 2222",
+    "lat": 18.5000,
+    "lng": 73.9000
+  },
+  {
+    "id": 352,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "FC Road, Pune",
+    "phone": "1800 209 5292",
+    "lat": 18.5200,
+    "lng": 73.8400
+  },
+  {
+    "id": 353,
+    "name": "KEM Hospital Research Centre",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Rasta Peth, Pune",
+    "phone": "020 6603 7373",
+    "lat": 18.5180,
+    "lng": 73.8680
+  },
+  {
+    "id": 354,
+    "name": "Dr. Shirish M. Hastak (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Jupiter Hospital, Baner, Pune",
+    "phone": "020 2799 2799",
+    "lat": 18.5600,
+    "lng": 73.7800
+  },
+  {
+    "id": 355,
+    "name": "Jupiter Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Baner - Pashan Link Road, Baner, Pune",
+    "phone": "020 2799 2799",
+    "lat": 18.5600,
+    "lng": 73.7800
+  },
+  {
+    "id": 356,
+    "name": "Dr. Pradyumna Pai Oak (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sahyadri Hospital, Deccan Gymkhana, Pune",
+    "phone": "020 6721 5000",
+    "lat": 18.5180,
+    "lng": 73.8400
+  },
+  {
+    "id": 357,
+    "name": "Dr. Avinash Bhondwe (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Bhondwe Clinic, Shivajinagar, Pune",
+    "phone": "020 2553 1234",
+    "lat": 18.5300,
+    "lng": 73.8400
+  },
+  {
+    "id": 358,
+    "name": "Sancheti Hospital",
+    "specialty": "Orthopedics & Spine Surgery",
+    "address": "Thube Park, Shivajinagar, Pune",
+    "phone": "020 2899 9999",
+    "lat": 18.5350,
+    "lng": 73.8500
+  },
+  {
+    "id": 359,
+    "name": "Dr. Sunil Agarwal (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Ruby Hall Clinic, Wanowrie, Pune",
+    "phone": "020 6649 4949",
+    "lat": 18.4900,
+    "lng": 73.9000
+  },
+  {
+    "id": 360,
+    "name": "Columbia Asia Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Kharadi, Pune",
+    "phone": "020 7129 0222",
+    "lat": 18.5500,
+    "lng": 73.9400
+  },
+  {
+    "id": 361,
+    "name": "Dr. Chetan Vispute (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Jehangir Hospital, Pune",
+    "phone": "020 6681 1000",
+    "lat": 18.5270,
+    "lng": 73.8750
+  },
+  {
+    "id": 362,
+    "name": "Dr. Shreepad Khedekar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Imperial Clinics, Kalyani Nagar, Pune",
+    "phone": "098608 12345",
+    "lat": 18.5450,
+    "lng": 73.8950
+  },
+  {
+    "id": 363,
+    "name": "Hardikar Hospital",
+    "specialty": "Multi-Specialty (Orthopedics)",
+    "address": "Ganeshkhind Road, Shivajinagar, Pune",
+    "phone": "020 2553 3333",
+    "lat": 18.5340,
+    "lng": 73.8440
+  },
+  {
+    "id": 364,
+    "name": "Dr. Suresh Girase (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Deenanath Mangeshkar Hospital, Pune",
+    "phone": "020 4015 1000",
+    "lat": 18.5080,
+    "lng": 73.8320
+  },
+  {
+    "id": 365,
+    "name": "Dr. Rahul Kulkarni (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Aditya Birla Memorial Hospital, Pune",
+    "phone": "020 3071 7500",
+    "lat": 18.6380,
+    "lng": 73.7680
+  },
+  {
+    "id": 366,
+    "name": "Medipoint Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Aundh, Pune",
+    "phone": "020 2729 9000",
+    "lat": 18.5610,
+    "lng": 73.8010
+  },
+  {
+    "id": 367,
+    "name": "Dr. Ashish Atre (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Sahyadri Hospital, Nagar Road, Pune",
+    "phone": "020 6721 3300",
+    "lat": 18.5550,
+    "lng": 73.9100
+  },
+  {
+    "id": 368,
+    "name": "Dr. Satish Ubale (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Ruby Hall Clinic, Pune",
+    "phone": "020 6645 5100",
+    "lat": 18.5280,
+    "lng": 73.8760
+  },
+  {
+    "id": 369,
+    "name": "Clear Vision Eye Hospital",
+    "specialty": "Ophthalmology",
+    "address": "Navi Peth, Pune",
+    "phone": "020 2433 1234",
+    "lat": 18.5090,
+    "lng": 73.8490
+  },
+  {
+    "id": 370,
+    "name": "The Skin Doctors",
+    "specialty": "Dermatologist",
+    "address": "Model Colony, Pune",
+    "phone": "020 2567 1234",
+    "lat": 18.5360,
+    "lng": 73.8360
+  },
+  {
+    "id": 371,
+    "name": "Command Hospital (Southern Command)",
+    "specialty": "Defense Multi-Specialty Hospital",
+    "address": "Wanowrie, Pune",
+    "phone": "020 2636 3430",
+    "lat": 18.4950,
+    "lng": 73.8900
+  },
+  {
+    "id": 372,
+    "name": "Dr. Sachin Gandhi (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Deenanath Mangeshkar Hospital, Pune",
+    "phone": "020 4015 1000",
+    "lat": 18.5080,
+    "lng": 73.8320
+  },
+  {
+    "id": 373,
+    "name": "Dr. Pradeep Alate (Urologist)",
+    "specialty": "Urology",
+    "address": "Sahyadri Hospital, Deccan Gymkhana, Pune",
+    "phone": "020 6721 5000",
+    "lat": 18.5180,
+    "lng": 73.8400
+  },
+  {
+    "id": 374,
+    "name": "Lokmanya Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Nigdi, Pune",
+    "phone": "020 2765 5555",
+    "lat": 18.6480,
+    "lng": 73.7600
+  },
+  {
+    "id": 375,
+    "name": "Dr. Sunil Jawale (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "Jupiter Hospital, Baner, Pune",
+    "phone": "020 2799 2799",
+    "lat": 18.5600,
+    "lng": 73.7800
+  },
+  {
+    "id": 376,
+    "name": "Dr. Pranil More (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "More Skin & Hair Clinic, Pimple Saudagar, Pune",
+    "phone": "098226 12345",
+    "lat": 18.5900,
+    "lng": 73.7800
+  },
+  {
+    "id": 377,
+    "name": "Suryadatta Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Bavdhan, Pune",
+    "phone": "020 6790 4444",
+    "lat": 18.5200,
+    "lng": 73.7800
+  },
+  {
+    "id": 378,
+    "name": "Dr. Tushar Chitre (ENT Specialist)",
+    "specialty": "ENT Specialist",
+    "address": "Chitre ENT Clinic, Karve Road, Pune",
+    "phone": "020 2544 1234",
+    "lat": 18.5000,
+    "lng": 73.8200
+  },
+  {
+    "id": 379,
+    "name": "Ratna Memorial Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Senapati Bapat Road, Pune",
+    "phone": "020 2566 1234",
+    "lat": 18.5320,
+    "lng": 73.8320
+  },
+  {
+    "id": 380,
+    "name": "Dr. Jayant Kelwade (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Brain and Spine Clinic, Pune",
+    "phone": "098220 12345",
+    "lat": 18.5100,
+    "lng": 73.8500
+  },
+  {
+    "id": 381,
+    "name": "Dr. Sandeep Kadam (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "KEM Hospital, Pune",
+    "phone": "020 6603 7373",
+    "lat": 18.5180,
+    "lng": 73.8680
+  },
+  {
+    "id": 382,
+    "name": "Gupte Hospital",
+    "specialty": "Maternity & IVF Center",
+    "address": "Baner Road, Pune",
+    "phone": "020 2588 1234",
+    "lat": 18.5500,
+    "lng": 73.8000
+  },
+  {
+    "id": 383,
+    "name": "Dr. Shailesh Puntambekar (Oncologist)",
+    "specialty": "Oncology",
+    "address": "Galaxy Care Hospital, Pune",
+    "phone": "020 2544 1234",
+    "lat": 18.5100,
+    "lng": 73.8300
+  },
+  {
+    "id": 384,
+    "name": "Dr. Atul Patil (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Deenanath Mangeshkar Hospital, Pune",
+    "phone": "020 4015 1000",
+    "lat": 18.5080,
+    "lng": 73.8320
+  },
+  {
+    "id": 385,
+    "name": "Apollo Hospitals, Ahmedabad",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Plot No.1-A, Bhat, GIDC Estate, Gandhinagar, Ahmedabad",
+    "phone": "079 6670 1800",
+    "lat": 23.1118,
+    "lng": 72.5986
+  },
+  {
+    "id": 386,
+    "name": "Sterling Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sterling Hospital Road, Memnagar, Ahmedabad",
+    "phone": "079 4001 1111",
+    "lat": 23.0427,
+    "lng": 72.5303
+  },
+  {
+    "id": 387,
+    "name": "Shalby Hospitals",
+    "specialty": "Multi-Specialty (Orthopedics)",
+    "address": "Opp. Karnavati Club, S.G. Highway, Ahmedabad",
+    "phone": "079 4020 3000",
+    "lat": 23.0125,
+    "lng": 72.5025
+  },
+  {
+    "id": 388,
+    "name": "Zydus Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Zydus Hospital Road, Thaltej, Ahmedabad",
+    "phone": "079 6619 0000",
+    "lat": 23.0455,
+    "lng": 72.5077
+  },
+  {
+    "id": 389,
+    "name": "Dr. Keyur R. Patel (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Radiant Skin Clinic, Navrangpura, Ahmedabad",
+    "phone": "098250 12345",
+    "lat": 23.0350,
+    "lng": 72.5600
+  },
+  {
+    "id": 390,
+    "name": "Dr. Sudhir Shah (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sterling Hospitals, Memnagar, Ahmedabad",
+    "phone": "079 4001 1111",
+    "lat": 23.0427,
+    "lng": 72.5303
+  },
+  {
+    "id": 391,
+    "name": "CIMS Hospital",
+    "specialty": "Multi-Specialty (Heart)",
+    "address": "Science City Road, Sola, Ahmedabad",
+    "phone": "079 3010 1200",
+    "lat": 23.0680,
+    "lng": 72.5200
+  },
+  {
+    "id": 392,
+    "name": "Dr. Arvind Sharma (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Zydus Hospitals, Thaltej, Ahmedabad",
+    "phone": "079 6619 0000",
+    "lat": 23.0455,
+    "lng": 72.5077
+  },
+  {
+    "id": 393,
+    "name": "La Piel Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Bodakdev, Ahmedabad",
+    "phone": "079 2685 1234",
+    "lat": 23.0350,
+    "lng": 72.5150
+  },
+  {
+    "id": 394,
+    "name": "Narayana Multispeciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Rakhial, Ahmedabad",
+    "phone": "079 7123 5000",
+    "lat": 23.0250,
+    "lng": 72.6300
+  },
+  {
+    "id": 395,
+    "name": "Dr. Tushar Patel (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Sterling Hospitals, Ahmedabad",
+    "phone": "079 4001 1111",
+    "lat": 23.0427,
+    "lng": 72.5303
+  },
+  {
+    "id": 396,
+    "name": "Dr. Feroz M. Ghanchi (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Ghanchi Skin Clinic, Shahibaug, Ahmedabad",
+    "phone": "079 2562 1234",
+    "lat": 23.0550,
+    "lng": 72.5950
+  },
+  {
+    "id": 397,
+    "name": "HCG Cancer Centre",
+    "specialty": "Oncology Hospital",
+    "address": "Mithakhali, Ahmedabad",
+    "phone": "079 4001 0101",
+    "lat": 23.0300,
+    "lng": 72.5650
+  },
+  {
+    "id": 398,
+    "name": "Dr. Mukesh Sharma (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Apollo Hospitals, Ahmedabad",
+    "phone": "079 6670 1800",
+    "lat": 23.1118,
+    "lng": 72.5986
+  },
+  {
+    "id": 399,
+    "name": "K.D. Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Vaishno Devi Circle, S.G. Highway, Ahmedabad",
+    "phone": "079 6677 0000",
+    "lat": 23.1350,
+    "lng": 72.5400
+  },
+  {
+    "id": 400,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "C.G. Road, Ahmedabad",
+    "phone": "1800 209 5292",
+    "lat": 23.0250,
+    "lng": 72.5600
+  },
+  {
+    "id": 401,
+    "name": "Civil Hospital, Ahmedabad",
+    "specialty": "Premier Government Hospital",
+    "address": "Asarwa, Ahmedabad",
+    "phone": "079 2268 3721",
+    "lat": 23.0580,
+    "lng": 72.6050
+  },
+  {
+    "id": 402,
+    "name": "Dr. Vishal Jogi (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Setu Neurology Clinic, Ahmedabad",
+    "phone": "099241 12345",
+    "lat": 23.0400,
+    "lng": 72.5350
+  },
+  {
+    "id": 403,
+    "name": "SAL Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Opp. Doordarshan, Drive-in Road, Ahmedabad",
+    "phone": "079 4004 5000",
+    "lat": 23.0500,
+    "lng": 72.5250
+  },
+  {
+    "id": 404,
+    "name": "Dr. Tejas Patel (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Apex Heart Institute, Vastrapur, Ahmedabad",
+    "phone": "079 2673 1234",
+    "lat": 23.0300,
+    "lng": 72.5200
+  },
+  {
+    "id": 405,
+    "name": "Dr. Viral Desai (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "D'Cosmo Nepal, Vastrapur, Ahmedabad",
+    "phone": "098255 12345",
+    "lat": 23.0320,
+    "lng": 72.5220
+  },
+  {
+    "id": 406,
+    "name": "GCS Medical College, Hospital & Research Centre",
+    "specialty": "Medical College & Hospital",
+    "address": "Naroda Road, Ahmedabad",
+    "phone": "079 6604 8000",
+    "lat": 23.0450,
+    "lng": 72.6150
+  },
+  {
+    "id": 407,
+    "name": "Dr. Kalpesh Shah (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Zydus Hospitals, Ahmedabad",
+    "phone": "079 6619 0000",
+    "lat": 23.0455,
+    "lng": 72.5077
+  },
+  {
+    "id": 408,
+    "name": "Bodycare Skin & Hair Clinic",
+    "specialty": "Dermatologist",
+    "address": "Satellite, Ahmedabad",
+    "phone": "079 2676 1234",
+    "lat": 23.0200,
+    "lng": 72.5200
+  },
+  {
+    "id": 409,
+    "name": "Marengo CIMS Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Science City Road, Ahmedabad",
+    "phone": "079 7123 4567",
+    "lat": 23.0700,
+    "lng": 72.5250
+  },
+  {
+    "id": 410,
+    "name": "Dr. Nischal Bhatt (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Sterling Hospitals, Ahmedabad",
+    "phone": "079 4001 1111",
+    "lat": 23.0427,
+    "lng": 72.5303
+  },
+  {
+    "id": 411,
+    "name": "Dr. U.D. Nagpal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Nagpal Nursing Home, Ashram Road, Ahmedabad",
+    "phone": "079 2755 1234",
+    "lat": 23.0450,
+    "lng": 72.5700
+  },
+  {
+    "id": 412,
+    "name": "Sanjivani Super Speciality Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Vastral, Ahmedabad",
+    "phone": "079 2970 1234",
+    "lat": 22.9900,
+    "lng": 72.6700
+  },
+  {
+    "id": 413,
+    "name": "Dr. Rakesh Shah (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Apollo Hospitals, Ahmedabad",
+    "phone": "079 6670 1800",
+    "lat": 23.1118,
+    "lng": 72.5986
+  },
+  {
+    "id": 414,
+    "name": "Aarna Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Navrangpura, Ahmedabad",
+    "phone": "079 2642 1234",
+    "lat": 23.0360,
+    "lng": 72.5610
+  },
+  {
+    "id": 415,
+    "name": "Dr. Sandip Shah (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Aura Laser and Skin Care, Ahmedabad",
+    "phone": "098240 12345",
+    "lat": 23.0280,
+    "lng": 72.5280
+  },
+  {
+    "id": 416,
+    "name": "Dr. Tejas Thakkar (Gastroenterologist)",
+    "specialty": "Gastroenterologist",
+    "address": "Zydus Hospitals, Ahmedabad",
+    "phone": "079 6619 0000",
+    "lat": 23.0455,
+    "lng": 72.5077
+  },
+  {
+    "id": 417,
+    "name": "Shrey Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Navrangpura, Ahmedabad",
+    "phone": "079 2644 1234",
+    "lat": 23.0370,
+    "lng": 72.5620
+  },
+  {
+    "id": 418,
+    "name": "Dr. Rajendra V. Phadke (Radiologist)",
+    "specialty": "Radiology",
+    "address": "UN Mehta Institute of Cardiology, Ahmedabad",
+    "phone": "079 2268 2453",
+    "lat": 23.0590,
+    "lng": 72.6060
+  },
+  {
+    "id": 419,
+    "name": "Global Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Maninagar, Ahmedabad",
+    "phone": "079 2546 1234",
+    "lat": 22.9950,
+    "lng": 72.6050
+  },
+  {
+    "id": 420,
+    "name": "Dr. Anand Vaishnav (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Shalby Hospitals, S.G. Highway, Ahmedabad",
+    "phone": "079 4020 3000",
+    "lat": 23.0125,
+    "lng": 72.5025
+  },
+  {
+    "id": 421,
+    "name": "Dr. Vikram I. Shah (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "Shalby Hospitals, S.G. Highway, Ahmedabad",
+    "phone": "079 4020 3000",
+    "lat": 23.0125,
+    "lng": 72.5025
+  },
+  {
+    "id": 422,
+    "name": "Dr. Saurin Dalal (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Apollo Hospitals, Ahmedabad",
+    "phone": "079 6670 1800",
+    "lat": 23.1118,
+    "lng": 72.5986
+  },
+  {
+    "id": 423,
+    "name": "Life Care Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ghatlodia, Ahmedabad",
+    "phone": "079 2766 1234",
+    "lat": 23.0700,
+    "lng": 72.5400
+  },
+  {
+    "id": 424,
+    "name": "Dr. Bela Shah (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Civil Hospital, Ahmedabad",
+    "phone": "079 2268 3721",
+    "lat": 23.0580,
+    "lng": 72.6050
+  },
+  {
+    "id": 425,
+    "name": "Krishna Heart and Super Speciality Institute",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ghod Dod Road, Ahmedabad",
+    "phone": "079 2212 1234",
+    "lat": 23.0150,
+    "lng": 72.5950
+  },
+  {
+    "id": 426,
+    "name": "Dr. Hemant Bhatt (Urologist)",
+    "specialty": "Urology",
+    "address": "Sterling Hospitals, Ahmedabad",
+    "phone": "079 4001 1111",
+    "lat": 23.0427,
+    "lng": 72.5303
+  },
+  {
+    "id": 427,
+    "name": "Sardar Vallabhbhai Patel Institute of Medical Sciences",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ellisbridge, Ahmedabad",
+    "phone": "079 2658 1234",
+    "lat": 23.0200,
+    "lng": 72.5700
+  },
+  {
+    "id": 428,
+    "name": "Dr. Manish Doshi (Oncologist)",
+    "specialty": "Oncology",
+    "address": "HCG Cancer Centre, Ahmedabad",
+    "phone": "079 4001 0101",
+    "lat": 23.0300,
+    "lng": 72.5650
+  },
+  {
+    "id": 429,
+    "name": "Dr. B. K. Patel (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Patel Skin Clinic, Paldi, Ahmedabad",
+    "phone": "079 2657 1234",
+    "lat": 23.0100,
+    "lng": 72.5650
+  },
+  {
+    "id": 430,
+    "name": "Pooja Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Vastrapur, Ahmedabad",
+    "phone": "079 2674 1234",
+    "lat": 23.0330,
+    "lng": 72.5230
+  },
+  {
+    "id": 431,
+    "name": "Dr. Sameer Dani (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "CIMS Hospital, Ahmedabad",
+    "phone": "079 3010 1200",
+    "lat": 23.0680,
+    "lng": 72.5200
+  },
+  {
+    "id": 432,
+    "name": "Dr. Pragnesh Wadhwani (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Wadhwani Superspeciality Clinic, Ahmedabad",
+    "phone": "098240 12345",
+    "lat": 23.0250,
+    "lng": 72.5250
+  },
+  {
+    "id": 433,
+    "name": "Kiran Super Multispeciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Vasta Devdi Road, Katargam, Surat",
+    "phone": "0261 716 1111",
+    "lat": 21.2222,
+    "lng": 72.8444
+  },
+  {
+    "id": 434,
+    "name": "Sunshine Global Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Near Circuit House, Athwalines, Surat",
+    "phone": "0261 400 4000",
+    "lat": 21.1730,
+    "lng": 72.8050
+  },
+  {
+    "id": 435,
+    "name": "Mahavir Super Speciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Athwalines, Surat",
+    "phone": "0261 225 5555",
+    "lat": 21.1720,
+    "lng": 72.8000
+  },
+  {
+    "id": 436,
+    "name": "Wockhardt Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Udhna Magdalla Road, Surat",
+    "phone": "0261 612 4444",
+    "lat": 21.1550,
+    "lng": 72.7850
+  },
+  {
+    "id": 437,
+    "name": "Dr. Anish S. Shah (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Revival Laser, Skin & Hair Clinic, Adajan, Surat",
+    "phone": "098251 12345",
+    "lat": 21.1900,
+    "lng": 72.7900
+  },
+  {
+    "id": 438,
+    "name": "Dr. Paresh Zanzmera (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sunshine Global Hospitals, Surat",
+    "phone": "0261 400 4000",
+    "lat": 21.1730,
+    "lng": 72.8050
+  },
+  {
+    "id": 439,
+    "name": "Apple Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Udhna Darwaja, Ring Road, Surat",
+    "phone": "0261 235 5555",
+    "lat": 21.1850,
+    "lng": 72.8250
+  },
+  {
+    "id": 440,
+    "name": "Dr. Hasmukh R. Patel (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Kiran Super Multispeciality Hospital, Surat",
+    "phone": "0261 716 1111",
+    "lat": 21.2222,
+    "lng": 72.8444
+  },
+  {
+    "id": 441,
+    "name": "Dr. Jagdish Sakhiya (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Sakhiya Skin Clinic, Vesu, Surat",
+    "phone": "1800 120 0757",
+    "lat": 21.1400,
+    "lng": 72.7800
+  },
+  {
+    "id": 442,
+    "name": "Unicare Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Adajan, Surat",
+    "phone": "0261 278 1234",
+    "lat": 21.1920,
+    "lng": 72.7920
+  },
+  {
+    "id": 443,
+    "name": "Dr. Samir Gami (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Gami Chest Hospital, Majura Gate, Surat",
+    "phone": "0261 247 1234",
+    "lat": 21.1800,
+    "lng": 72.8100
+  },
+  {
+    "id": 444,
+    "name": "Dr. Mehul C. Choksi (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Choksi Skin Clinic, Nanpura, Surat",
+    "phone": "0261 246 1234",
+    "lat": 21.1880,
+    "lng": 72.8180
+  },
+  {
+    "id": 445,
+    "name": "Ayush Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Rander Road, Surat",
+    "phone": "0261 278 8888",
+    "lat": 21.2000,
+    "lng": 72.7800
+  },
+  {
+    "id": 446,
+    "name": "Dr. Naimesh Patel (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Mahavir Super Speciality Hospital, Surat",
+    "phone": "0261 225 5555",
+    "lat": 21.1720,
+    "lng": 72.8000
+  },
+  {
+    "id": 447,
+    "name": "Venus Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Varachha Road, Surat",
+    "phone": "0261 254 1234",
+    "lat": 21.2150,
+    "lng": 72.8650
+  },
+  {
+    "id": 448,
+    "name": "Dr. Atul Kanpara (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Kanpara Skin Clinic, Katargam, Surat",
+    "phone": "098251 23456",
+    "lat": 21.2200,
+    "lng": 72.8400
+  },
+  {
+    "id": 449,
+    "name": "New Civil Hospital, Surat",
+    "specialty": "Government Hospital",
+    "address": "Majura Gate, Surat",
+    "phone": "0261 224 4584",
+    "lat": 21.1820,
+    "lng": 72.8120
+  },
+  {
+    "id": 450,
+    "name": "Dr. Sudhir Bhanderi (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Wockhardt Hospitals, Surat",
+    "phone": "0261 612 4444",
+    "lat": 21.1550,
+    "lng": 72.7850
+  },
+  {
+    "id": 451,
+    "name": "Ashutosh Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Majura Gate, Surat",
+    "phone": "0261 247 0000",
+    "lat": 21.1810,
+    "lng": 72.8110
+  },
+  {
+    "id": 452,
+    "name": "Dr. Atul Shah (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Shree B.D. Mehta Mahavir Heart Institute, Surat",
+    "phone": "0261 225 1234",
+    "lat": 21.1710,
+    "lng": 72.7990
+  },
+  {
+    "id": 453,
+    "name": "Dr. Sanjay Desai (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Desai Skin Clinic, Ghod Dod Road, Surat",
+    "phone": "0261 266 1234",
+    "lat": 21.1650,
+    "lng": 72.7950
+  },
+  {
+    "id": 454,
+    "name": "Global Sunshine Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Adajan, Surat",
+    "phone": "0261 279 1234",
+    "lat": 21.1910,
+    "lng": 72.7910
+  },
+  {
+    "id": 455,
+    "name": "Dr. Ketul Shah (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Kiran Super Multispeciality Hospital, Surat",
+    "phone": "0261 716 1111",
+    "lat": 21.2222,
+    "lng": 72.8444
+  },
+  {
+    "id": 456,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Ghod Dod Road, Surat",
+    "phone": "1800 209 5292",
+    "lat": 21.1660,
+    "lng": 72.7960
+  },
+  {
+    "id": 457,
+    "name": "P.P. Savani Heart Institute",
+    "specialty": "Cardiology",
+    "address": "Varachha, Surat",
+    "phone": "0261 257 1234",
+    "lat": 21.2160,
+    "lng": 72.8660
+  },
+  {
+    "id": 458,
+    "name": "Dr. Rakesh Prajapati (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Sunshine Global Hospitals, Surat",
+    "phone": "0261 400 4000",
+    "lat": 21.1730,
+    "lng": 72.8050
+  },
+  {
+    "id": 459,
+    "name": "Dr. Jigar Parekh (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Parekh Neurology Hospital, Surat",
+    "phone": "098251 34567",
+    "lat": 21.1780,
+    "lng": 72.8080
+  },
+  {
+    "id": 460,
+    "name": "Bharat Cancer Hospital & Research Institute",
+    "specialty": "Oncology",
+    "address": "Saroli, Surat",
+    "phone": "0261 291 1234",
+    "lat": 21.1700,
+    "lng": 72.8800
+  },
+  {
+    "id": 461,
+    "name": "Dr. Pradip Kansagra (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Wockhardt Hospitals, Surat",
+    "phone": "0261 612 4444",
+    "lat": 21.1550,
+    "lng": 72.7850
+  },
+  {
+    "id": 462,
+    "name": "Shree Ramkrishna Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Udhna, Surat",
+    "phone": "0261 289 1234",
+    "lat": 21.1600,
+    "lng": 72.8300
+  },
+  {
+    "id": 463,
+    "name": "Dr. Sanjiv Vasa (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Vasa Skin & Laser Clinic, Athwalines, Surat",
+    "phone": "0261 225 1234",
+    "lat": 21.1700,
+    "lng": 72.8020
+  },
+  {
+    "id": 464,
+    "name": "Dr. Kamlesh Doshi (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Doshi Chest Clinic, Ring Road, Surat",
+    "phone": "098251 45678",
+    "lat": 21.1860,
+    "lng": 72.8260
+  },
+  {
+    "id": 465,
+    "name": "Tristar Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Athwagate, Surat",
+    "phone": "0261 246 1234",
+    "lat": 21.1830,
+    "lng": 72.8130
+  },
+  {
+    "id": 466,
+    "name": "Dr. J.K. Patel (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Mahavir Super Speciality Hospital, Surat",
+    "phone": "0261 225 5555",
+    "lat": 21.1720,
+    "lng": 72.8000
+  },
+  {
+    "id": 467,
+    "name": "Metas Adventist Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Athwalines, Surat",
+    "phone": "0261 220 5000",
+    "lat": 21.1740,
+    "lng": 72.8060
+  },
+  {
+    "id": 468,
+    "name": "Dr. Ashish Golwala (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Apple Hospital, Ring Road, Surat",
+    "phone": "0261 235 5555",
+    "lat": 21.1850,
+    "lng": 72.8250
+  },
+  {
+    "id": 469,
+    "name": "Dr. Gaurav Chavda (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "Kiran Super Multispeciality Hospital, Surat",
+    "phone": "0261 716 1111",
+    "lat": 21.2222,
+    "lng": 72.8444
+  },
+  {
+    "id": 470,
+    "name": "Dr. Chetan Patel (Urologist)",
+    "specialty": "Urology",
+    "address": "Sunshine Global Hospitals, Surat",
+    "phone": "0261 400 4000",
+    "lat": 21.1730,
+    "lng": 72.8050
+  },
+  {
+    "id": 471,
+    "name": "Unique Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Majura Gate, Surat",
+    "phone": "0261 246 1234",
+    "lat": 21.1840,
+    "lng": 72.8140
+  },
+  {
+    "id": 472,
+    "name": "Dr. Ketan Desai (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Surat Skin Centre, Nanpura, Surat",
+    "phone": "0261 247 1234",
+    "lat": 21.1890,
+    "lng": 72.8190
+  },
+  {
+    "id": 473,
+    "name": "Sita Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Udhna, Surat",
+    "phone": "0261 227 1234",
+    "lat": 21.1620,
+    "lng": 72.8320
+  },
+  {
+    "id": 474,
+    "name": "Dr. Rajan Modi (Gastroenterologist)",
+    "specialty": "Gastroenterologist",
+    "address": "Wockhardt Hospitals, Surat",
+    "phone": "0261 612 4444",
+    "lat": 21.1550,
+    "lng": 72.7850
+  },
+  {
+    "id": 475,
+    "name": "Amruta Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Varachha, Surat",
+    "phone": "0261 255 1234",
+    "lat": 21.2170,
+    "lng": 72.8670
+  },
+  {
+    "id": 476,
+    "name": "Dr. Jayesh Shah (General Physician)",
+    "specialty": "General Physician",
+    "address": "Shah Clinic, Rander, Surat",
+    "phone": "0261 276 1234",
+    "lat": 21.2010,
+    "lng": 72.7810
+  },
+  {
+    "id": 477,
+    "name": "SMIMER Hospital",
+    "specialty": "Government Hospital",
+    "address": "Umarwada, Surat",
+    "phone": "0261 224 4026",
+    "lat": 21.2050,
+    "lng": 72.8550
+  },
+  {
+    "id": 478,
+    "name": "Dr. Mitesh Sharma (Oncologist)",
+    "specialty": "Oncology",
+    "address": "Kiran Super Multispeciality Hospital, Surat",
+    "phone": "0261 716 1111",
+    "lat": 21.2222,
+    "lng": 72.8444
+  },
+  {
+    "id": 479,
+    "name": "Vibhuti Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Piplod, Surat",
+    "phone": "0261 222 1234",
+    "lat": 21.1500,
+    "lng": 72.7800
+  },
+  {
+    "id": 480,
+    "name": "Dr. Anil P. Desai (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Mahavir Super Speciality Hospital, Surat",
+    "phone": "0261 225 5555",
+    "lat": 21.1720,
+    "lng": 72.8000
+  },
+  {
+    "id": 481,
+    "name": "Sterling Hospitals, Vadodara",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Race Course Circle, Vadodara",
+    "phone": "0265 235 5050",
+    "lat": 22.3080,
+    "lng": 73.1680
+  },
+  {
+    "id": 482,
+    "name": "Sunshine Global Hospitals, Vadodara",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Near Golden Chowkdi, Vadodara",
+    "phone": "0265 617 0000",
+    "lat": 22.3400,
+    "lng": 73.2200
+  },
+  {
+    "id": 483,
+    "name": "Bankers Heart Institute",
+    "specialty": "Cardiology",
+    "address": "Old Padra Road, Vadodara",
+    "phone": "0265 233 4455",
+    "lat": 22.3000,
+    "lng": 73.1600
+  },
+  {
+    "id": 484,
+    "name": "Dr. Yogesh Patel (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Aura Skin Clinic, Alkapuri, Vadodara",
+    "phone": "098251 12345",
+    "lat": 22.3150,
+    "lng": 73.1700
+  },
+  {
+    "id": 485,
+    "name": "Dr. Pratik Shah (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sterling Hospitals, Vadodara",
+    "phone": "0265 235 5050",
+    "lat": 22.3080,
+    "lng": 73.1680
+  },
+  {
+    "id": 486,
+    "name": "Bhailal Amin General Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Gorwa, Vadodara",
+    "phone": "0265 228 1234",
+    "lat": 22.3200,
+    "lng": 73.1500
+  },
+  {
+    "id": 487,
+    "name": "Global Baroda Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Manjalpur, Vadodara",
+    "phone": "0265 264 1234",
+    "lat": 22.2700,
+    "lng": 73.1800
+  },
+  {
+    "id": 488,
+    "name": "Dr. Sanjiv Haribhakti (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sunshine Global Hospitals, Vadodara",
+    "phone": "0265 617 0000",
+    "lat": 22.3400,
+    "lng": 73.2200
+  },
+  {
+    "id": 489,
+    "name": "Dr. Chetan N. Patel (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Chetan Skin Clinic, Raopura, Vadodara",
+    "phone": "0265 242 1234",
+    "lat": 22.3000,
+    "lng": 73.2000
+  },
+  {
+    "id": 490,
+    "name": "SSG Hospital",
+    "specialty": "Government Hospital",
+    "address": "Raopura, Vadodara",
+    "phone": "0265 242 4242",
+    "lat": 22.3010,
+    "lng": 73.2010
+  },
+  {
+    "id": 491,
+    "name": "Dr. Paresh Patel (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Bankers Heart Institute, Vadodara",
+    "phone": "0265 233 4455",
+    "lat": 22.3000,
+    "lng": 73.1600
+  },
+  {
+    "id": 492,
+    "name": "Dr. Mukesh Shah (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Mukesh Skin Clinic, Karelibaug, Vadodara",
+    "phone": "0265 248 1234",
+    "lat": 22.3250,
+    "lng": 73.2050
+  },
+  {
+    "id": 493,
+    "name": "Metro Hospital & Research Institute",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Karelibaug, Vadodara",
+    "phone": "0265 249 1234",
+    "lat": 22.3260,
+    "lng": 73.2060
+  },
+  {
+    "id": 494,
+    "name": "Dr. Viral Shah (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Shah Neurology Clinic, Alkapuri, Vadodara",
+    "phone": "098250 23456",
+    "lat": 22.3160,
+    "lng": 73.1710
+  },
+  {
+    "id": 495,
+    "name": "Parul Sevashram Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Waghodia Road, Vadodara",
+    "phone": "0265 251 1234",
+    "lat": 22.3100,
+    "lng": 73.2300
+  },
+  {
+    "id": 496,
+    "name": "Kaya Skin Clinic",
+    "specialty": "Dermatologist",
+    "address": "Alkapuri, Vadodara",
+    "phone": "1800 209 5292",
+    "lat": 22.3170,
+    "lng": 73.1720
+  },
+  {
+    "id": 497,
+    "name": "Welcare Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Atladara, Vadodara",
+    "phone": "0265 268 1234",
+    "lat": 22.2750,
+    "lng": 73.1650
+  },
+  {
+    "id": 498,
+    "name": "Dr. Tejas K. Patel (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Sterling Hospitals, Vadodara",
+    "phone": "0265 235 5050",
+    "lat": 22.3080,
+    "lng": 73.1680
+  },
+  {
+    "id": 499,
+    "name": "Spandan Multispeciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Manjalpur, Vadodara",
+    "phone": "0265 265 1234",
+    "lat": 22.2710,
+    "lng": 73.1810
+  },
+  {
+    "id": 500,
+    "name": "Dr. Darshan Shah (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Darshan Skin Clinic, Nizampura, Vadodara",
+    "phone": "098251 34567",
+    "lat": 22.3300,
+    "lng": 73.1800
+  },
+  {
+    "id": 501,
+    "name": "Dr. Shailesh Shah (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Sunshine Global Hospitals, Vadodara",
+    "phone": "0265 617 0000",
+    "lat": 22.3400,
+    "lng": 73.2200
+  },
+  {
+    "id": 502,
+    "name": "Isha Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Dandia Bazar, Vadodara",
+    "phone": "0265 241 1234",
+    "lat": 22.2900,
+    "lng": 73.2000
+  },
+  {
+    "id": 503,
+    "name": "Baroda Heart Institute & Research Centre",
+    "specialty": "Cardiology",
+    "address": "Akota, Vadodara",
+    "phone": "0265 232 1234",
+    "lat": 22.2950,
+    "lng": 73.1650
+  },
+  {
+    "id": 504,
+    "name": "Dr. Mukesh Bambhania (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Sterling Hospitals, Vadodara",
+    "phone": "0265 235 5050",
+    "lat": 22.3080,
+    "lng": 73.1680
+  },
+  {
+    "id": 505,
+    "name": "Pramukhswami Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Akota, Vadodara",
+    "phone": "0265 234 1234",
+    "lat": 22.2960,
+    "lng": 73.1660
+  },
+  {
+    "id": 506,
+    "name": "Dr. Keyur Buch (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Bhailal Amin General Hospital, Vadodara",
+    "phone": "0265 228 1234",
+    "lat": 22.3200,
+    "lng": 73.1500
+  },
+  {
+    "id": 507,
+    "name": "Savita Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Gotri, Vadodara",
+    "phone": "0265 239 1234",
+    "lat": 22.3050,
+    "lng": 73.1450
+  },
+  {
+    "id": 508,
+    "name": "Dr. Anil Shah (Urologist)",
+    "specialty": "Urology",
+    "address": "Sterling Hospitals, Vadodara",
+    "phone": "0265 235 5050",
+    "lat": 22.3080,
+    "lng": 73.1680
+  },
+  {
+    "id": 509,
+    "name": "Yogini Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sama-Savli Road, Vadodara",
+    "phone": "0265 277 1234",
+    "lat": 22.3450,
+    "lng": 73.1950
+  },
+  {
+    "id": 510,
+    "name": "Dr. Rakesh Bhatt (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Bhatt Skin Clinic, Fateganj, Vadodara",
+    "phone": "0265 278 1234",
+    "lat": 22.3300,
+    "lng": 73.1900
+  },
+  {
+    "id": 511,
+    "name": "Dr. Hemang Dixit (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Bhailal Amin General Hospital, Vadodara",
+    "phone": "0265 228 1234",
+    "lat": 22.3200,
+    "lng": 73.1500
+  },
+  {
+    "id": 512,
+    "name": "Gujarat Kidney Hospital",
+    "specialty": "Nephrology & Urology",
+    "address": "Gotri, Vadodara",
+    "phone": "0265 238 1234",
+    "lat": 22.3060,
+    "lng": 73.1460
+  },
+  {
+    "id": 513,
+    "name": "Dr. K.C. Jain (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "SSG Hospital, Vadodara",
+    "phone": "0265 242 4242",
+    "lat": 22.3010,
+    "lng": 73.2010
+  },
+  {
+    "id": 514,
+    "name": "Shreeji Hospital & Trauma Center",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Waghodia Road, Vadodara",
+    "phone": "0265 252 1234",
+    "lat": 22.3110,
+    "lng": 73.2310
+  },
+  {
+    "id": 515,
+    "name": "Dr. Satish Pandya (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Pandya Neuro Clinic, Vadodara",
+    "phone": "0265 233 1234",
+    "lat": 22.3050,
+    "lng": 73.1750
+  },
+  {
+    "id": 516,
+    "name": "Zydus Hospital, Vadodara",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Kalali, Vadodara",
+    "phone": "0265 330 0330",
+    "lat": 22.2800,
+    "lng": 73.1500
+  },
+  {
+    "id": 517,
+    "name": "Dr. Rakesh Shah (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Bankers Heart Institute, Vadodara",
+    "phone": "0265 233 4455",
+    "lat": 22.3000,
+    "lng": 73.1600
+  },
+  {
+    "id": 518,
+    "name": "Shubhechha Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Akota, Vadodara",
+    "phone": "0265 235 1234",
+    "lat": 22.2970,
+    "lng": 73.1670
+  },
+  {
+    "id": 519,
+    "name": "Dr. Hitesh Shah (Oncologist)",
+    "specialty": "Oncology",
+    "address": "HCG Cancer Centre, Vadodara",
+    "phone": "0265 235 1234",
+    "lat": 22.3090,
+    "lng": 73.1690
+  },
+  {
+    "id": 520,
+    "name": "Dr. Alpesh Patel (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Patel Skin & Hair Clinic, Manjalpur, Vadodara",
+    "phone": "098251 45678",
+    "lat": 22.2720,
+    "lng": 73.1820
+  },
+  {
+    "id": 521,
+    "name": "Rhythm Heart Institute",
+    "specialty": "Cardiology",
+    "address": "Old Padra Road, Vadodara",
+    "phone": "0265 234 1234",
+    "lat": 22.3010,
+    "lng": 73.1610
+  },
+  {
+    "id": 522,
+    "name": "Dr. Rajan Joshi (Gastroenterologist)",
+    "specialty": "Gastroenterologist",
+    "address": "Sunshine Global Hospitals, Vadodara",
+    "phone": "0265 617 0000",
+    "lat": 22.3400,
+    "lng": 73.2200
+  },
+  {
+    "id": 523,
+    "name": "Premdas Jalaram Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Dandia Bazar, Vadodara",
+    "phone": "0265 243 1234",
+    "lat": 22.2910,
+    "lng": 73.2010
+  },
+  {
+    "id": 524,
+    "name": "Dr. Shrenik Shah (General Physician)",
+    "specialty": "General Physician",
+    "address": "Shah Clinic, Ellora Park, Vadodara",
+    "phone": "0265 239 1234",
+    "lat": 22.3100,
+    "lng": 73.1500
+  },
+  {
+    "id": 525,
+    "name": "Bankers Heart & Multispeciality Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Waghodia Road, Vadodara",
+    "phone": "0265 251 1234",
+    "lat": 22.3120,
+    "lng": 73.2320
+  },
+  {
+    "id": 526,
+    "name": "Dr. Manish Banker (IVF Specialist)",
+    "specialty": "IVF & Infertility",
+    "address": "Nova IVF Fertility, Sayajigunj, Vadodara",
+    "phone": "0265 236 1234",
+    "lat": 22.3180,
+    "lng": 73.1880
+  },
+  {
+    "id": 527,
+    "name": "Gokul Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Nizampura, Vadodara",
+    "phone": "0265 279 1234",
+    "lat": 22.3310,
+    "lng": 73.1810
+  },
+  {
+    "id": 528,
+    "name": "Dr. Tarak Patel (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Baroda Heart Institute, Akota, Vadodara",
+    "phone": "0265 232 1234",
+    "lat": 22.2950,
+    "lng": 73.1650
+  },
+  {
+    "id": 529,
+    "name": "Paras Hospitals, Udaipur",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 4, Hiran Magri, Udaipur",
+    "phone": "0294 660 0000",
+    "lat": 24.5500,
+    "lng": 73.7200
+  },
+  {
+    "id": 530,
+    "name": "Geetanjali Medical College & Hospital",
+    "specialty": "Medical College & Hospital",
+    "address": "Hiran Magri Extension, Manwakhera, Udaipur",
+    "phone": "0294 250 0000",
+    "lat": 24.5300,
+    "lng": 73.7400
+  },
+  {
+    "id": 531,
+    "name": "GBH American Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Kothari Bagh, Udaipur",
+    "phone": "0294 242 4444",
+    "lat": 24.5700,
+    "lng": 73.6900
+  },
+  {
+    "id": 532,
+    "name": "Dr. Atulabh Vajpayee (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Geetanjali Medical College, Udaipur",
+    "phone": "0294 250 0000",
+    "lat": 24.5300,
+    "lng": 73.7400
+  },
+  {
+    "id": 533,
+    "name": "Dr. Sandeep Kumar (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Derma Care Clinic, Sector 11, Udaipur",
+    "phone": "098290 12345",
+    "lat": 24.5600,
+    "lng": 73.7300
+  },
+  {
+    "id": 534,
+    "name": "Pacific Medical College & Hospital",
+    "specialty": "Medical College & Hospital",
+    "address": "Bhilon Ka Bedla, Pratap Pura, Udaipur",
+    "phone": "0294 305 1111",
+    "lat": 24.6800,
+    "lng": 73.7500
+  },
+  {
+    "id": 535,
+    "name": "Alakh Nayan Mandir Eye Institute",
+    "specialty": "Ophthalmology",
+    "address": "Ashok Nagar, Udaipur",
+    "phone": "0294 242 1234",
+    "lat": 24.5800,
+    "lng": 73.6950
+  },
+  {
+    "id": 536,
+    "name": "Dr. Sushil K. Kothari (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "GBH American Hospital, Udaipur",
+    "phone": "0294 242 4444",
+    "lat": 24.5700,
+    "lng": 73.6900
+  },
+  {
+    "id": 537,
+    "name": "Aravali Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ambamata, Udaipur",
+    "phone": "0294 243 1234",
+    "lat": 24.6000,
+    "lng": 73.6800
+  },
+  {
+    "id": 538,
+    "name": "Dr. I. P. Pachori (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Pachori Skin Clinic, Durga Nursery Road, Udaipur",
+    "phone": "0294 241 1234",
+    "lat": 24.5750,
+    "lng": 73.6980
+  },
+  {
+    "id": 539,
+    "name": "Mewar Hospital",
+    "specialty": "Multi-Specialty (Orthopedics)",
+    "address": "Sector 4, Hiran Magri, Udaipur",
+    "phone": "0294 246 1234",
+    "lat": 24.5510,
+    "lng": 73.7210
+  },
+  {
+    "id": 540,
+    "name": "Dr. Kapil Bhargava (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Paras Hospitals, Udaipur",
+    "phone": "0294 660 0000",
+    "lat": 24.5500,
+    "lng": 73.7200
+  },
+  {
+    "id": 541,
+    "name": "Dr. Arun L. Gupta (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "Geetanjali Medical College, Udaipur",
+    "phone": "0294 250 0000",
+    "lat": 24.5300,
+    "lng": 73.7400
+  },
+  {
+    "id": 542,
+    "name": "Ananta Institute of Medical Sciences",
+    "specialty": "Medical College & Hospital",
+    "address": "Rajsamand, Udaipur",
+    "phone": "02952 291 234",
+    "lat": 25.0600,
+    "lng": 73.8800
+  },
+  {
+    "id": 543,
+    "name": "Dr. Amit Khandelwal (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Khandelwal Skin Centre, Udaipur",
+    "phone": "098292 12345",
+    "lat": 24.5850,
+    "lng": 73.7050
+  },
+  {
+    "id": 544,
+    "name": "Dr. Tarun Choudhary (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "GBH American Hospital, Udaipur",
+    "phone": "0294 242 4444",
+    "lat": 24.5700,
+    "lng": 73.6900
+  },
+  {
+    "id": 545,
+    "name": "Chaudhary Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 3, Hiran Magri, Udaipur",
+    "phone": "0294 246 1234",
+    "lat": 24.5520,
+    "lng": 73.7180
+  },
+  {
+    "id": 546,
+    "name": "RNT Medical College",
+    "specialty": "Medical College & Hospital",
+    "address": "Hospital Road, Udaipur",
+    "phone": "0294 252 8811",
+    "lat": 24.5820,
+    "lng": 73.6880
+  },
+  {
+    "id": 547,
+    "name": "Dr. Shweta Agarwal (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Paras Hospitals, Udaipur",
+    "phone": "0294 660 0000",
+    "lat": 24.5500,
+    "lng": 73.7200
+  },
+  {
+    "id": 548,
+    "name": "Sparsh Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Navratan Complex, Udaipur",
+    "phone": "0294 248 1234",
+    "lat": 24.5880,
+    "lng": 73.7100
+  },
+  {
+    "id": 549,
+    "name": "Dr. Vitthal Sharma (Radiologist)",
+    "specialty": "Radiology",
+    "address": "Geetanjali Medical College, Udaipur",
+    "phone": "0294 250 0000",
+    "lat": 24.5300,
+    "lng": 73.7400
+  },
+  {
+    "id": 550,
+    "name": "Pannadhay Rajkiya Mahila Chikitsalaya",
+    "specialty": "Women's Hospital",
+    "address": "Hospital Road, Udaipur",
+    "phone": "0294 252 1234",
+    "lat": 24.5830,
+    "lng": 73.6890
+  },
+  {
+    "id": 551,
+    "name": "Dr. Deepak Selot (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Selot Skin Clinic, Bhuwana, Udaipur",
+    "phone": "094141 12345",
+    "lat": 24.6100,
+    "lng": 73.7100
+  },
+  {
+    "id": 552,
+    "name": "Dr. Manish Kulshrestha (Orthopedics)",
+    "specialty": "Orthopedics",
+    "address": "Mewar Hospital, Udaipur",
+    "phone": "0294 246 1234",
+    "lat": 24.5510,
+    "lng": 73.7210
+  },
+  {
+    "id": 553,
+    "name": "C.P.S. Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Bhopalpura, Udaipur",
+    "phone": "0294 241 1234",
+    "lat": 24.5780,
+    "lng": 73.7000
+  },
+  {
+    "id": 554,
+    "name": "Dr. Amit Gupta (Urologist)",
+    "specialty": "Urology",
+    "address": "GBH American Hospital, Udaipur",
+    "phone": "0294 242 4444",
+    "lat": 24.5700,
+    "lng": 73.6900
+  },
+  {
+    "id": 555,
+    "name": "Shalby Hospital, Udaipur",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 5, Hiran Magri, Udaipur",
+    "phone": "0294 246 1234",
+    "lat": 24.5530,
+    "lng": 73.7230
+  },
+  {
+    "id": 556,
+    "name": "Dr. Gaurav Gupta (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Udaipur Neuro Clinic, Udaipur",
+    "phone": "098291 23456",
+    "lat": 24.5720,
+    "lng": 73.6920
+  },
+  {
+    "id": 557,
+    "name": "G. B. H. General Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Bedla Road, Udaipur",
+    "phone": "0294 244 1234",
+    "lat": 24.6200,
+    "lng": 73.6900
+  },
+  {
+    "id": 558,
+    "name": "Dr. D. C. Kumawat (General Physician)",
+    "specialty": "General Physician",
+    "address": "RNT Medical College, Udaipur",
+    "phone": "0294 252 8811",
+    "lat": 24.5820,
+    "lng": 73.6880
+  },
+  {
+    "id": 559,
+    "name": "Heart & General Hospital",
+    "specialty": "Multi-Specialty (Heart)",
+    "address": "Sector 14, Hiran Magri, Udaipur",
+    "phone": "0294 248 1234",
+    "lat": 24.5650,
+    "lng": 73.7350
+  },
+  {
+    "id": 560,
+    "name": "Dr. Lalit Kumar Raiger (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "RNT Medical College, Udaipur",
+    "phone": "0294 252 8811",
+    "lat": 24.5820,
+    "lng": 73.6880
+  },
+  {
+    "id": 561,
+    "name": "Sanjivani Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "New Fatehpura, Udaipur",
+    "phone": "0294 245 1234",
+    "lat": 24.5950,
+    "lng": 73.6900
+  },
+  {
+    "id": 562,
+    "name": "Dr. S. K. Kaushik (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "GBH American Hospital, Udaipur",
+    "phone": "0294 242 4444",
+    "lat": 24.5700,
+    "lng": 73.6900
+  },
+  {
+    "id": 563,
+    "name": "Sarvodaya Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sector 9, Hiran Magri, Udaipur",
+    "phone": "0294 246 1234",
+    "lat": 24.5580,
+    "lng": 73.7280
+  },
+  {
+    "id": 564,
+    "name": "Dr. Mahendra Javali (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Geetanjali Medical College, Udaipur",
+    "phone": "0294 250 0000",
+    "lat": 24.5300,
+    "lng": 73.7400
+  },
+  {
+    "id": 565,
+    "name": "Lakecity Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "University Road, Udaipur",
+    "phone": "0294 247 1234",
+    "lat": 24.5890,
+    "lng": 73.7150
+  },
+  {
+    "id": 566,
+    "name": "Dr. Nitin B. Bhutada (Oncologist)",
+    "specialty": "Oncology",
+    "address": "American International Institute of Medical Sciences",
+    "phone": "0294 242 1234",
+    "lat": 24.5710,
+    "lng": 73.6910
+  },
+  {
+    "id": 567,
+    "name": "Maharana Bhupal Government Hospital",
+    "specialty": "Government Hospital",
+    "address": "Hospital Road, Udaipur",
+    "phone": "0294 252 1234",
+    "lat": 24.5810,
+    "lng": 73.6870
+  },
+  {
+    "id": 568,
+    "name": "Dr. Anjani Kumar Sharma (Gastroenterologist)",
+    "specialty": "Gastroenterologist",
+    "address": "Paras Hospitals, Udaipur",
+    "phone": "0294 660 0000",
+    "lat": 24.5500,
+    "lng": 73.7200
+  },
+  {
+    "id": 569,
+    "name": "Sunrise Group of Hospitals",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Manva Kheda, Udaipur",
+    "phone": "0294 246 1234",
+    "lat": 24.5350,
+    "lng": 73.7450
+  },
+  {
+    "id": 570,
+    "name": "Dr. Anil Kothari (Chest Physician)",
+    "specialty": "Chest Medicine",
+    "address": "RNT Medical College, Udaipur",
+    "phone": "0294 252 8811",
+    "lat": 24.5820,
+    "lng": 73.6880
+  },
+  {
+    "id": 571,
+    "name": "J. J. Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Savina, Udaipur",
+    "phone": "0294 248 1234",
+    "lat": 24.5400,
+    "lng": 73.7200
+  },
+  {
+    "id": 572,
+    "name": "Dr. Shilpi Kothari (Dermatologist)",
+    "specialty": "Dermatologist",
+    "address": "Kothari Skin Clinic, Udaipur",
+    "phone": "094141 23456",
+    "lat": 24.5760,
+    "lng": 73.6990
+  },
+  {
+    "id": 573,
+    "name": "Dr. Vinay Joshi (Cardiologist)",
+    "specialty": "Cardiology",
+    "address": "Geetanjali Medical College, Udaipur",
+    "phone": "0294 250 0000",
+    "lat": 24.5300,
+    "lng": 73.7400
+  },
+  {
+    "id": 574,
+    "name": "Kalpana Nursing Home",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Ashok Nagar, Udaipur",
+    "phone": "0294 252 1234",
+    "lat": 24.5810,
+    "lng": 73.6960
+  },
+  {
+    "id": 575,
+    "name": "Dr. Deepak Yardi (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Yardi Neuro Clinic, Udaipur",
+    "phone": "098290 34567",
+    "lat": 24.5730,
+    "lng": 73.6930
+  },
+  {
+    "id": 576,
+    "name": "PIMS Hospital (Pacific Institute of Medical Sciences)",
+    "specialty": "Medical College & Hospital",
+    "address": "Umarda, Udaipur",
+    "phone": "0294 306 1234",
+    "lat": 24.5200,
+    "lng": 73.7800
+  },
+  {
+    "id": 577,
     "name": "Manipal Hospital, Old Airport Road",
     "specialty": "Multi-Specialty Hospital (Radiology)",
-    "address": "98, HAL Old Airport Rd, Kodihalli, Bengaluru, Karnataka",
+    "address": "98, HAL Old Airport Rd, Kodihalli, Bengaluru",
     "phone": "1800 102 5555",
     "lat": 12.9603,
     "lng": 77.6535
   },
   {
-    "id": 39,
-    "name": "Dr. Divya Sharma's Skin & Hair Solutions",
-    "specialty": "Dermatologist",
-    "address": "5th Main Rd, HRBR Layout 2nd Block, Kalyan Nagar, Bengaluru",
-    "phone": "096206 38388",
-    "lat": 13.0169,
-    "lng": 77.6433
-  },
-  {
-    "id": 40,
+    "id": 578,
     "name": "Fortis Hospital, Bannerghatta Road",
     "specialty": "Multi-Specialty Hospital",
     "address": "154/9, Bannerghatta Road, Opposite IIM-B, Bengaluru",
@@ -360,16 +5202,16 @@
     "lng": 77.5964
   },
   {
-    "id": 41,
-    "name": "Dr. Niti Gaur (Citrine Clinic)",
-    "specialty": "Dermatologist",
-    "address": "Indiranagar, Bengaluru, Karnataka",
-    "phone": "096206 38388",
-    "lat": 12.9781,
-    "lng": 77.6408
+    "id": 579,
+    "name": "NIMHANS",
+    "specialty": "Neurology & Mental Health Hospital",
+    "address": "Hosur Road, Hombegowda Nagar, Bengaluru",
+    "phone": "080 2699 5000",
+    "lat": 12.9443,
+    "lng": 77.5938
   },
   {
-    "id": 42,
+    "id": 580,
     "name": "Sakra World Hospital",
     "specialty": "Multi-Specialty (Neurology, Radiology)",
     "address": "SY NO 52/2 & 52/3, Devarabeesanahalli, Varthur Hobli, Bengaluru",
@@ -378,25 +5220,16 @@
     "lng": 77.6920
   },
   {
-    "id": 43,
-    "name": "Dr. Karishma Kagodu (Kaesthetics)",
-    "specialty": "Plastic Surgeon & Dermatologist",
-    "address": "Jayanagar 9th Block, Bengaluru, Karnataka",
-    "phone": "099729 44477",
-    "lat": 12.9152,
-    "lng": 77.5879
+    "id": 581,
+    "name": "Dr. Divya Sharma's Skin & Hair Solutions",
+    "specialty": "Dermatologist",
+    "address": "5th Main Rd, HRBR Layout 2nd Block, Kalyan Nagar, Bengaluru",
+    "phone": "096206 38388",
+    "lat": 13.0169,
+    "lng": 77.6433
   },
   {
-    "id": 44,
-    "name": "Apollo Hospitals, Bannerghatta Road",
-    "specialty": "Multi-Specialty Hospital",
-    "address": "154/11, Bannerghatta Main Road, Bengaluru",
-    "phone": "080 2630 4050",
-    "lat": 12.8820,
-    "lng": 77.5970
-  },
-  {
-    "id": 45,
+    "id": 582,
     "name": "Dr. Guruprasad Hosurkar (Neurologist)",
     "specialty": "Neurologist",
     "address": "Manipal Hospital, Old Airport Road, Bengaluru",
@@ -405,16 +5238,16 @@
     "lng": 77.6535
   },
   {
-    "id": 46,
-    "name": "National Chest Hospital",
-    "specialty": "Chest & Respiratory Medicine",
-    "address": "8th Cross Rd, Indiranagar, Bengaluru",
-    "phone": "080 2528 1533",
-    "lat": 12.9734,
-    "lng": 77.6393
+    "id": 583,
+    "name": "Apollo Hospitals, Bannerghatta Road",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "154/11, Bannerghatta Main Road, Bengaluru",
+    "phone": "080 2630 4050",
+    "lat": 12.8820,
+    "lng": 77.5970
   },
   {
-    "id": 47,
+    "id": 584,
     "name": "Cutis Skin and Hair Clinic",
     "specialty": "Dermatologist",
     "address": "5/1, 4th Main Road, Kumarapark West, Bengaluru",
@@ -423,12 +5256,137 @@
     "lng": 77.5790
   },
   {
-    "id": 48,
-    "name": "Brain and Spine Centre, Apollo Hospital",
-    "specialty": "Neurology & Neurosurgery",
-    "address": "Seshadripuram, Bengaluru, Karnataka",
-    "phone": "080 4668 8888",
-    "lat": 12.9922,
-    "lng": 77.5746
-  }
-]
+    "id": 585,
+    "name": "Dr. R Raghunandan (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Sakra World Hospital, Devarabeesanahalli, Bengaluru",
+    "phone": "080 4969 4969",
+    "lat": 12.9350,
+    "lng": 77.6920
+  },
+  {
+    "id": 586,
+    "name": "St. John's Medical College Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "Sarjapur Road, Koramangala 2nd Block, Bengaluru",
+    "phone": "080 2206 5000",
+    "lat": 12.9333,
+    "lng": 77.6234
+  },
+  {
+    "id": 587,
+    "name": "National Chest Hospital",
+    "specialty": "Chest & Respiratory Medicine",
+    "address": "8th Cross Rd, Indiranagar, Bengaluru",
+    "phone": "080 2528 1533",
+    "lat": 12.9734,
+    "lng": 77.6393
+  },
+  {
+    "id": 588,
+    "name": "Dr. Karishma Kagodu (Kaesthetics)",
+    "specialty": "Plastic Surgeon & Dermatologist",
+    "address": "Jayanagar 9th Block, Bengaluru, Karnataka",
+    "phone": "099729 44477",
+    "lat": 12.9152,
+    "lng": 77.5879
+  },
+  {
+    "id": 589,
+    "name": "Columbia Asia Referral Hospital, Yeshwanthpur",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "26/4, Brigade Gateway, Malleshwaram West, Bengaluru",
+    "phone": "080 6165 6666",
+    "lat": 13.0118,
+    "lng": 77.5549
+  },
+  {
+    "id": 590,
+    "name": "Dr. P. Satishchandra (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Apollo Hospitals, Bannerghatta Road, Bengaluru",
+    "phone": "080 2630 4050",
+    "lat": 12.8820,
+    "lng": 77.5970
+  },
+  {
+    "id": 591,
+    "name": "Aster CMI Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "43/2, New Airport Road, NH 44, Hebbal, Bengaluru",
+    "phone": "080 4342 0100",
+    "lat": 13.0485,
+    "lng": 77.6010
+  },
+  {
+    "id": 592,
+    "name": "Kaya Skin Clinic, Indiranagar",
+    "specialty": "Dermatologist",
+    "address": "100 Feet Road, Indiranagar, Bengaluru",
+    "phone": "1800 209 5292",
+    "lat": 12.9719,
+    "lng": 77.6412
+  },
+  {
+    "id": 593,
+    "name": "Dr. Ravi Gopal Varma (Neurosurgeon)",
+    "specialty": "Neurosurgeon",
+    "address": "Aster CMI Hospital, Hebbal, Bengaluru",
+    "phone": "080 4342 0100",
+    "lat": 13.0485,
+    "lng": 77.6010
+  },
+  {
+    "id": 594,
+    "name": "Narayana Institute of Cardiac Sciences",
+    "specialty": "Multi-Specialty (Heart, Chest)",
+    "address": "258/A, Bommasandra Industrial Area, Anekal Taluk, Bengaluru",
+    "phone": "1860 208 0208",
+    "lat": 12.8277,
+    "lng": 77.6833
+  },
+  {
+    "id": 595,
+    "name": "Charma Skin & Hair Clinic",
+    "specialty": "Dermatologist",
+    "address": "Jayanagar, Bengaluru",
+    "phone": "080 2656 9310",
+    "lat": 12.9254,
+    "lng": 77.5878
+  },
+  {
+    "id": 596,
+    "name": "Dr. Muktha Pai (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "Fortis Hospital, Bannerghatta Road, Bengaluru",
+    "phone": "096633 67253",
+    "lat": 12.8833,
+    "lng": 77.5964
+  },
+  {
+    "id": 597,
+    "name": "Vikram Hospital",
+    "specialty": "Multi-Specialty Hospital",
+    "address": "71/1, Millers Road, Vasanth Nagar, Bengaluru",
+    "phone": "080 6122 2333",
+    "lat": 12.9899,
+    "lng": 77.5975
+  },
+  {
+    "id": 598,
+    "name": "Dr. H. V. Satish Babu (Pulmonologist)",
+    "specialty": "Chest Medicine",
+    "address": "Vikram Hospital, Millers Road, Bengaluru",
+    "phone": "080 6122 2333",
+    "lat": 12.9899,
+    "lng": 77.5975
+  },
+  {
+    "id": 599,
+    "name": "Dr. G. T. Subhas (Neurologist)",
+    "specialty": "Neurologist",
+    "address": "NIMHANS, Bengaluru",
+    "phone": "080 2699 5000",
+    "lat": 12.9443,
+    "lng": 77.5938
+  }]
