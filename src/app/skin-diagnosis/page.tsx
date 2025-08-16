@@ -909,23 +909,23 @@ const handleDownloadReport = () => {
         {/* Back Button - Renders only on Step 1 */}
         {currentStep === 1 && (
           <div className="absolute top-8 left-4">
-            <Button asChild variant="outline" className="flex items-center gap-2">
-              <Link href="/">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Home
-              </Link>
-            </Button>
-          </div>
+          <Button asChild variant="outline" className="flex items-center gap-2">
+            <Link href="/">
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+          </Button>
+        </div>
         )}
         {currentStep === 4 && (
-          <div className="absolute top-8 left-4">
-            <Button asChild variant="outline" className="flex items-center gap-2">
-              <Link href="/">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Home
-              </Link>
-            </Button>
-          </div>
+         <div className="absolute top-8 left-4">
+          <Button asChild variant="outline" className="flex items-center gap-2">
+            <Link href="/">
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+          </Button>
+        </div>
         )}
 
         <div className="text-center mb-8">
