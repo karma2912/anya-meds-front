@@ -56,7 +56,7 @@ const SignupPage = () => {
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
               <Stethoscope className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-blue-900">AnYa-Med</span>
+            <span className="text-2xl font-bold text-blue-900">AnYa-Meds</span>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mt-4">Create a Secure Account</h1>
           <p className="text-gray-600 mt-2">Get started by providing the details below.</p>
@@ -181,7 +181,7 @@ const SignupPage = () => {
           </div>
         </div>
         <p className="mt-8 text-center text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} AnYa-Med. All rights reserved.
+            &copy; {new Date().getFullYear()} AnYa-Meds. All rights reserved.
         </p>
       </div>
     </div>

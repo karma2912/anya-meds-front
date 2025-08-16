@@ -202,7 +202,7 @@ const Page = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
                 <Stethoscope className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-blue-900">AnYa-Med</span>
+              <span className="text-xl font-bold text-blue-900">AnYa-Meds</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
@@ -591,7 +591,7 @@ const Page = () => {
         <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">About AnYa-Med</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">About AnYa-Meds</h2>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Revolutionizing medical diagnostics through artificial intelligence
               </p>
@@ -669,7 +669,7 @@ const Page = () => {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
                   <Stethoscope className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold">AnYa-Med</span>
+                <span className="text-xl font-bold">AnYa-Meds</span>
               </div>
               <p className="text-gray-400">Revolutionizing medical diagnostics with AI. Created by Yash and Anam.</p>
             </div>
@@ -694,12 +694,12 @@ const Page = () => {
             <div className="md:col-span-2 lg:col-span-1">
               <h3 className="text-lg font-semibold mb-4">Disclaimer</h3>
               <p className="text-gray-400 text-sm">
-                AnYa-Med is intended to assist healthcare professionals and is not a replacement for clinical judgment. Always consult with qualified medical professionals for diagnosis and treatment.
+                AnYa-Meds is intended to assist healthcare professionals and is not a replacement for clinical judgment. Always consult with qualified medical professionals for diagnosis and treatment.
               </p>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date().getFullYear()} AnYa-Med. All rights reserved. Created by Yash and Anam.</p>
+            <p>&copy; {new Date().getFullYear()} AnYa-Meds. All rights reserved. Created by Yash and Anam.</p>
           </div>
         </div>
       </footer>

@@ -370,7 +370,7 @@ const handleDownloadReport = () => {
     doc.setFontSize(8);
     doc.setTextColor(...secondaryColor);
     doc.text(`Report generated on ${new Date().toLocaleString()}`, margin, doc.internal.pageSize.height - 10);
-    doc.text("AnYa Med - AI Diagnostic Systems", pageWidth - margin, doc.internal.pageSize.height - 10, { align: 'right' });
+    doc.text("AnYa Meds - AI Diagnostic Systems", pageWidth - margin, doc.internal.pageSize.height - 10, { align: 'right' });
     doc.text(`Page ${i} of ${pageCount}`, pageWidth / 2, doc.internal.pageSize.height - 10, { align: 'center' });
   }
 
@@ -931,7 +931,7 @@ const handleDownloadReport = () => {
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-2 flex items-center justify-center gap-3">
             <Bandage className="w-8 h-8" />
-            AnYa Skin System
+            AnYa-Meds Skin System
           </h1>
           <p className="text-gray-600 text-md sm:text-lg">CNN Model Dermatological Analysis Platform</p>
         </div>
