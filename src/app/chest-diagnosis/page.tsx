@@ -110,7 +110,7 @@ const DiagnosisPage = () => {
       const formData = new FormData();
       formData.append('image', imageFile); 
 
-      const res = await fetch('http://localhost:5000/api/chest', {
+      const res = await fetch('https://anya-med-backend.onrender.com/api/chest', {
         method: 'POST',
         body: formData,
       });

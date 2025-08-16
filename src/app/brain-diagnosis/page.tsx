@@ -116,7 +116,7 @@ const BrainDiagnosisPage = () => {
       formData.append('image', imageFile);
       formData.append('patientInfo', JSON.stringify(patientInfo));
 
-      const res = await fetch('http://localhost:5000/api/brain', {
+      const res = await fetch('https://anya-med-backend.onrender.com/api/brain', {
         method: 'POST',
         body: formData,
       });
