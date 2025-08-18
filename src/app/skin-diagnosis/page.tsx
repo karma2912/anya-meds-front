@@ -111,7 +111,7 @@ const SkinDiagnosisPage = () => {
       const formData = new FormData();
       formData.append('image', imageFile);
 
-      const res = await fetch('https://anya-med-backend.onrender.com/api/skin', {
+      const res = await fetch('http://localhost:5000/api/skin', {
         method: 'POST',
         body: formData,
       });

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anya-Meds - Disease Detection",
+  title: "AnYa-Meds - Disease Detection",
   description: "Created by Yash Rajak",
 };
 

@@ -45,6 +45,7 @@ const DiagnosisPage = () => {
     confidence: number;
     probabilities: { label: string; value: number }[];
     heatmap?: string;
+    ai_summary?: string;
   } | null>(null);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [apiError, setApiError] = useState<string | null>(null);
@@ -110,7 +111,7 @@ const DiagnosisPage = () => {
       const formData = new FormData();
       formData.append('image', imageFile); 
 
-      const res = await fetch('https://anya-med-backend.onrender.com/api/chest', {
+      const res = await fetch('http://localhost:5000/api/chest', {
         method: 'POST',
         body: formData,
       });
@@ -781,6 +782,21 @@ const handleDownloadReport = () => {
           </div>
         </CardContent>
       </Card>
+    {analysis?.ai_summary && (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-blue-600 flex items-center gap-2">
+            <FileText className="w-5 h-5" />
+            AI-Generated Summary
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-gray-700 leading-relaxed">
+            {analysis.ai_summary}
+          </p>
+        </CardContent>
+      </Card>
+    )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
