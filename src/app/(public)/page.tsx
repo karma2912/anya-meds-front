@@ -376,7 +376,7 @@ const Page = () => {
                 <button
                   type="button"
                   onClick={() => setActiveTab("chest")}
-                  className={`px-6 py-3 text-sm font-medium rounded-l-lg transition-colors duration-200 ${
+                  className={`px-6 py-3 text-sm font-medium rounded-l-lg transition-colors duration-200 hover:cursor-pointer ${
                     activeTab === "chest"
                       ? "bg-blue-600 text-white"
                       : "bg-white text-gray-700 hover:bg-gray-50"
@@ -390,7 +390,7 @@ const Page = () => {
                 <button
                   type="button"
                   onClick={() => setActiveTab("brain")}
-                  className={`px-6 py-3 text-sm font-medium transition-colors duration-200 ${
+                  className={`px-6 py-3 text-sm font-medium transition-colors duration-200 hover:cursor-pointer ${
                     activeTab === "brain"
                       ? "bg-purple-600 text-white"
                       : "bg-white text-gray-700 hover:bg-gray-50"
@@ -404,7 +404,7 @@ const Page = () => {
                 <button
                   type="button"
                   onClick={() => setActiveTab("skin")}
-                  className={`px-6 py-3 text-sm font-medium rounded-r-lg transition-colors duration-200 ${
+                  className={`px-6 py-3 text-sm font-medium rounded-r-lg transition-colors duration-200 hover:cursor-pointer ${
                     activeTab === "skin"
                       ? "bg-orange-600 text-white"
                       : "bg-white text-gray-700 hover:bg-gray-50"
@@ -567,10 +567,10 @@ const Page = () => {
                   <a
                     href={
                       activeTab === "chest"
-                        ? "/chest-diagnosis"
+                        ? "/analysis/chest"
                         : activeTab === "brain"
-                        ? "/brain-diagnosis"
-                        : "/skin-diagnosis"
+                        ? "/analysis/brain"
+                        : "/analysis/skin"
                     }
                     className={`w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white shadow-sm transition-colors duration-200 ${
                       activeTab === "chest"
