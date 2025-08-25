@@ -3,105 +3,82 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
+import { useRouter } from 'next/router';
 import { Stethoscope, Menu, X } from "lucide-react";
 
 const MarketingNavbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const router = useRouter();
+    const handleNavClick = (sectionId: string) => {
+    router.push(sectionId);
+    setIsMenuOpen(false); // Close menu on navigation
+  };
+    const navLinks = [
+    { href: "#home", label: "Home" },
+    { href: "#diagnostics", label: "Diagnostics" },
+    { href: "#performance", label: "Performance" },
+    { href: "#about", label: "About" },
+  ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-blue-100 shadow-sm">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-14">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-              <Stethoscope className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-blue-900">AnYa-Meds</span>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="/#home" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Home
+   <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <a
+              onClick={() => handleNavClick("#home")}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <Stethoscope className="h-7 w-7 text-blue-600" />
+              <span className="text-xl font-bold text-gray-800">
+                AnYa-Meds
+              </span>
             </a>
-            <a href="/#diagnostics" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Diagnostics
-            </a>
-            <a href="/#performance" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Performance
-            </a>
-            <a href="/#about" className="text-gray-700 hover:text-blue-600 transition-colors">
-              About
-            </a>
-            <Link href="/login" passHref>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex gap-1">
+              {navLinks.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-100 rounded-md transition-colors"
+                >
+                  {link.label}
+                </button>
+              ))}
+            </nav>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
               <Button
-                variant="outline"
-                className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                Sign In
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </Button>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-blue-100">
-            <div className="flex flex-col space-y-3">
-              <a
-                href="/#home"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </a>
-              <a
-                href="/#diagnostics"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Diagnostics
-              </a>
-              <a
-                href="/#performance"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Performance
-              </a>
-              <a
-                href="/#about"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </a>
-              <Link href="/login" passHref>
-                 <Button
-                    variant="outline"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-50 w-fit"
-                  >
-                    Sign In
-                  </Button>
-              </Link>
             </div>
+          </div>
+        </div>
+        {/* Mobile Navigation Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden absolute top-16 left-0 w-full bg-white shadow-xl border-t border-gray-200">
+            <nav className="flex flex-col p-4 gap-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className="px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
           </div>
         )}
-      </div>
-    </nav>
+      </header>
+
   );
 };
 
