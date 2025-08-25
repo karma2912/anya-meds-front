@@ -333,9 +333,9 @@ const Page = () => {
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
-                  <X className="h-6 w-6" />
+                  <X className="h-8 w-8" />
                 ) : (
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-8 w-8" />
                 )}
               </button>
             </div>
