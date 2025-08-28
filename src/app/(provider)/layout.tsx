@@ -1,12 +1,16 @@
+import { ProviderNavbar } from "@/components/provider/ProviderNavbar";
 
-import React from "react";
-
-export default function ProviderLayout({ children }: { children: React.ReactNode }) {
+export default function ProviderLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
-     
+    <div className="min-h-screen bg-gray-50">
+      <ProviderNavbar />
+      <main className="p-4 sm:p-6 lg:p-8">
         {children}
-    
+      </main>
     </div>
   );
 }

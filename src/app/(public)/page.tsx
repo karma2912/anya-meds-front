@@ -322,6 +322,12 @@ const Page = () => {
                   {link.label}
                 </button>
               ))}
+              <a
+                  href="/login"
+                  className="px-4 py-2 text-sm font-medium text-blue-600 bg-gray-100 rounded-md ml-10"
+                >
+                 Sign In
+                </a>
             </nav>
             {/* Mobile Menu Button - REFACTORED for better touch response */}
             <div className="md:hidden">
@@ -354,6 +360,12 @@ const Page = () => {
                   {link.label}
                 </a>
               ))}
+              <a
+              href="/login"
+                  className="px-4 py-3 text-base font-medium text-blue-600 bg-gray-50 rounded-lg  cursor-pointer"
+                >
+                 Sign In
+                </a>
             </nav>
           </div>
         )}
