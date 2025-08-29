@@ -3,61 +3,57 @@
 import React, { useState, useEffect, useMemo, ElementType } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
-  LineChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Line,
+    LineChart,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer,
+    Line,
 } from "recharts";
 import {
-  Bell,
-  Search,
-  Clock,
-  User,
-  Stethoscope,
-  HeartPulse,
-  Brain,
-  Bandage,
-  Eye,
-  ChevronDown,
-  TrendingUp,
-  Users,
-  FileText,
-  AlertCircle,
-  Settings,
-  LogOut,
-  Plus,
-  BarChart3,
-  Upload,
+    Upload,
+    Eye,
+    TrendingUp,
+    Users,
+    FileText,
+    AlertCircle,
+    BarChart3,
+    Search,
+    HeartPulse,
+    Brain,
+    Bandage,
+    Stethoscope,
+    ArrowUpRight,
+    User
 } from "lucide-react";
-import { PageHeader } from "@/components/provider/PageHeader"; // Assuming PageHeader is in a separate component file
+import { PageHeader } from "@/components/provider/PageHeader";
 
 // --- TYPE DEFINITIONS ---
 interface CaseItem {
-  id: string; // Changed to string for more realistic IDs
-  patientName: string;
-  patientId: string;
-  scanType: string;
-  aiResult: string;
-  confidence: number;
-  uploadDate: string;
-  status: "pending" | "completed" | "rejected";
-  priority: "high" | "medium" | "low";
+    id: string;
+    patientName: string;
+    patientId: string;
+    scanType: string;
+    aiResult: string;
+    confidence: number;
+    uploadDate: string;
+    status: "pending" | "completed" | "rejected";
+    priority: "high" | "medium" | "low";
 }
 
 interface StatsData {
-  totalPatients: number;
-  totalAnalyses: number;
-  pendingReviews: number;
-  aiAccuracy: number;
+    totalPatients: number;
+    totalAnalyses: number;
+    pendingReviews: number;
+    aiAccuracy: number;
 }
 
 // --- MOCK API DATA ---
-// This data would normally come from your backend API calls
 const mockCases: CaseItem[] = [
     { id: "c-a4b1", patientName: "Sarah Johnson", patientId: "P-48291", scanType: "Chest X-Ray", aiResult: "Pneumonia detected", confidence: 98.7, uploadDate: "2025-08-18", status: "pending", priority: "high" },
     { id: "c-b2c3", patientName: "Michael Chen", patientId: "P-57123", scanType: "Brain MRI", aiResult: "Meningioma suspected", confidence: 96.2, uploadDate: "2025-08-17", status: "pending", priority: "medium" },
@@ -74,16 +70,14 @@ const mockAnalysesData = [
 
 // ============================================================================
 // REUSABLE DASHBOARD COMPONENTS
-// These would typically be in their own files under `components/provider/`
 // ============================================================================
 
-// StatCard Component
 interface StatCardProps {
-  title: string;
-  value: string | number;
-  icon: ElementType;
-  trendValue: string;
-  trendPositive?: boolean;
+    title: string;
+    value: string | number;
+    icon: ElementType;
+    trendValue: string;
+    trendPositive?: boolean;
 }
 const StatCard: React.FC<StatCardProps> = ({ title, value, icon: Icon, trendValue, trendPositive = true }) => {
     const iconColorClass = {
@@ -94,214 +88,239 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, icon: Icon, trendValu
     }[title] || "bg-gray-100 text-gray-600";
 
     return (
-        <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
-            <div className="flex justify-between items-start">
-                <div>
-                    <p className="text-sm font-medium text-gray-500">{title}</p>
-                    <p className="text-2xl font-bold text-gray-900">
-                        {typeof value === 'number' ? value.toLocaleString() : value}
-                    </p>
-                </div>
+        <Card className="rounded-2xl shadow-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-500">{title}</CardTitle>
                 <div className={`p-2 rounded-lg ${iconColorClass}`}>
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-4 h-4" />
                 </div>
-            </div>
-            <p className={`text-xs ${trendPositive ? 'text-green-600' : 'text-red-600'} mt-2 flex items-center`}>
-                <TrendingUp className="inline w-3 h-3 mr-1" />
-                {trendValue}
-            </p>
-        </div>
+            </CardHeader>
+            <CardContent>
+                <div className="text-2xl font-bold text-gray-900">
+                    {typeof value === 'number' ? value.toLocaleString() : value}
+                </div>
+                <p className={`text-xs ${trendPositive ? 'text-green-600' : 'text-red-600'} mt-1 flex items-center`}>
+                    <TrendingUp className="inline w-3 h-3 mr-1" />
+                    {trendValue}
+                </p>
+            </CardContent>
+        </Card>
     );
 };
 
-// AnalysesChart Component
 const AnalysesChart: React.FC<{ data: any[] }> = ({ data }) => {
-  return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Analyses This Week</h2>
-      <div className="h-72 w-full">
-        <ResponsiveContainer>
-          <LineChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="day" tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
-            <Tooltip
-              contentStyle={{
-                borderRadius: "0.5rem",
-                border: "1px solid #e5e7eb",
-                fontSize: "0.875rem",
-                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-              }}
-            />
-            <Line type="monotone" dataKey="analyses" stroke="#3b82f6" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
-  );
+    return (
+        <Card className="rounded-2xl shadow-sm">
+            <CardHeader>
+                <div className="flex justify-between items-center">
+                    <CardTitle className="text-lg font-semibold">Analyses This Week</CardTitle>
+                    <Button variant="outline" size="sm" className="border-blue-200 text-blue-600 text-xs">
+                        View report <ArrowUpRight className="w-3 h-3 ml-1" />
+                    </Button>
+                </div>
+            </CardHeader>
+            <CardContent className="h-72 w-full pt-4">
+                <ResponsiveContainer>
+                    <LineChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                        <XAxis dataKey="day" tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
+                        <YAxis tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
+                        <Tooltip
+                            contentStyle={{
+                                borderRadius: "0.75rem",
+                                border: "1px solid #e5e7eb",
+                                fontSize: "0.875rem",
+                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+                            }}
+                        />
+                        <Line
+                            type="monotone"
+                            dataKey="analyses"
+                            stroke="#3b82f6"
+                            strokeWidth={3}
+                            dot={{ r: 4, fill: '#3b82f6', strokeWidth: 2, stroke: 'white' }}
+                            activeDot={{ r: 6, fill: '#2563eb' }}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
+            </CardContent>
+        </Card>
+    );
 };
-
-// TableSkeleton Component
-const TableSkeleton: React.FC = () => (
-  <>
-    {[...Array(5)].map((_, i) => (
-      <tr key={i} className="animate-pulse">
-        <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-3/4"></div></td>
-        <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-1/2"></div></td>
-        <td className="px-6 py-4"><div className="h-4 bg-gray-200 rounded w-full"></div></td>
-        <td className="px-6 py-4"><div className="h-6 bg-gray-200 rounded-full w-20"></div></td>
-        <td className="px-6 py-4"><div className="h-8 bg-gray-200 rounded-md w-24"></div></td>
-      </tr>
-    ))}
-  </>
-);
-
-// EmptyState Component
-const EmptyState: React.FC = () => (
-  <tr>
-    <td colSpan={5} className="text-center py-16">
-      <div className="inline-flex flex-col items-center">
-        <FileText className="w-12 h-12 text-gray-300 mb-2" />
-        <h3 className="text-lg font-medium text-gray-700">No Cases Found</h3>
-        <p className="text-sm text-gray-500">No cases match the current filter criteria.</p>
-      </div>
-    </td>
-  </tr>
-);
 
 // ============================================================================
 // MAIN DASHBOARD PAGE COMPONENT
 // ============================================================================
 
 const DashboardPage = () => {
-  const router = useRouter();
-  const [stats, setStats] = useState<StatsData | null>(null);
-  const [cases, setCases] = useState<CaseItem[]>([]);
-  const [analyses, setAnalyses] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
+    const [stats, setStats] = useState<StatsData | null>(null);
+    const [cases, setCases] = useState<CaseItem[]>([]);
+    const [analyses, setAnalyses] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-  // --- DATA FETCHING ---
-  // This simulates fetching all necessary data when the component mounts
-  useEffect(() => {
-    const fetchDashboardData = async () => {
-      setIsLoading(true);
-      // In a real app, you would fetch from your API endpoints
-      // For example:
-      // const statsRes = await fetch('/api/provider/dashboard-stats');
-      // const statsData = await statsRes.json();
-      // const casesRes = await fetch('/api/provider/cases?status=pending');
-      // const casesData = await casesRes.json();
-      
-      // Simulating network delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setStats(mockStatsData);
-      setCases(mockCases);
-      setAnalyses(mockAnalysesData);
-      setIsLoading(false);
+    useEffect(() => {
+        const fetchDashboardData = async () => {
+            setIsLoading(true);
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            setStats(mockStatsData);
+            setCases(mockCases);
+            setAnalyses(mockAnalysesData);
+            setIsLoading(false);
+        };
+        fetchDashboardData();
+    }, []);
+
+    const priorityBadge = (priority: "high" | "medium" | "low") => {
+        const styles = {
+            high: "bg-red-100 text-red-800",
+            medium: "bg-yellow-100 text-yellow-800",
+            low: "bg-green-100 text-green-800"
+        };
+        return <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[priority]}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>;
     };
-    fetchDashboardData();
-  }, []);
 
-  const priorityBadge = (priority: "high" | "medium" | "low") => {
-    const styles = {
-      high: "bg-red-100 text-red-800",
-      medium: "bg-yellow-100 text-yellow-800",
-      low: "bg-green-100 text-green-800"
+    const scanTypeIcon = (type: string) => {
+        if (type.includes("Chest")) return <HeartPulse className="w-5 h-5 text-blue-500" />;
+        if (type.includes("Brain")) return <Brain className="w-5 h-5 text-purple-500" />;
+        if (type.includes("Skin")) return <Bandage className="w-5 h-5 text-orange-500" />;
+        return <Stethoscope className="w-5 h-5 text-gray-500" />;
     };
-    return <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[priority]}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>;
-  };
 
-  const scanTypeIcon = (type: string) => {
-    if (type.includes("Chest")) return <HeartPulse className="w-5 h-5 text-blue-500" />;
-    if (type.includes("Brain")) return <Brain className="w-5 h-5 text-purple-500" />;
-    if (type.includes("Skin")) return <Bandage className="w-5 h-5 text-orange-500" />;
-    return <Stethoscope className="w-5 h-5 text-gray-500" />;
-  };
+    return (
+        <div className="h-full w-full p-4 sm:p-6 lg:p-8 space-y-6">
+            <PageHeader
+                title="Clinical Dashboard"
+                subtitle="Overview of your patient analyses and pending tasks."
+                actionButton={{
+                    label: "New Analysis",
+                    icon: Upload,
+                    onClick: () => router.push('/analysis/new')
+                }}
+            />
 
-  return (
-    <div className="space-y-6">
-      <PageHeader
-        title="Clinical Dashboard"
-        subtitle="Overview of your patient analyses and pending tasks."
-        actionButton={{
-          label: "New Analysis",
-          icon: Upload,
-          onClick: () => router.push('/analysis/new')
-        }}
-      />
-
-      {/* --- STATS CARDS --- */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <StatCard title="Total Patients" value={stats?.totalPatients ?? '...'} icon={Users} trendValue="+12% from last month" />
-        <StatCard title="Analyses Performed" value={stats?.totalAnalyses ?? '...'} icon={FileText} trendValue="+8% from last month" />
-        <StatCard title="Pending Reviews" value={stats?.pendingReviews ?? '...'} icon={AlertCircle} trendValue="+2 from yesterday" trendPositive={false} />
-        <StatCard title="AI Accuracy" value={stats ? `${stats.aiAccuracy}%` : '...'} icon={BarChart3} trendValue="+0.5% from last week" />
-      </div>
-
-      {/* --- MAIN CONTENT GRID --- */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* --- CASES TABLE (MAIN SECTION) --- */}
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-            <div className="border-b border-gray-200 p-4">
-              <h2 className="text-lg font-semibold text-gray-900">Cases Awaiting Review</h2>
+            {/* --- STATS CARDS --- */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <StatCard title="Total Patients" value={stats?.totalPatients ?? '...'} icon={Users} trendValue="+12% from last month" />
+                <StatCard title="Analyses Performed" value={stats?.totalAnalyses ?? '...'} icon={FileText} trendValue="+8% from last month" />
+                <StatCard title="Pending Reviews" value={stats?.pendingReviews ?? '...'} icon={AlertCircle} trendValue="+2 from yesterday" trendPositive={false} />
+                <StatCard title="AI Accuracy" value={stats ? `${stats.aiAccuracy}%` : '...'} icon={BarChart3} trendValue="+0.5% from last week" />
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Scan Type</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Result</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {isLoading ? (
-                    <TableSkeleton />
-                  ) : cases.length > 0 ? (
-                    cases.map((caseItem) => (
-                      <tr key={caseItem.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm font-medium text-gray-900">{caseItem.patientName}</div>
-                          <div className="text-sm text-gray-500">{caseItem.patientId}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            {scanTypeIcon(caseItem.scanType)}
-                            <span className="ml-2 text-sm text-gray-900">{caseItem.scanType}</span>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">{caseItem.aiResult}</div>
-                          <div className="text-xs text-gray-500">{caseItem.confidence}% confidence</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">{priorityBadge(caseItem.priority)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <Button size="sm" onClick={() => router.push(`/case-review/${caseItem.id}`)}>
-                            <Eye className="w-4 h-4 mr-1" />Review
-                          </Button>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <EmptyState />
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
 
-        {/* --- ANALYSES CHART (SIDEBAR) --- */}
-        <div className="lg:col-span-1">
-          <AnalysesChart data={analyses} />
+            {/* --- MAIN CONTENT GRID --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* --- CASES TABLE (MAIN SECTION) --- */}
+                <Card className="lg:col-span-2 rounded-2xl shadow-sm">
+                    <CardHeader>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <CardTitle className="text-lg font-semibold">Cases Awaiting Review</CardTitle>
+                            <div className="relative w-full sm:max-w-xs">
+                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                                <Input placeholder="Search cases..." className="pl-10" />
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Patient</TableHead>
+                                    <TableHead>Scan Type</TableHead>
+                                    <TableHead>AI Result</TableHead>
+                                    <TableHead>Priority</TableHead>
+                                    <TableHead className="text-right">Action</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {isLoading ? (
+                                    [...Array(5)].map((_, i) => (
+                                        <TableRow key={i} className="animate-pulse">
+                                            <TableCell><div className="h-4 bg-gray-200 rounded w-3/4"></div></TableCell>
+                                            <TableCell><div className="h-4 bg-gray-200 rounded w-1/2"></div></TableCell>
+                                            <TableCell><div className="h-4 bg-gray-200 rounded w-full"></div></TableCell>
+                                            <TableCell><div className="h-6 bg-gray-200 rounded-full w-20"></div></TableCell>
+                                            <TableCell className="text-right"><div className="h-8 bg-gray-200 rounded-md w-24"></div></TableCell>
+                                        </TableRow>
+                                    ))
+                                ) : cases.length > 0 ? (
+                                    cases.map((caseItem) => (
+                                        <TableRow key={caseItem.id}>
+                                            <TableCell className="font-medium">
+                                                <div className="font-semibold text-gray-900">{caseItem.patientName}</div>
+                                                <div className="text-sm text-gray-500">{caseItem.patientId}</div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className="flex items-center gap-2">
+                                                    {scanTypeIcon(caseItem.scanType)}
+                                                    <span className="text-sm">{caseItem.scanType}</span>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className="text-sm text-gray-900">{caseItem.aiResult}</div>
+                                                <div className="text-xs text-gray-500">{caseItem.confidence}% confidence</div>
+                                            </TableCell>
+                                            <TableCell>{priorityBadge(caseItem.priority)}</TableCell>
+                                            <TableCell className="text-right">
+                                                <Button
+                                                    size="sm"
+                                                    onClick={() => router.push(`/case-review/${caseItem.id}`)}
+                                                    className="bg-blue-600 hover:bg-blue-700"
+                                                >
+                                                    <Eye className="w-4 h-4 mr-1" />Review
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={5} className="h-24 text-center">
+                                            No cases found.
+                                        </TableCell>
+                                    </TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+
+                {/* --- SIDEBAR --- */}
+                <div className="space-y-6">
+                    <AnalysesChart data={analyses} />
+                    <Card className="rounded-2xl shadow-sm">
+                        <CardHeader>
+                            <CardTitle className="text-lg font-semibold">Quick Actions</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col gap-3">
+                            <Button
+                                className="w-full justify-start bg-blue-600 hover:bg-blue-700"
+                                onClick={() => router.push('/analysis/new')}
+                            >
+                                <Upload className="w-4 h-4 mr-2" />
+                                New Analysis
+                            </Button>
+                            <Button
+                                variant="outline"
+                                className="w-full justify-start border-blue-200 text-blue-600 hover:bg-blue-50"
+                                onClick={() => router.push('/patients')}
+                            >
+                                <User className="w-4 h-4 mr-2" />
+                                View Patients
+                            </Button>
+                             <Button
+                                variant="outline"
+                                className="w-full justify-start border-blue-200 text-blue-600 hover:bg-blue-50"
+                                onClick={() => router.push('/reports')}
+                            >
+                                <FileText className="w-4 h-4 mr-2" />
+                                Generate Reports
+                            </Button>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default DashboardPage;
