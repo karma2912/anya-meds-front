@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { UserPlus, Search, Loader2, User, Calendar, Scan } from 'lucide-react';
 
-type Patient = { id: string; name: string; dob: string; lastScan: string; lastScanDate: string; };
+type Patient = { id: string; name: string; dob: string; lastScan: string; lastScanDate: string; avatarUrl: string; };
 
 const PatientsPage = () => {
     const router = useRouter();

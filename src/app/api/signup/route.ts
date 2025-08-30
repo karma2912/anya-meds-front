@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     }
 
     const { db } = await connectToDatabase();
-    const usersCollection = db.collection('users');
+    const usersCollection = db.collection('doctors');
 
     // --- Check if user already exists ---
     const existingUser = await usersCollection.findOne({ email: email.toLowerCase() });

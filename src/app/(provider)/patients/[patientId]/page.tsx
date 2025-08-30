@@ -1,55 +1,38 @@
 // In: app/(provider)/patients/[patientId]/page.tsx
 
+"use client"; // FIX 1: Convert the page to a Client Component
+
+import React, { useState, useEffect, ElementType } from "react";
+import { useParams } from 'next/navigation'; // FIX 2: Import useParams to get the ID from the URL
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Loader2 } from "lucide-react";
 
 import {
-    AlertTriangle,
-    User,
-    Cake,
-    Phone,
-    Mail,
-    FileText,
-    Download,
-    BrainCircuit,
-    HeartPulse,
-    Scan,
-    History,
-    FileDown,
-    Upload,
-    Stethoscope,
-    Save,
-    ClipboardPlus,
-    Activity,
-    ShieldCheck
+    AlertTriangle, User, Cake, Phone, Mail, FileText, Download, BrainCircuit, HeartPulse, Scan,
+    History, FileDown, Upload, Stethoscope, Save, ClipboardPlus, Activity, ShieldCheck
 } from "lucide-react";
 
-// Define the types for the page's props
-type PageProps = {
-    params: {
-        patientId: string;
-    };
+// FIX 3: Define a more accurate type for a single patient document from MongoDB
+type Patient = {
+    _id: string;
+    id: string;
+    name: string;
+    dob: string;
+    gender: string;
+    email: string;
+    phone: string;
+    avatarUrl?: string;
 };
 
-// --- Mock Data ---
-const patientData = {
-    name: "Eleanor Vance",
-    age: 29,
-    gender: "Female",
-    mrn: "P-19247",
-    phone: "+1 (555) 123-4567",
-    email: "eleanor.vance@example.com",
-    avatarUrl: "https://example.com/avatar.png", // Using fallback
-};
-
+// --- Mock Data (can be used for other sections or fallbacks) ---
 const summarySnapshot = {
     latestDiagnosis: "Benign Nevus",
     confidence: 92,
@@ -90,8 +73,38 @@ const activityLog = [
 ];
 
 
-const PatientProfilePage = async ({ params }: PageProps) => {
-    const { patientId } =  params;
+const PatientProfilePage = () => {
+    const params = useParams();
+    const patientId = params.patientId as string;
+
+    // FIX 4: State should hold a single Patient object, not an array
+    const [patient, setPatient] = useState<Patient | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!patientId) return;
+
+        const fetchPatientDetails = async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                // FIX 5: Fetch a SINGLE patient using the correct API endpoint
+                const res = await fetch(`/api/provider/patients/${patientId}`);
+                if (!res.ok) {
+                    throw new Error('Patient not found.');
+                }
+                const data = await res.json();
+                setPatient(data);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchPatientDetails();
+    }, [patientId]);
 
     const getStatusBadge = (status: string) => {
         switch (status.toLowerCase()) {
@@ -118,6 +131,14 @@ const PatientProfilePage = async ({ params }: PageProps) => {
         return <FileText className="h-5 w-5 text-blue-500" />;
     };
 
+    if (isLoading) {
+        return <div className="flex h-screen items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-blue-500" /></div>;
+    }
+
+    if (error || !patient) {
+        return <div className="p-8 text-center text-red-500">{error || "Patient data could not be loaded."}</div>;
+    }
+
     return (
         <div className="h-full w-full p-4 sm:p-6 lg:p-8 bg-gray-50/50">
             <div className="mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -128,9 +149,10 @@ const PatientProfilePage = async ({ params }: PageProps) => {
                         <CardHeader>
                             <CardTitle className="text-2xl font-bold text-gray-800">Patient Information</CardTitle>
                         </CardHeader>
+                        {/* FIX 6: Use the `patient` state object to display data */}
                         <CardContent className="flex flex-col sm:flex-row items-start gap-6">
                             <Avatar className="h-24 w-24 border-2 border-blue-100">
-                                <AvatarImage src={patientData.avatarUrl} alt={patientData.name} />
+                                <AvatarImage src={patient.avatarUrl} alt={patient.name} />
                                 <AvatarFallback className="bg-blue-50 text-blue-600">
                                     <User className="h-10 w-10" />
                                 </AvatarFallback>
@@ -140,35 +162,35 @@ const PatientProfilePage = async ({ params }: PageProps) => {
                                     <User className="h-5 w-5 text-gray-400" />
                                     <div>
                                         <p className="text-sm text-gray-500">Name</p>
-                                        <p className="font-semibold">{patientData.name}</p>
+                                        <p className="font-semibold">{patient.name}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <Cake className="h-5 w-5 text-gray-400" />
                                     <div>
-                                        <p className="text-sm text-gray-500">Age & Gender</p>
-                                        <p className="font-semibold">{patientData.age}, {patientData.gender}</p>
+                                        <p className="text-sm text-gray-500">DOB & Gender</p>
+                                        <p className="font-semibold">{patient.dob}, {patient.gender}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <FileText className="h-5 w-5 text-gray-400" />
                                     <div>
                                         <p className="text-sm text-gray-500">Patient ID (MRN)</p>
-                                        <p className="font-mono text-sm bg-gray-100 px-2 py-1 rounded-md">{patientId}</p>
+                                        <p className="font-mono text-sm bg-gray-100 px-2 py-1 rounded-md">{patient.id}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <Phone className="h-5 w-5 text-gray-400" />
                                     <div>
                                         <p className="text-sm text-gray-500">Phone</p>
-                                        <p className="font-semibold">{patientData.phone}</p>
+                                        <p className="font-semibold">{patient.phone || 'N/A'}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3 sm:col-span-2">
                                     <Mail className="h-5 w-5 text-gray-400" />
                                     <div>
                                         <p className="text-sm text-gray-500">Email</p>
-                                        <p className="font-semibold">{patientData.email}</p>
+                                        <p className="font-semibold">{patient.email || 'N/A'}</p>
                                     </div>
                                 </div>
                             </div>

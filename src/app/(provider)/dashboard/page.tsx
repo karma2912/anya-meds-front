@@ -294,10 +294,10 @@ const DashboardPage = () => {
                         <CardContent className="flex flex-col gap-3">
                             <Button
                                 className="w-full justify-start bg-blue-600 hover:bg-blue-700"
-                                onClick={() => router.push('/analysis/new')}
+                                onClick={() => router.push('/patients/new')}
                             >
                                 <Upload className="w-4 h-4 mr-2" />
-                                New Analysis
+                                Add Patient
                             </Button>
                             <Button
                                 variant="outline"
