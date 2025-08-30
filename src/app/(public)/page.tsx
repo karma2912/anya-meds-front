@@ -289,16 +289,11 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* This style tag is a targeted fix for Android WebViews.
-        -webkit-tap-highlight-color removes the default gray highlight that appears on touch,
-        making the app feel more native.
-      */}
       <style jsx global>{`
         * {
           -webkit-tap-highlight-color: transparent;
         }
       `}</style>
-      {/* REFACTORED: Sticky header with safe-area padding and better touch targets */}
       <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
