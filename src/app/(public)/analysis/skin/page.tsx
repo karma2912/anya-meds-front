@@ -303,11 +303,11 @@ const SkinDiagnosisPage = () => {
     doc.text("Primary Diagnosis:", margin + 10, 50);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(...primaryColor);
-    doc.text(analysis?.label || "No diagnosis available", margin + 50, 50);
+    doc.text(analysis?.label || "No diagnosis available", margin + 58, 50);
 
     doc.setFont("helvetica", "normal");
     doc.setTextColor(0, 0, 0);
-    doc.text("Confidence Level:", margin + 10, 60);
+    doc.text("Confidence Level:", margin + 13, 60);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(...accentColor);
     doc.text(
@@ -364,7 +364,7 @@ const SkinDiagnosisPage = () => {
       doc.text("Uploaded Image:", margin, 40);
 
       const imgData = imagePreview;
-      const imgWidth = pageWidth - margin * 2;
+      const imgWidth = (pageWidth - 60) - margin * 2;
       // Calculate height to maintain aspect ratio (assuming 4:3)
       const imgHeight = (imgWidth * 3) / 4;
       doc.addImage(imgData, "JPEG", margin, 45, imgWidth, imgHeight);

@@ -373,7 +373,7 @@ const BrainDiagnosisPage = () => {
       doc.text("Uploaded Brain Scan:", margin, 40);
 
       const imgData = imagePreview;
-      const imgWidth = pageWidth - margin * 2;
+      const imgWidth = (pageWidth - 60) - margin * 2;
       // Calculate height to maintain aspect ratio (assuming 1:1 for MRI slices)
       const imgHeight = imgWidth;
       doc.addImage(imgData, "JPEG", margin, 45, imgWidth, imgHeight);
