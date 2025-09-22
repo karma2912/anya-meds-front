@@ -7,7 +7,7 @@ import { PageHeader } from '@/components/provider/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { UserPlus, Search, Loader2, User, Scan, AlertTriangle, Stethoscope } from 'lucide-react';
+import { UserPlus, Search, Loader2, User, Scan, AlertTriangle, Stethoscope, HeartPulse, Brain, Bandage } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -149,10 +149,25 @@ const PatientsPage = () => {
                                                     </span>
                                                 </TableCell>
                                                 <TableCell>
-                                                    <div className="flex items-center text-gray-600">
-                                                        <Stethoscope className="w-4 h-4 mr-2 text-gray-400" />
+                                                    {patient.part == "Chest" && (<>
+                                                     <div className="flex items-center text-gray-600">
+                                                        <HeartPulse className="w-4 h-4 mr-2 text-gray-400" />
                                                         {patient.part}
                                                     </div>
+                                                    </>)}
+                                                    {patient.part == "Brain" && (<>
+                                                     <div className="flex items-center text-gray-600">
+                                                        <Brain className="w-4 h-4 mr-2 text-gray-400" />
+                                                        {patient.part}
+                                                    </div>
+                                                    </>)}
+                                                    {patient.part == "Skin" && (<>
+                                                     <div className="flex items-center text-gray-600">
+                                                        <Bandage className="w-4 h-4 mr-2 text-gray-400" />
+                                                        {patient.part}
+                                                    </div>
+                                                    </>)}
+                                                   
                                                 </TableCell>
                                                 <TableCell>
                                                     <div className="flex items-center">
