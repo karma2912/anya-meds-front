@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         { status: 401 } // 401 Unauthorized
       );
     }
-
+    console.log(user);
     // --- Compare the provided password with the stored hashed password ---
     const isPasswordValid = await bcrypt.compare(password, user.password);
 

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAuth } from "@/app/context/AuthContext";
 import {
   Stethoscope,
   Mail,
@@ -16,11 +17,11 @@ import {
 import Link from "next/link";
 
 const LoginPage = () => {
-  const router = useRouter();
+  // const router = useRouter(); // NO LONGER NEEDED HERE
+  const { login } = useAuth(); // <-- USE THE CONTEXT
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  // UI State for feedback
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,9 +33,7 @@ const LoginPage = () => {
     try {
       const response = await fetch('/api/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
@@ -44,9 +43,13 @@ const LoginPage = () => {
         throw new Error(data.message || 'Login failed. Please try again.');
       }
 
-      // On successful login, redirect to the dashboard
       console.log("Login successful:", data);
-      router.push('/dashboard'); 
+      
+      // --- THIS IS THE KEY CHANGE ---
+      // Instead of router.push, call the login function from the context.
+      // It will handle saving the user and redirecting.
+      login(data.user); 
+      // router.push('/dashboard'); // THIS LINE IS NOW HANDLED BY THE CONTEXT
 
     } catch (err: any) {
       setError(err.message);

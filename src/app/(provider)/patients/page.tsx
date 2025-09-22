@@ -7,7 +7,7 @@ import { PageHeader } from '@/components/provider/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { UserPlus, Search, Loader2, User, Calendar, Scan, AlertTriangle } from 'lucide-react';
+import { UserPlus, Search, Loader2, User, Scan, AlertTriangle, Stethoscope } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -17,7 +17,7 @@ type Patient = {
     _id: string; // MongoDB's unique identifier, used for React keys
     id: string;  // The user-friendly ID you created (e.g., p-123456)
     name: string;
-    dob: string;
+    part: string;
     lastScan: string;
     lastScanDate: string;
 };
@@ -104,7 +104,7 @@ const PatientsPage = () => {
                                     <TableRow>
                                         <TableHead className="pl-6">Patient Name</TableHead>
                                         <TableHead>Patient ID</TableHead>
-                                        <TableHead>Date of Birth</TableHead>
+                                        <TableHead>Body Part</TableHead>
                                         <TableHead>Last Scan</TableHead>
                                         <TableHead className="text-right pr-6">Actions</TableHead>
                                     </TableRow>
@@ -150,8 +150,8 @@ const PatientsPage = () => {
                                                 </TableCell>
                                                 <TableCell>
                                                     <div className="flex items-center text-gray-600">
-                                                        <Calendar className="w-4 h-4 mr-2 text-gray-400" />
-                                                        {patient.dob}
+                                                        <Stethoscope className="w-4 h-4 mr-2 text-gray-400" />
+                                                        {patient.part}
                                                     </div>
                                                 </TableCell>
                                                 <TableCell>

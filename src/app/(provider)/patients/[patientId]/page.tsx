@@ -13,7 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2 } from "lucide-react";
+import { Loader2, Mars, PersonStanding, Venus, VenusAndMars } from "lucide-react";
 
 import {
     AlertTriangle, User, Cake, Phone, Mail, FileText, Download, BrainCircuit, HeartPulse, Scan,
@@ -25,7 +25,7 @@ type Patient = {
     _id: string;
     id: string;
     name: string;
-    dob: string;
+    part: string;
     gender: string;
     email: string;
     phone: string;
@@ -166,10 +166,10 @@ const PatientProfilePage = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <Cake className="h-5 w-5 text-gray-400" />
+                                    <Stethoscope className="h-5 w-5 text-gray-400" />
                                     <div>
-                                        <p className="text-sm text-gray-500">DOB & Gender</p>
-                                        <p className="font-semibold">{patient.dob}, {patient.gender}</p>
+                                        <p className="text-sm text-gray-500">Body Part </p>
+                                        <p className="font-semibold">{patient.part}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
@@ -180,11 +180,28 @@ const PatientProfilePage = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <Phone className="h-5 w-5 text-gray-400" />
+                                    {patient.gender == "Male" &&
+                                     (<><Mars className="h-5 w-5 text-gray-400" />
                                     <div>
-                                        <p className="text-sm text-gray-500">Phone</p>
-                                        <p className="font-semibold">{patient.phone || 'N/A'}</p>
+                                        <p className="text-sm text-gray-500">Gender</p>
+                                        <p className="font-semibold">{patient.gender || 'N/A'}</p>
                                     </div>
+                                    </>)}
+                                    {patient.gender == "Female" &&
+                                     (<><Venus className="h-5 w-5 text-gray-400" />
+                                    <div>
+                                        <p className="text-sm text-gray-500">Gender</p>
+                                        <p className="font-semibold">{patient.gender || 'N/A'}</p>
+                                    </div>
+                                    </>)}
+                                    {patient.gender == "Other" &&
+                                     (<><VenusAndMars className="h-5 w-5 text-gray-400" />
+                                    <div>
+                                        <p className="text-sm text-gray-500">Gender</p>
+                                        <p className="font-semibold">{patient.gender || 'N/A'}</p>
+                                    </div>
+                                    </>)}
+                                    
                                 </div>
                                 <div className="flex items-center gap-3 sm:col-span-2">
                                     <Mail className="h-5 w-5 text-gray-400" />

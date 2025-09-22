@@ -24,10 +24,10 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { name, dob, gender, email, phone } = body;
+        const { name, part, gender, email, phone } = body;
 
-        if (!name || !dob) {
-            return NextResponse.json({ message: "Name and Date of Birth are required." }, { status: 400 });
+        if (!name || !part) {
+            return NextResponse.json({ message: "Name and Body part are required." }, { status: 400 });
         }
 
         const { db } = await connectToDatabase();
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
             _id: newPatientId, // Use the generated ObjectId
             id: `p-${newPatientId.toString().slice(-6)}`, // Create a shorter, user-friendly ID
             name,
-            dob,
+            part,
             gender: gender || 'Not specified',
             email: email || null,
             phone: phone || null,

@@ -18,7 +18,7 @@ const NewPatientPage = () => {
 
     // FIX 1: Add state to hold the data from each form input
     const [fullName, setFullName] = useState('');
-    const [dob, setDob] = useState('');
+    const [part, setPart] = useState('');
     const [gender, setGender] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -32,7 +32,7 @@ const NewPatientPage = () => {
         // Gather the form data from the component's state
         const patientData = {
             name: fullName,
-            dob,
+            part,
             gender,
             email,
             phone,
@@ -108,14 +108,14 @@ const NewPatientPage = () => {
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div className="grid w-full items-center gap-2">
-                                    <Label htmlFor="dob" className="text-gray-700">Date of Birth</Label>
+                                    <Label htmlFor="bodyPart" className="text-gray-700">Body Part</Label>
                                     <Input 
-                                        id="dob" 
-                                        type="date" 
-                                        required 
+                                        id="part" 
+                                        placeholder="e.g., Chest, Brain or Skin" 
                                         className="border-blue-200 focus:border-blue-500 h-11"
-                                        value={dob}
-                                        onChange={(e) => setDob(e.target.value)}
+                                        value={part}
+                                        onChange={(e) => setPart(e.target.value)}
+                                        required
                                     />
                                 </div>
                                 <div className="grid w-full items-center gap-2">
@@ -126,6 +126,7 @@ const NewPatientPage = () => {
                                         className="border-blue-200 focus:border-blue-500 h-11"
                                         value={gender}
                                         onChange={(e) => setGender(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -141,6 +142,7 @@ const NewPatientPage = () => {
                                         className="border-blue-200 focus:border-blue-500 h-11 pl-10"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -156,6 +158,7 @@ const NewPatientPage = () => {
                                         className="border-blue-200 focus:border-blue-500 h-11 pl-10"
                                         value={phone}
                                         onChange={(e) => setPhone(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>
