@@ -1,32 +1,62 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { PageHeader } from '@/components/provider/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { Upload, UserPlus, HeartPulse, Brain, Bandage, Loader2, Stethoscope, FileText, User } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertTriangle } from 'lucide-react';
+import { Upload, Loader2, Stethoscope, FileText, User, HeartPulse, Brain, Bandage, AlertTriangle, Check, ChevronsUpDown } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
+// --- New Imports for the Searchable Combobox ---
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+
+// Define the Patient type to match your data
+type Patient = {
+    _id: string;
+    name: string;
+    id: string; // The user-friendly ID like p-123456
+};
 
 const NewAnalysisPage = () => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [analysisType, setAnalysisType] = useState('');
-    // FIX 1: Add state for the Patient ID
-    const [patientId, setPatientId] = useState('');
     const [error, setError] = useState<string | null>(null);
+
+    // --- State for the new patient dropdown ---
+    const [patients, setPatients] = useState<Patient[]>([]);
+    const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
+    const [isPatientsLoading, setIsPatientsLoading] = useState(true);
+    const [openPopover, setOpenPopover] = useState(false);
+
+    // --- Step 1: Fetch the doctor's patients when the component mounts ---
+    useEffect(() => {
+        const fetchPatientsForDoctor = async () => {
+            try {
+                const response = await fetch('/api/provider/patients');
+                if (!response.ok) {
+                    throw new Error("Could not fetch your patient list.");
+                }
+                const data = await response.json();
+                setPatients(data);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setIsPatientsLoading(false);
+            }
+        };
+        fetchPatientsForDoctor();
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        // FIX 2: Add patientId to the validation
-        if (!patientId || !selectedFile || !analysisType) {
-            setError('Please provide a Patient ID, select an analysis type, and upload an image.');
+        if (!selectedPatient?._id || !selectedFile || !analysisType) {
+            setError('Please select a patient, an analysis type, and upload an image.');
             return;
         }
 
@@ -34,8 +64,7 @@ const NewAnalysisPage = () => {
         setError(null);
 
         const formData = new FormData();
-        // FIX 3: Add patientId to the form data
-        formData.append('patientId', patientId);
+        formData.append('patientId', selectedPatient._id); // Use the real MongoDB _id
         formData.append('scanImage', selectedFile);
         formData.append('analysisType', analysisType);
 
@@ -51,8 +80,7 @@ const NewAnalysisPage = () => {
             }
 
             const result = await response.json();
-            const newCaseId = result.caseId || `c-${Date.now()}`;
-            router.push(`/case-review/${newCaseId}`);
+            router.push(`/case-review/${result.caseId}`);
 
         } catch (err: any) {
             setError(err.message);
@@ -62,23 +90,20 @@ const NewAnalysisPage = () => {
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
+        if (e.target.files?.length) {
             setSelectedFile(e.target.files[0]);
         }
     };
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
-            <div className="mb-6">
-                <PageHeader
-                    title="New Medical Analysis"
-                    subtitle="Upload diagnostic images for AI-powered analysis and clinical insights."
-                />
-            </div>
+            <PageHeader
+                title="New Medical Analysis"
+                subtitle="Upload diagnostic images for AI-powered analysis and clinical insights."
+            />
             
             <form onSubmit={handleSubmit}>
-                <div className="bg-white rounded-xl shadow-md border border-blue-100 p-6 md:p-8 space-y-6">
-                    {/* Display Error Message */}
+                <div className="bg-white rounded-xl shadow-md border border-blue-100 p-6 md:p-8 space-y-8 mt-6">
                     {error && (
                         <Alert variant="destructive">
                             <AlertTriangle className="h-4 w-4" />
@@ -86,7 +111,9 @@ const NewAnalysisPage = () => {
                             <AlertDescription>{error}</AlertDescription>
                         </Alert>
                     )}
-  <div className="space-y-4">
+                    
+                    {/* --- Step 2: Replace the Patient ID input with the Combobox --- */}
+                    <div className="space-y-4">
                         <div className="flex items-center">
                             <div className="bg-blue-100 p-2 rounded-full mr-3">
                                 <User className="h-5 w-5 text-blue-600" />
@@ -94,20 +121,51 @@ const NewAnalysisPage = () => {
                             <h2 className="text-xl font-semibold text-gray-800">Patient Information</h2>
                         </div>
                         <div>
-                            <Label htmlFor="patientId">Patient ID (MRN)</Label>
-                            <Input
-                                id="patientId"
-                                placeholder="Enter patient's medical record number..."
-                                className="mt-2 h-11"
-                                value={patientId}
-                                onChange={(e) => setPatientId(e.target.value)}
-                                required
-                            />
+                            <Label htmlFor="patientId">Select Patient</Label>
+                            <Popover open={openPopover} onOpenChange={setOpenPopover}>
+                                <PopoverTrigger asChild>
+                                    <Button
+                                        variant="outline"
+                                        role="combobox"
+                                        aria-expanded={openPopover}
+                                        className="w-full justify-between h-11 text-base font-medium mt-2 border-gray-300"
+                                        disabled={isPatientsLoading}
+                                    >
+                                        {isPatientsLoading ? "Loading patients..." :
+                                         selectedPatient ? `${selectedPatient.name} (${selectedPatient.id})` : "Select patient..."}
+                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                                    <Command>
+                                        <CommandInput placeholder="Search patient by name or ID..." />
+                                        <CommandList>
+                                            <CommandEmpty>No patient found.</CommandEmpty>
+                                            <CommandGroup>
+                                                {patients.map((patient) => (
+                                                    <CommandItem
+                                                        key={patient._id}
+                                                        value={`${patient.name} ${patient.id}`}
+                                                        onSelect={() => {
+                                                            setSelectedPatient(patient);
+                                                            setOpenPopover(false);
+                                                        }}
+                                                    >
+                                                        <Check className={`mr-2 h-4 w-4 ${selectedPatient?._id === patient._id ? "opacity-100" : "opacity-0"}`} />
+                                                        {patient.name} <span className="text-xs text-gray-500 ml-2">({patient.id})</span>
+                                                    </CommandItem>
+                                                ))}
+                                            </CommandGroup>
+                                        </CommandList>
+                                    </Command>
+                                </PopoverContent>
+                            </Popover>
                         </div>
                     </div>
+                    
                     {/* Scan Details Section */}
                     <div className="space-y-4">
-                         <div className="flex items-center">
+                        <div className="flex items-center">
                             <div className="bg-blue-100 p-2 rounded-full mr-3">
                                 <FileText className="h-5 w-5 text-blue-600" />
                             </div>
@@ -116,15 +174,14 @@ const NewAnalysisPage = () => {
                         
                         <div>
                             <Label htmlFor="scanType">Analysis Type</Label>
-                            {/* Pass the selected value to your state */}
                             <Select required onValueChange={setAnalysisType} value={analysisType}>
                                 <SelectTrigger id="scanType" className="h-11 mt-2 border-blue-200 focus:border-blue-500">
                                     <SelectValue placeholder="Select analysis type..." />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="chest"><HeartPulse className="w-4 h-4 mr-2" /> Chest X-Ray</SelectItem>
-                                    <SelectItem value="brain"><Brain className="w-4 h-4 mr-2" /> Brain MRI</SelectItem>
-                                    <SelectItem value="skin"><Bandage className="w-4 h-4 mr-2" /> Skin Lesion</SelectItem>
+                                    <SelectItem value="chest"><HeartPulse className="w-4 h-4 mr-2" />Chest X-Ray</SelectItem>
+                                    <SelectItem value="brain"><Brain className="w-4 h-4 mr-2" />Brain MRI</SelectItem>
+                                    <SelectItem value="skin"><Bandage className="w-4 h-4 mr-2" />Skin Lesion</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -151,7 +208,7 @@ const NewAnalysisPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-end pt-4">
+                    <div className="flex justify-end pt-4 border-t">
                         <Button type="submit" size="lg" disabled={isLoading} className="bg-blue-600 hover:bg-blue-700">
                             {isLoading ? (
                                 <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Analyzing...</>

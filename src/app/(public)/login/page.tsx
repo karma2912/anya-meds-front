@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuth } from "@/app/context/AuthContext";
+import { signIn } from "next-auth/react"; // <-- IMPORT signIn
 import {
   Stethoscope,
   Mail,
@@ -17,11 +17,9 @@ import {
 import Link from "next/link";
 
 const LoginPage = () => {
-  // const router = useRouter(); // NO LONGER NEEDED HERE
-  const { login } = useAuth(); // <-- USE THE CONTEXT
+  const router = useRouter(); // <-- Keep useRouter for redirection
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,28 +29,24 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      // --- THIS IS THE KEY CHANGE ---
+      // Use the signIn function from next-auth instead of a manual fetch
+      const result = await signIn('credentials', {
+        redirect: false, // We handle the redirect manually
+        email: email,
+        password: password,
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Login failed. Please try again.');
+      if (result?.error) {
+        // If next-auth returns an error, display it
+        setError('Invalid email or password. Please try again.');
+      } else if (result?.ok) {
+        // On a successful login, redirect to the dashboard
+        router.push('/dashboard');
       }
-
-      console.log("Login successful:", data);
       
-      // --- THIS IS THE KEY CHANGE ---
-      // Instead of router.push, call the login function from the context.
-      // It will handle saving the user and redirecting.
-      login(data.user); 
-      // router.push('/dashboard'); // THIS LINE IS NOW HANDLED BY THE CONTEXT
-
     } catch (err: any) {
-      setError(err.message);
+      setError("An unexpected error occurred during login.");
     } finally {
       setIsLoading(false);
     }
