@@ -3,7 +3,21 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Add this line for Capacitor
-}
+  
+  // --- ADD THIS 'IMAGES' BLOCK ---
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '5000',
+        pathname: '/static/uploads/**',
+      },
+    ],
+  },
+  // --------------------------------
 
-module.exports = nextConfig
+  // Add this line for Capacitor
+};
+
+module.exports = nextConfig;

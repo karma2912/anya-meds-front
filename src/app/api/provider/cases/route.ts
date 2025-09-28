@@ -1,18 +1,22 @@
 // In: app/api/provider/cases/route.ts
 
 import { NextResponse } from 'next/server';
-// Import the shared cases array
-import { cases } from './db';
+import { connectToDatabase } from '@/lib/mongodb';
 
-// This function now saves a new case to the shared array
-export async function POST(request: Request) {
+export async function GET() {
     try {
-        const newCaseData = await request.json();
-        cases.push(newCaseData);
-        console.log('Case saved. Total cases now:', cases.length);
-        return NextResponse.json(newCaseData, { status: 201 });
+        const { db } = await connectToDatabase();
+
+        const cases = await db
+            .collection('cases')
+            .find({})
+            .sort({ analysisDate: -1 }) // Sort by most recent first
+            .toArray();
+
+        return NextResponse.json(cases);
+
     } catch (error) {
-        console.error('Failed to save case:', error);
-        return NextResponse.json({ error: 'Failed to process case data' }, { status: 400 });
+        console.error("Failed to fetch cases:", error);
+        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }

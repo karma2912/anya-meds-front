@@ -32,18 +32,18 @@ import {
     User
 } from "lucide-react";
 import { PageHeader } from "@/components/provider/PageHeader";
+import { Badge } from "@/components/ui/badge";
 
-// --- TYPE DEFINITIONS ---
+// --- UPDATED TYPE DEFINITIONS TO MATCH DATABASE ---
 interface CaseItem {
-    id: string;
+    _id: string;
     patientName: string;
     patientId: string;
     scanType: string;
-    aiResult: string;
-    confidence: number;
-    uploadDate: string;
-    status: "pending" | "completed" | "rejected";
-    priority: "high" | "medium" | "low";
+    primaryDiagnosis: string;
+    confidenceScore: number;
+    analysisDate: string;
+    status: "pending" | "completed";
 }
 
 interface StatsData {
@@ -53,23 +53,8 @@ interface StatsData {
     aiAccuracy: number;
 }
 
-// --- MOCK API DATA ---
-const mockCases: CaseItem[] = [
-    { id: "c-a4b1", patientName: "Sarah Johnson", patientId: "P-48291", scanType: "Chest X-Ray", aiResult: "Pneumonia detected", confidence: 98.7, uploadDate: "2025-08-18", status: "pending", priority: "high" },
-    { id: "c-b2c3", patientName: "Michael Chen", patientId: "P-57123", scanType: "Brain MRI", aiResult: "Meningioma suspected", confidence: 96.2, uploadDate: "2025-08-17", status: "pending", priority: "medium" },
-    { id: "c-d4e5", patientName: "Emma Williams", patientId: "P-34982", scanType: "Skin Lesion", aiResult: "Melanoma detected", confidence: 94.5, uploadDate: "2025-08-17", status: "pending", priority: "high" },
-    { id: "c-f6g7", patientName: "Robert Davis", patientId: "P-67234", scanType: "Chest X-Ray", aiResult: "Normal findings", confidence: 99.1, uploadDate: "2025-08-16", status: "pending", priority: "low" },
-    { id: "c-h8i9", patientName: "Lisa Rodriguez", patientId: "P-18923", scanType: "Brain MRI", aiResult: "Glioma detected", confidence: 95.8, uploadDate: "2025-08-16", status: "pending", priority: "high" }
-];
-const mockStatsData: StatsData = { totalPatients: 1248, totalAnalyses: 3752, pendingReviews: 12, aiAccuracy: 98.8 };
-const mockAnalysesData = [
-    { day: "Mon", analyses: 22 }, { day: "Tue", analyses: 35 }, { day: "Wed", analyses: 42 },
-    { day: "Thu", analyses: 38 }, { day: "Fri", analyses: 51 }, { day: "Sat", analyses: 45 },
-    { day: "Sun", analyses: 30 },
-];
-
 // ============================================================================
-// REUSABLE DASHBOARD COMPONENTS
+// REUSABLE DASHBOARD COMPONENTS (Enhanced with original UI styling)
 // ============================================================================
 
 interface StatCardProps {
@@ -158,19 +143,50 @@ const DashboardPage = () => {
     const [cases, setCases] = useState<CaseItem[]>([]);
     const [analyses, setAnalyses] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
 
+    // Fetch data from API (functionality from updated code)
     useEffect(() => {
         const fetchDashboardData = async () => {
             setIsLoading(true);
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            setStats(mockStatsData);
-            setCases(mockCases);
-            setAnalyses(mockAnalysesData);
-            setIsLoading(false);
+            try {
+                const response = await fetch('/api/provider/dashboard');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch dashboard data.');
+                }
+                const data = await response.json();
+                setStats(data.stats);
+                setCases(data.recentCases);
+                setAnalyses(data.weeklyAnalyses);
+            } catch (error) {
+                console.error(error);
+                // Optionally set an error state here to show a message to the user
+            } finally {
+                setIsLoading(false);
+            }
         };
         fetchDashboardData();
     }, []);
+
+    // Filter cases based on search query
+    const filteredCases = useMemo(() => {
+        if (!searchQuery) return cases;
+        
+        const query = searchQuery.toLowerCase();
+        return cases.filter(caseItem => 
+            caseItem.patientName.toLowerCase().includes(query) ||
+            caseItem.patientId.toLowerCase().includes(query) ||
+            caseItem.scanType.toLowerCase().includes(query) ||
+            caseItem.primaryDiagnosis.toLowerCase().includes(query)
+        );
+    }, [cases, searchQuery]);
+
+    // Priority calculation based on confidence score and status (from original UI logic)
+    const getPriority = (caseItem: CaseItem): "high" | "medium" | "low" => {
+        if (caseItem.confidenceScore > 0.95) return "high";
+        if (caseItem.confidenceScore > 0.85) return "medium";
+        return "low";
+    };
 
     const priorityBadge = (priority: "high" | "medium" | "low") => {
         const styles = {
@@ -178,14 +194,33 @@ const DashboardPage = () => {
             medium: "bg-yellow-100 text-yellow-800",
             low: "bg-green-100 text-green-800"
         };
-        return <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[priority]}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>;
+        return <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[priority]}`}>
+            {priority.charAt(0).toUpperCase() + priority.slice(1)}
+        </span>;
     };
 
     const scanTypeIcon = (type: string) => {
-        if (type.includes("Chest")) return <HeartPulse className="w-5 h-5 text-blue-500" />;
-        if (type.includes("Brain")) return <Brain className="w-5 h-5 text-purple-500" />;
-        if (type.includes("Skin")) return <Bandage className="w-5 h-5 text-orange-500" />;
+        const lowerType = type.toLowerCase();
+        if (lowerType.includes("chest")) return <HeartPulse className="w-5 h-5 text-blue-500" />;
+        if (lowerType.includes("brain")) return <Brain className="w-5 h-5 text-purple-500" />;
+        if (lowerType.includes("skin")) return <Bandage className="w-5 h-5 text-orange-500" />;
         return <Stethoscope className="w-5 h-5 text-gray-500" />;
+    };
+
+    // Calculate trend values for stats cards (from original UI)
+    const getTrendValue = (title: string): { value: string; positive: boolean } => {
+        switch (title) {
+            case "Total Patients":
+                return { value: "+12% from last month", positive: true };
+            case "Analyses Performed":
+                return { value: "+8% from last month", positive: true };
+            case "Pending Reviews":
+                return { value: "+2 from yesterday", positive: false };
+            case "AI Accuracy":
+                return { value: "+0.5% from last week", positive: true };
+            default:
+                return { value: "", positive: true };
+        }
     };
 
     return (
@@ -200,15 +235,39 @@ const DashboardPage = () => {
                 }}
             />
 
-            {/* --- STATS CARDS --- */}
+            {/* --- STATS CARDS (Original UI styling) --- */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <StatCard title="Total Patients" value={stats?.totalPatients ?? '...'} icon={Users} trendValue="+12% from last month" />
-                <StatCard title="Analyses Performed" value={stats?.totalAnalyses ?? '...'} icon={FileText} trendValue="+8% from last month" />
-                <StatCard title="Pending Reviews" value={stats?.pendingReviews ?? '...'} icon={AlertCircle} trendValue="+2 from yesterday" trendPositive={false} />
-                <StatCard title="AI Accuracy" value={stats ? `${stats.aiAccuracy}%` : '...'} icon={BarChart3} trendValue="+0.5% from last week" />
+                <StatCard 
+                    title="Total Patients" 
+                    value={stats?.totalPatients ?? '...'} 
+                    icon={Users} 
+                    trendValue={getTrendValue("Total Patients").value}
+                    trendPositive={getTrendValue("Total Patients").positive}
+                />
+                <StatCard 
+                    title="Analyses Performed" 
+                    value={stats?.totalAnalyses ?? '...'} 
+                    icon={FileText} 
+                    trendValue={getTrendValue("Analyses Performed").value}
+                    trendPositive={getTrendValue("Analyses Performed").positive}
+                />
+                <StatCard 
+                    title="Pending Reviews" 
+                    value={stats?.pendingReviews ?? '...'} 
+                    icon={AlertCircle} 
+                    trendValue={getTrendValue("Pending Reviews").value}
+                    trendPositive={getTrendValue("Pending Reviews").positive}
+                />
+                <StatCard 
+                    title="AI Accuracy" 
+                    value={stats ? `${stats.aiAccuracy}%` : '...'} 
+                    icon={BarChart3} 
+                    trendValue={getTrendValue("AI Accuracy").value}
+                    trendPositive={getTrendValue("AI Accuracy").positive}
+                />
             </div>
 
-            {/* --- MAIN CONTENT GRID --- */}
+            {/* --- MAIN CONTENT GRID (Original UI styling) --- */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* --- CASES TABLE (MAIN SECTION) --- */}
                 <Card className="lg:col-span-2 rounded-2xl shadow-sm">
@@ -217,7 +276,12 @@ const DashboardPage = () => {
                             <CardTitle className="text-lg font-semibold">Cases Awaiting Review</CardTitle>
                             <div className="relative w-full sm:max-w-xs">
                                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                                <Input placeholder="Search cases..." className="pl-10" />
+                                <Input 
+                                    placeholder="Search cases..." 
+                                    className="pl-10"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
                             </div>
                         </div>
                     </CardHeader>
@@ -243,39 +307,42 @@ const DashboardPage = () => {
                                             <TableCell className="text-right"><div className="h-8 bg-gray-200 rounded-md w-24"></div></TableCell>
                                         </TableRow>
                                     ))
-                                ) : cases.length > 0 ? (
-                                    cases.map((caseItem) => (
-                                        <TableRow key={caseItem.id}>
-                                            <TableCell className="font-medium">
-                                                <div className="font-semibold text-gray-900">{caseItem.patientName}</div>
-                                                <div className="text-sm text-gray-500">{caseItem.patientId}</div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div className="flex items-center gap-2">
-                                                    {scanTypeIcon(caseItem.scanType)}
-                                                    <span className="text-sm">{caseItem.scanType}</span>
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div className="text-sm text-gray-900">{caseItem.aiResult}</div>
-                                                <div className="text-xs text-gray-500">{caseItem.confidence}% confidence</div>
-                                            </TableCell>
-                                            <TableCell>{priorityBadge(caseItem.priority)}</TableCell>
-                                            <TableCell className="text-right">
-                                                <Button
-                                                    size="sm"
-                                                    onClick={() => router.push(`/case-review/${caseItem.id}`)}
-                                                    className="bg-blue-600 hover:bg-blue-700"
-                                                >
-                                                    <Eye className="w-4 h-4 mr-1" />Review
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))
+                                ) : filteredCases.length > 0 ? (
+                                    filteredCases.map((caseItem) => {
+                                        const priority = getPriority(caseItem);
+                                        return (
+                                            <TableRow key={caseItem._id}>
+                                                <TableCell className="font-medium">
+                                                    <div className="font-semibold text-gray-900">{caseItem.patientName}</div>
+                                                    <div className="text-sm text-gray-500">{caseItem.patientId}</div>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <div className="flex items-center gap-2">
+                                                        {scanTypeIcon(caseItem.scanType)}
+                                                        <span className="text-sm">{caseItem.scanType}</span>
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <div className="text-sm text-gray-900">{caseItem.primaryDiagnosis}</div>
+                                                    <div className="text-xs text-gray-500">{(caseItem.confidenceScore * 100).toFixed(1)}% confidence</div>
+                                                </TableCell>
+                                                <TableCell>{priorityBadge(priority)}</TableCell>
+                                                <TableCell className="text-right">
+                                                    <Button
+                                                        size="sm"
+                                                        onClick={() => router.push(`/case-review/${caseItem._id}`)}
+                                                        className="bg-blue-600 hover:bg-blue-700"
+                                                    >
+                                                        <Eye className="w-4 h-4 mr-1" />Review
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        );
+                                    })
                                 ) : (
                                     <TableRow>
                                         <TableCell colSpan={5} className="h-24 text-center">
-                                            No cases found.
+                                            {searchQuery ? "No cases match your search." : "No cases found."}
                                         </TableCell>
                                     </TableRow>
                                 )}
@@ -284,7 +351,7 @@ const DashboardPage = () => {
                     </CardContent>
                 </Card>
 
-                {/* --- SIDEBAR --- */}
+                {/* --- SIDEBAR (Original UI styling) --- */}
                 <div className="space-y-6">
                     <AnalysesChart data={analyses} />
                     <Card className="rounded-2xl shadow-sm">
@@ -307,13 +374,13 @@ const DashboardPage = () => {
                                 <User className="w-4 h-4 mr-2" />
                                 View Patients
                             </Button>
-                             <Button
+                            <Button
                                 variant="outline"
                                 className="w-full justify-start border-blue-200 text-blue-600 hover:bg-blue-50"
-                                onClick={() => router.push('/reports')}
+                                onClick={() => router.push('/case-review')}
                             >
                                 <FileText className="w-4 h-4 mr-2" />
-                                Generate Reports
+                                View All Cases
                             </Button>
                         </CardContent>
                     </Card>

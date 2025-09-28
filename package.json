@@ -48,6 +48,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.522.0",
     "mongodb": "^6.19.0",
+    "mongoose": "^8.18.2",
     "next": "15.3.4",
     "next-auth": "^4.24.11",
     "popover": "^2.4.1",

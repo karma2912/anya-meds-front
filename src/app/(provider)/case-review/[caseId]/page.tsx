@@ -1,13 +1,30 @@
 "use client";
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 import { PageHeader } from '@/components/provider/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, CheckCircle, XCircle, Send } from 'lucide-react';
+import { Loader2, CheckCircle, XCircle, Send, FileText, Brain } from 'lucide-react';
 import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { AlertTriangle } from 'lucide-react';
 
-type CaseDetails = any;
+// This is the correct "flat" interface that matches your database document
+interface CaseDetails {
+    _id: string;
+    patientName: string;
+    patientId: string;
+    analysisDate: string; // A Date object becomes a string in JSON
+    scanType: string;
+    primaryDiagnosis: string;
+    confidenceScore: number;
+    imageUrl: string;
+    heatmapUrl: string;
+    narrativeReport: string;
+    status: 'pending' | 'completed';
+}
 
 const CaseReviewPage = () => {
     const params = useParams();
@@ -15,36 +32,27 @@ const CaseReviewPage = () => {
 
     const [caseDetails, setCaseDetails] = useState<CaseDetails | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    // Add a dedicated state for errors
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchCaseDetails = async () => {
             if (!caseId) return;
-
             setIsLoading(true);
-            setError(null); // Reset error on new fetch
-
+            setError(null);
             try {
                 const response = await fetch(`/api/provider/cases/${caseId}`);
-                
-                // FIX 1: Check if the response was successful (not a 404, etc.)
                 if (!response.ok) {
-                    throw new Error('Case not found.');
+                    throw new Error('Case not found or failed to load.');
                 }
-                
                 const data = await response.json();
                 setCaseDetails(data);
-
             } catch (err: any) {
                 console.error("Failed to fetch case details:", err);
                 setError(err.message);
-                setCaseDetails(null); // Ensure details are null on error
             } finally {
                 setIsLoading(false);
             }
         };
-
         fetchCaseDetails();
     }, [caseId]);
 
@@ -52,12 +60,18 @@ const CaseReviewPage = () => {
         return <div className="flex justify-center items-center h-96"><Loader2 className="w-8 h-8 animate-spin text-blue-600" /></div>;
     }
 
-    // FIX 2: Show an error message if the fetch failed
     if (error) {
-        return <div className="p-8 text-center text-red-600">Error: {error}</div>;
+        return (
+            <div className="p-8">
+                <Alert variant="destructive">
+                    <AlertTriangle className="h-4 w-4" />
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                </Alert>
+            </div>
+        );
     }
     
-    // This check now correctly handles when data is not found
     if (!caseDetails) {
         return <div className="p-8 text-center">Case data is unavailable.</div>;
     }
@@ -65,39 +79,58 @@ const CaseReviewPage = () => {
     return (
         <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
             <PageHeader
-                title={`Case Review: ${caseDetails.id}`}
-                subtitle={`Analysis for ${caseDetails.patient.name} (${caseDetails.patient.id})`}
+                title={`Case Review: ${caseDetails._id}`}
+                subtitle={`Analysis for ${caseDetails.patientName} (${caseDetails.patientId})`}
             />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
                 {/* Left Column: Image Viewer */}
-                <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                    <h2 className="text-lg font-semibold text-gray-900 mb-4">{caseDetails.scan.type} - {caseDetails.scan.date}</h2>
-                    <div className="bg-black rounded-lg flex items-center justify-center aspect-square">
-                        <img src={caseDetails.scan.imageUrl} alt="Medical Scan" className="max-w-full max-h-full object-contain" />
+                <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border p-4">
+                    <h2 className="text-lg font-semibold mb-4">{caseDetails.scanType} - {new Date(caseDetails.analysisDate).toLocaleDateString()}</h2>
+                    <div className="relative bg-black rounded-lg aspect-square">
+                        {/* Base Image */}
+                        <Image 
+                            src={`http://localhost:5000${caseDetails.imageUrl}`} 
+                            alt="Medical Scan" 
+                            fill={true}
+                            sizes="(max-width: 1024px) 90vw, 60vw"
+                            className="object-contain" 
+                        />
+                        {/* Heatmap Overlay */}
+                        <Image 
+                            src={`http://localhost:5000${caseDetails.heatmapUrl}`}
+                            alt="AI Heatmap"
+                            fill={true}
+                            sizes="(max-width: 1024px) 90vw, 60vw"
+                            className="object-contain opacity-50 mix-blend-overlay"
+                        />
                     </div>
                 </div>
 
                 {/* Right Column: Details & Actions */}
                 <div className="space-y-6">
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">AI Analysis</h3>
+                    <div className="bg-white rounded-xl shadow-sm border p-6">
+                        <h3 className="flex items-center text-lg font-semibold mb-4 border-b pb-2">
+                            <Brain className="w-5 h-5 mr-2 text-blue-600" />
+                            AI Analysis
+                        </h3>
                         <div className="space-y-4">
                             <div>
-                                <p className="text-xs font-semibold text-gray-500">AI DIAGNOSIS</p>
-                                <p className="text-xl font-bold text-blue-600">{caseDetails.aiAnalysis.diagnosis}</p>
-                                <p className="text-sm text-gray-500">Confidence: {caseDetails.aiAnalysis.confidence}%</p>
+                                <p className="text-xs font-semibold text-gray-500 uppercase">AI Diagnosis</p>
+                                <p className="text-xl font-bold text-blue-600">{caseDetails.primaryDiagnosis}</p>
+                                <p className="text-sm text-gray-500">Confidence: {(caseDetails.confidenceScore * 100).toFixed(1)}%</p>
                             </div>
                             <div>
-                                <p className="text-xs font-semibold text-gray-500">KEY FINDINGS</p>
-                                <ul className="list-disc list-inside text-sm text-gray-700 mt-1 space-y-1">
-                                    {caseDetails.aiAnalysis.findings.map((f: string, i: number) => <li key={i}>{f}</li>)}
-                                </ul>
+                                <p className="text-xs font-semibold text-gray-500 uppercase">AI Narrative Summary</p>
+                                <p className="text-sm text-gray-700 mt-1">{caseDetails.narrativeReport}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Provider Review & Report</h3>
+                    <div className="bg-white rounded-xl shadow-sm border p-6">
+                        <h3 className="flex items-center text-lg font-semibold mb-4 border-b pb-2">
+                            <FileText className="w-5 h-5 mr-2 text-gray-700" />
+                            Provider Review & Report
+                        </h3>
                         <div className="space-y-4">
                            <div>
                                 <Label htmlFor="providerNotes" className="text-sm font-medium">Your Notes & Final Diagnosis</Label>
