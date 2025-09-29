@@ -2,43 +2,50 @@
 
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
-import { ObjectId } from 'mongodb'; // Import ObjectId from the native driver
+import { ObjectId } from 'mongodb';
+import { getServerSession } from 'next-auth/next'; // <-- Import session tools
+import { authOptions } from '@/lib/auth';       // <-- Import auth config
 
 export async function GET(
     request: Request,
     { params }: { params: { caseId: string } }
 ) {
+    // --- 1. Get the current user's session ---
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user?.id) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { caseId } = params;
 
-    // Validate if the ID is a valid MongoDB ObjectId format using the native driver
     if (!ObjectId.isValid(caseId)) {
         return NextResponse.json({ error: 'Invalid Case ID format' }, { status: 400 });
     }
 
     try {
-        // Connect to the database using your existing utility
         const { db } = await connectToDatabase();
-
         console.log(`Searching database for case: ${caseId}`);
 
-        // Find the specific case in the 'cases' collection by its _id
-        // We must convert the string ID to a MongoDB ObjectId to find it
         const caseDetails = await db.collection('cases').findOne({
             _id: new ObjectId(caseId),
         });
 
-        if (caseDetails) {
-            console.log(`Found case:`, caseDetails);
-            return NextResponse.json(caseDetails);
-        } else {
-            console.error(`Case with ID ${caseId} not found in the database.`);
+        if (!caseDetails) {
             return NextResponse.json({ error: 'Case not found' }, { status: 404 });
         }
+
+        // --- 2. Authorization Check: Does this case belong to the logged-in doctor? ---
+        if (caseDetails.doctorId.toString() !== session.user.id) {
+            return NextResponse.json({ error: 'Forbidden: You do not have access to this case.' }, { status: 403 });
+        }
+
+        // --- 3. If authorized, return the data ---
+        console.log(`Found case:`, caseDetails);
+        return NextResponse.json(caseDetails);
+
     } catch (error) {
         console.error('Failed to fetch case data:', error);
-        return NextResponse.json(
-            { error: 'An internal server error occurred.' },
-            { status: 500 }
-        );
+        return NextResponse.json({ error: 'An internal server error occurred.' }, { status: 500 });
     }
 }

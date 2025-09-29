@@ -2,25 +2,47 @@
 
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
-import { ObjectId } from 'mongodb'; // <-- Import ObjectId
+import { ObjectId } from 'mongodb';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth'; // <-- FIX 1: Use the correct, central path
 
 export async function POST(request: Request) {
     try {
+        const session = await getServerSession(authOptions);
+        
+        if (!session || !session.user?.id) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         const formData = await request.formData();
         const file = formData.get('scanImage') as File | null;
         const analysisType = formData.get('analysisType') as string | null;
         const patientId = formData.get('patientId') as string | null;
 
         if (!file || !analysisType || !patientId) {
-            return NextResponse.json({ error: 'Missing file, analysis type, or patient ID' }, { status: 400 });
+            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
+        
+        const { db } = await connectToDatabase();
+        
+        if (!ObjectId.isValid(patientId)) {
+            return NextResponse.json({ error: 'Invalid Patient ID format' }, { status: 400 });
+        }
+        
+        const patient = await db.collection('patients').findOne({ _id: new ObjectId(patientId) });
 
-        // --- Step 1: Forward image to the Python backend ---
+        if (!patient || patient.doctorId.toString() !== session.user.id) {
+            return NextResponse.json({ error: 'Patient not found or you are not authorized.' }, { status: 404 });
+        }
+        
+        // --- Forward image to the Python backend ---
         const backendUrl = `http://localhost:5000/api/${analysisType}`;
         const backendFormData = new FormData();
         backendFormData.append('image', file);
 
         console.log(`Forwarding request to Python backend: ${backendUrl}`);
+        
+        // --- FIX 2: Complete the fetch call with method and body ---
         const mlResponse = await fetch(backendUrl, {
             method: 'POST',
             body: backendFormData,
@@ -28,32 +50,16 @@ export async function POST(request: Request) {
 
         if (!mlResponse.ok) {
             const errorText = await mlResponse.text();
-            console.error('Python backend error:', errorText);
             return NextResponse.json({ error: `Backend service failed: ${errorText}` }, { status: mlResponse.status });
         }
         
         const aiData = await mlResponse.json();
-
-        // --- Step 2: Connect to DB and fetch patient name ---
-        console.log("Connecting to the database to fetch patient data...");
-        const { db } = await connectToDatabase();
-
-        // --- NEW: Find the patient in the 'patients' collection ---
-        if (!ObjectId.isValid(patientId)) {
-            return NextResponse.json({ error: 'Invalid Patient ID format' }, { status: 400 });
-        }
-        const patient = await db.collection('patients').findOne({ _id: new ObjectId(patientId) });
-
-        // --- NEW: Handle case where patient is not found ---
-        if (!patient) {
-            return NextResponse.json({ error: `Patient with ID ${patientId} not found.` }, { status: 404 });
-        }
         console.log(`Found patient: ${patient.name}`);
 
-        // --- Step 3: Create the case document with the real name ---
         const caseDocument = {
+            doctorId: new ObjectId(session.user.id),
             patientId: patientId,
-            patientName: patient.name, // <-- Using the fetched name
+            patientName: patient.name,
             analysisDate: new Date(),
             scanType: analysisType,
             primaryDiagnosis: aiData.diagnosis,
@@ -64,11 +70,9 @@ export async function POST(request: Request) {
             status: 'pending',
         };
         
-        // Insert the document into the 'cases' collection
         const result = await db.collection('cases').insertOne(caseDocument);
         console.log("Successfully saved case with ID:", result.insertedId);
 
-        // --- Step 4: Return the NEW Case ID to the frontend ---
         return NextResponse.json({ caseId: result.insertedId });
 
     } catch (error) {

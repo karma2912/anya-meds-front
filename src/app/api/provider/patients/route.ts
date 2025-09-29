@@ -6,7 +6,7 @@ import { ObjectId } from 'mongodb';
 
 // --- Important: Add these imports for authentication ---
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../../auth/[...nextauth]/route'; // Assuming your next-auth config is here
+import { authOptions } from '@/lib/auth';// Assuming your next-auth config is here
 
 // --- GET: Fetches patients ONLY for the logged-in doctor ---
 export async function GET() {
