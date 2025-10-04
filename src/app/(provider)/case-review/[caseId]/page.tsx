@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { 
@@ -20,9 +19,6 @@ import {
   AlertCircle,
   Download,
   Clock,
-  Activity,
-  BarChart3,
-  Thermometer,
   Bandage
 } from 'lucide-react';
 import Image from 'next/image';
