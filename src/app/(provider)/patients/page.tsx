@@ -182,7 +182,7 @@ const PatientsPage = () => {
                                                     <Button
                                                         variant="outline"
                                                         size="sm"
-                                                        onClick={() => router.push(`/patients/${patient.id}`)}
+                                                        onClick={() => router.push(`/patients/${patient._id}`)}
                                                         className="border-blue-200 text-blue-600 hover:bg-blue-50"
                                                     >
                                                         View Profile
