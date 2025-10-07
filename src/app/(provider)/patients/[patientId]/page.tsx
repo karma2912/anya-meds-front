@@ -12,6 +12,8 @@ import {
     AlertTriangle, User, Stethoscope, Mail, FileText, Download, BrainCircuit, HeartPulse, Scan,
     History, FileDown, ShieldCheck
 } from "lucide-react";
+import autoTable from "jspdf-autotable";
+import jsPDF from "jspdf";
 
 // Define the type for a single case
 interface Case {
@@ -43,6 +45,7 @@ const PatientProfilePage = () => {
 
     const [patient, setPatient] = useState<PatientWithCases | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isExporting, setIsExporting] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -109,6 +112,65 @@ const PatientProfilePage = () => {
             </div>
         );
     }
+    const handleExportData = async () => {
+        if (!patient) return;
+        setIsExporting(true);
+
+        const doc = new jsPDF();
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 15;
+
+        // --- Helper to add Header/Footer ---
+        const addHeaderFooter = () => {
+            const pageCount = (doc as any).internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('AnYa-Meds Patient Summary', margin, 20);
+                doc.setLineWidth(0.5);
+                doc.line(margin, 23, pageWidth - margin, 23);
+
+                doc.setFontSize(8);
+                doc.setTextColor(150, 150, 150);
+                const footerY = doc.internal.pageSize.height - 10;
+                doc.text(`Page ${i} of ${pageCount}`, pageWidth / 2, footerY, { align: "center" });
+            }
+        };
+
+        // --- Page 1: Patient Details and Summary ---
+        doc.setFontSize(12);
+        doc.text('Patient Information', margin, 35);
+        autoTable(doc, {
+            startY: 40,
+            head: [['Field', 'Detail']],
+            body: [
+                ['Name', patient.name],
+                ['Patient ID', patient.id],
+                ['Gender', patient.gender],
+                ['Email', patient.email || 'N/A'],
+                ['Phone', patient.phone || 'N/A'],
+            ],
+            theme: 'grid',
+        });
+
+        doc.text('Imaging History Summary', margin, (doc as any).lastAutoTable.finalY + 15);
+        autoTable(doc, {
+            startY: (doc as any).lastAutoTable.finalY + 20,
+            head: [['Date', 'Scan Type', 'Diagnosis', 'Status']],
+            body: (patient.cases || []).map(c => [
+                new Date(c.analysisDate).toLocaleDateString(),
+                c.scanType,
+                c.primaryDiagnosis,
+                c.status
+            ]),
+            theme: 'striped',
+        });
+        
+        addHeaderFooter();
+        doc.save(`Patient_Summary_${patient.name.replace(/\s/g, '_')}.pdf`);
+        setIsExporting(false);
+    };
 
     const cases = patient.cases || [];
     const latestCase = cases.length > 0 ? cases[0] : null; // Already sorted by backend
@@ -124,7 +186,19 @@ const PatientProfilePage = () => {
                         <p className="text-gray-600 mt-1">View and manage patient information and medical imaging data</p>
                     </div>
                     <div className="flex gap-3">
-                        <Button variant="outline" className="flex items-center gap-2"><FileDown className="h-4 w-4" />PDF Report</Button>
+                         <Button 
+                            variant="outline" 
+                            className="flex items-center gap-2"
+                            onClick={handleExportData}
+                            disabled={isExporting}
+                        >
+                            {isExporting ? (
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                                <FileDown className="h-4 w-4" />
+                            )}
+                            PDF Report
+                        </Button>
                         <Button variant="outline" className="flex items-center gap-2"><Download className="h-4 w-4" />Export Data</Button>
                     </div>
                 </div>
