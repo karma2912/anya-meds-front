@@ -13,6 +13,7 @@ import {
   ArrowRight,
   Loader2,
   AlertCircle,
+  ArrowLeft,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -55,6 +56,18 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+         <div className="absolute top-8 left-4">
+            <Button
+              asChild
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <Link href="/">
+                <ArrowLeft className="w-4 h-4" />
+                <span className="hidden sm:inline">Back to Home</span>
+              </Link>
+            </Button>
+          </div>
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-2">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
